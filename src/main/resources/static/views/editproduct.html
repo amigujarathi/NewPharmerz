@@ -1,0 +1,125 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+        	<div class="row">
+                <div class="addproduct-header">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                         <!--<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:#727272;"></span> -->
+                         <span class="addproduct-header-txt">Edit Product</span>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+	            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	                <form class="form-horizontal">
+	                	<div class="borderless-textbox" name="editproductform">
+	                	 	<div class="form-group">
+		                        <label for="productname" class="col-sm-3 control-label addprd-lbl">Product Name</label>
+							    <div class="col-sm-4">
+							      <input type="text" class="form-control" id="productname" name="productname" ng-model="productname" placeholder="Product Name" required>
+									<span class="validation_error" ng-show="editproduct && editproductform.productname.$error.required">{{errorMessage.filedrequired}}</span>
+							    </div>
+                            </div>
+                            <div class="form-group">
+		                        <label for="composition" class="col-sm-3 control-label addprd-lbl">Composition</label>
+							    <div class="col-sm-6">
+							      <input type="text" class="form-control" id="composition" name="composition" ng-model="composition"  placeholder="Type Composition" required>
+									<span class="validation_error" ng-show="editproduct && editproductform.composition.$error.required">{{errorMessage.filedrequired}}</span>
+							    </div>
+                            </div>
+                            <div class="form-group">
+		                        <label for="productcategory" class="col-sm-3 control-label addprd-lbl">Product Category</label>
+							    <div class="col-sm-5">
+							      	<select class="form-control" id="productcategory" name="productcategory" ng-model="productcategory" ng-options="item.id as item.category for item in categoriesdata" required>
+										<option value="">Select category</option>
+							      	</select>
+									<br/>
+									<span class="validation_error" ng-show="editproduct && editproductform.productcategory.$error.required">{{errorMessage.filedrequired}}</span>
+							    </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            		<div class="form-group">
+                            			<label for="sku" class="col-sm-6 control-label addprd-lbl">
+                            			   SKU<br/>
+                            			  <span><small>(Stock Keep Unit)</small></span>
+                            			</label>
+									    <div class="col-sm-5">
+									      <input type="text" class="form-control" id="sku" name="sku" ng-model="sku" placeholder="e.g. 1000*1000" required>
+											<span class="validation_error" ng-show="editproduct && editproductform.sku.$error.required">{{errorMessage.filedrequired}}</span>
+									    </div>
+                                    </div>
+                            	</div>
+                            	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            		<div class="form-group">
+                        				<label for="upc" class="col-sm-6 control-label addprd-lbl">
+                        				UPC<br/>
+                        				<span><small>(Unique Product Code)</small></span>
+                        				</label>
+									    <div class="col-sm-5">
+									      <input type="text" class="form-control" id="upc" name="upc" ng-model="upc" placeholder="Type UPC" required>
+											<span class="validation_error" ng-show="editproduct && editproductform.upc.$error.required">{{errorMessage.filedrequired}}</span>
+									    </div>
+                                    </div>
+                            	</div>
+                            </div>
+	                	</div>
+						<div class="form-group">
+							<label for="notes" class="col-sm-3 control-label addprd-lbl"></label>
+							<div class="col-sm-6">
+								<label class="radio-inline">
+									<input type="radio" name="productTodo" ng-model="productTodo" value="Sales" required> Sales
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="productTodo" ng-model="productTodo" value="Purchase" required> Purchase
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="productTodo" ng-model="productTodo" value="Both" required> Both
+								</label>
+								<br/>
+								<span class="validation_error" ng-show="editproduct && editproductform.productTodo.$error.required">{{errorMessage.filedrequired}}</span>
+							</div>
+						</div>
+	                	<div class="form-group">
+	                        <label for="notes" class="col-sm-3 control-label addprd-lbl">Notes</label>
+						    <div class="col-sm-6">
+						    	 <textarea class="form-control" id="notes" name="notes" ng-model="notes" rows="4" required></textarea>
+								<span class="validation_error" ng-show="editproduct && editproductform.notes.$error.required">{{errorMessage.filedrequired}}</span>
+						    </div>
+                        </div>
+                        <div class="form-group">
+	                        <label for="notes" class="col-sm-3 control-label addprd-lbl">Select Image</label>
+						    <div class="col-sm-6">
+						    	<input type="file" name="">
+						    </div>
+                        </div>
+                        <div class="form-group">
+	                        <div class="col-sm-3">
+	                        	<img src="image/product-upload-default.png" alt=>
+	                        </div>
+                        </div>
+						<div class="form-group">
+							<center>
+								<button type="button" class="btn btn-primary btn-width" ng-click="editproductdata(editproductform);">Submit</button>
+								&nbsp;&nbsp;
+								<button type="button" class="btn btn-primary btn-width">Cancel</button>
+							</center>
+						</div>
+                        <!--<div class="form-group">-->
+	                        <!--<label for="notes" class="col-sm-5 control-label addprd-lbl">Please Upload Excel File for multiple Products</label>-->
+						    <!--<div class="col-sm-6">-->
+						    	<!--<input type="file" name="">-->
+						    <!--</div>-->
+                        <!--</div>-->
+	                	
+	                </form>
+	            </div>
+            </div>  
+        </div>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+
+<!--Header Part -->
+<div ng-include="'views/header.html'"></div>
+
+<!--Product Page  Part-->
+
+<div class="productpage-background">
+    <loading></loading>
+    <div class="container-fluid" id="product-container" ng-init="pagination();checkScrollPosition();">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1" id="filter-box">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-default btn-gery" aria-label="Left Align" ng-click="open = !open">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-size filetr-collapsable" ng-show="open"> 
+                        <div class="filter-box">
+                            <div>
+                                <div class="filter-headername" ng-click="hide = !hide" >
+                                    <span class="filter-headername-txt">Category</span> 
+                                    <span ng-show="!hide" class="glyphicon glyphicon-menu-up pull-right arrow-adjs" aria-hidden="true"></span>
+                                    <span ng-show="hide" class="glyphicon glyphicon-menu-down pull-right arrow-adjs" aria-hidden="true"></span>
+                                </div>
+                                <div ng-class="{ hideMe: hide }" class="filter-group-items">
+                                    <div class="filter-innerlist-block" ng-repeat="item in categories" id="{{item.id}}">
+                                        <div class="checkbox">
+                                            <span class="lable">
+                                               {{item.category}}
+                                            </span>
+                                            <input type="radio" name="category" ng-model="item.categoryId" value="{{item.id}}" ng-click="getfiltercategory(item);">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="filter-headername" ng-click="hide2 = !hide2" >
+                                    <span class="filter-headername-txt">Products</span> 
+                                    <span ng-show="!hide2" class="glyphicon glyphicon-menu-up pull-right arrow-adjs" aria-hidden="true"></span>
+                                    <span ng-show="hide2" class="glyphicon glyphicon-menu-down pull-right arrow-adjs" aria-hidden="true"></span>
+                                </div>
+                                <div ng-class="{ hideMe: hide2 }" class="product-filter-group-items">
+                                    <div class="text-center">
+                                        <span>Aplhabets</span>
+                                    </div>
+                                    <div class="product-filter">
+                                        <span ng-click="searchByAlphabets('A');">A</span>
+                                        <span ng-click="searchByAlphabets('B');">B</span>
+                                        <span ng-click="searchByAlphabets('C');">C</span>
+                                        <span ng-click="searchByAlphabets('D');">D</span>
+                                        <span ng-click="searchByAlphabets('E');">E</span>
+                                        <span ng-click="searchByAlphabets('F');">F</span>
+                                        <span ng-click="searchByAlphabets('G');">G</span>
+                                        <span ng-click="searchByAlphabets('H');">H</span>
+                                        <span ng-click="searchByAlphabets('I');">I</span>
+                                        <span ng-click="searchByAlphabets('J');">J</span>
+                                        <span ng-click="searchByAlphabets('K');">K</span>
+                                        <span ng-click="searchByAlphabets('L');">L</span>
+                                        <span ng-click="searchByAlphabets('M');">M</span>
+                                        <span ng-click="searchByAlphabets('N');">N</span>
+                                        <span ng-click="searchByAlphabets('O');">O</span>
+                                        <span ng-click="searchByAlphabets('P');">P</span>
+                                        <span ng-click="searchByAlphabets('Q');">Q</span>
+                                        <span ng-click="searchByAlphabets('R');">R</span>
+                                        <span ng-click="searchByAlphabets('S');">S</span>
+                                        <span ng-click="searchByAlphabets('T');">T</span>
+                                        <span ng-click="searchByAlphabets('U');">U</span>
+                                        <span ng-click="searchByAlphabets('V');">V</span>
+                                        <span ng-click="searchByAlphabets('W');">W</span>
+                                        <span ng-click="searchByAlphabets('X');">X</span>
+                                        <span ng-click="searchByAlphabets('Y');">Y</span>
+                                        <span ng-click="searchByAlphabets('Z');">Z</span>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <span>Digits</span>
+                                    </div>
+                                    <div class="product-filter">
+                                        <span ng-click="searchBydigit(0);">0</span>
+                                        <span ng-click="searchBydigit(1);">1</span>
+                                        <span ng-click="searchBydigit(2);">2</span>
+                                        <span ng-click="searchBydigit(3);">3</span>
+                                        <span ng-click="searchBydigit(4);">4</span>
+                                        <span ng-click="searchBydigit(5);">5</span>
+                                        <span ng-click="searchBydigit(6);">6</span>
+                                        <span ng-click="searchBydigit(7);">7</span>
+                                        <span ng-click="searchBydigit(8);">8</span>
+                                        <span ng-click="searchBydigit(9);">9</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 product-page-items-background">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <center>
+                            <span class="validation_error" ng-show="ShowErrorNoSupplier">{{errorMessage.nosupplier}}</span>
+                            <span class="validation_error" ng-show="ShowErrorNotVerifiedUser">{{errorMessage.notverifieduser}}</span>
+                        </center>
+                    </div>
+                </div>
+                <div class="row">
+                    <div  class="col-xs-12 col-sm-12 col-md-6 col-lg-6 p-product-item-box" ng-repeat="item in product" ng-cloak>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                                <div class="p-product-image">
+                                    <img src="image/products/product-1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9 ">
+                                <div class="p-product-txt">
+                                    <div class="p-product-txt-content">
+                                        <span class="p-product-name">{{item.product | limitTo : 40 | Camlecase}} {{item.product.length < 40 ? '' : '...'}}</span><br/>
+                                        <div ng-if="item.composition != null">
+                                            <span class="p-product-categorty">{{item.composition | limitTo : 40 | Camlecase}} {{item.composition.length < 40 ? '' : '...'}}</span><br/>
+                                        </div>
+                                        <div ng-if="item.composition == null">
+                                            <span class="p-product-categorty">     </span><br/>
+                                        </div>
+                                            <!--<span>{{item.id}}</span>-->
+                                    </div>
+                                    <button type="button" class="btn btn-primary p-product-sendEnq-btn" ng-click="sendequiry(item.id);">SEND ENQUIRY</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="prodlength == 0" ng-cloak><center><h4>No Product</h4></center></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <center>
+                            <nav ng-show="prodlength > 20" aria-label="Page navigation" ng-cloak>
+                                <ul class="pagination">
+                                    <li ng-class="{disabled : page == 0}">
+                                        <a href="javascript:void(0);" aria-label="first">
+                                            <span aria-hidden="true" ng-click="firstpage();">First</span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{disabled : page == 0}">
+                                        <a href="javascript:void(0);" aria-label="Previous">
+                                            <span aria-hidden="true" ng-click="previouspage();">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{disabled : page == last - 1 }">
+                                        <a href="javascript:void(0);" aria-label="Next">
+                                            <span aria-hidden="true" ng-click="nextpage();">Next</span>
+                                        </a>
+                                    </li>
+                                    <li ng-class="{disabled : page == last - 1 }">
+                                        <a href="javascript:void(0);" aria-label="last">
+                                            <span aria-hidden="true" ng-click="lastpage();">Last</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="movetoTop">
+    <button id="toTop" ng-click="topmove();" class="toTop-arrow"></button>
+</div>
+<!-- footer Part -->
+<div ng-include="'views/footer.html'"></div>
+

@@ -1,0 +1,120 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+			<div class="organizationPofile-heading">
+				<span ng-cloak>Organization Name : {{ coName | Camlecase }}</span>
+			</div>
+			<br/>
+			<div class="organizationAdmin-name">
+				<span>Admin Name</span>
+			</div>
+			<div class="form-horizontal">
+				<div class="form-group">
+				    <div class="col-md-4">
+				    	<div class="borderless-textbox">
+				    		<input type="text" class="form-control" name="adminName" ng-model="adminName" placeholder="Admin Name" readonly>
+				    	</div>
+				    </div>
+  				</div>
+			</div>
+			<br/><br/>
+			<div class="organizationPofile-heading">
+				<span>Company Identity</span>
+			</div>
+			<br/>
+			<div class="form-horizontal">
+				<div class="form-group">
+	                <div class="col-sm-4">
+						<div class="borderless-textbox">
+		                    <select class="form-control" name="CompanyIdentity" ng-model="CompanyIdentity"  ng-options="item.identityType as item.identities disable when item.isDisable for item in identitydataObjects"  ng-change="selectcompanyidentity();">
+		                    	<option value="">Select Type</option>
+		                    </select>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+
+            <!-- Identity Modal -->
+			 <div class="modal fade" id="identityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	                <div class="modal-dialog" role="document">
+	                    <div class="modal-content">
+	                        <div class="modal-header">
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetcompanyidentity();"><span aria-hidden="true">&times;</span></button>
+	                            <h4 class="modal-title">Add {{ CompanyIdentity.split('_').join(' ')}}</h4>
+	                        </div>
+	                        <div class="modal-body">
+	                        	<div class="">
+			                        <form class="form-horizontal" name="identityform">
+			                        	<div class="form-group">
+										    <div class="col-sm-12">
+										    	<div class="borderless-textbox">
+										    		<input type="text" class="form-control" name="identityType" ng-model="identityType" placeholder="Type {{CompanyIdentity}} Value" required readonly>
+													<span class="validation_error" ng-show="addidentity && identityform.identityType.$error.required">{{errorMessage.filedrequired}}</span>
+												</div>
+										    </div>
+						  				</div>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<div class="borderless-textbox">
+													<input type="text" class="form-control" name="identityboxValue" ng-model="identityboxValue" placeholder="Enter {{ CompanyIdentity.split('_').join(' ') }} Value" maxlength="32" ng-keyup="matchIdentityValue();" required>
+													<span class="validation_error" ng-show="addidentity && identityform.identityboxValue.$error.required">{{errorMessage.filedrequired}}</span>
+												</div>
+											</div>
+										</div>
+						  				<div class="form-group">
+										    <div class="col-sm-12">
+										    	<div class="borderless-textbox">
+										    		<input type="text" class="form-control" name="confidentityValue" ng-model="confidentityValue" placeholder="Confirm {{ CompanyIdentity.split('_').join(' ') }} Value" maxlength="32" ng-keyup="matchIdentityValue();" required>
+													<span class="validation_error" ng-show="addidentity && identityform.confidentityValue.$error.required">{{errorMessage.filedrequired}}</span>
+													<span class="validation_error" ng-show="addidentity && showerrors && identityform.confidentityValue.$valid ">{{errorMessage.identitynotmatch}}</span>
+												</div>
+										    </div>
+						  				</div>
+						  				<br/>
+										<div class="form-group" ng-show="sendrequestIdentity">
+											<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+										</div>
+						  				<div class="form-group">
+						  					<center><button type="button" class="btn btn-default" ng-click="addidentityform(identityform);">Add</button></center>
+						  				</div>
+			                        </form>
+		                        </div>
+	                        </div>
+                        </div>
+                    </div>
+				</div>
+
+			<!-- Identity Table -->
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 identities-table">
+					<div ng-show="elementsdata > 0" id="IdentitycontentTable" ng-cloak>
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered">
+								<thead>
+								<tr>
+									<th>Sr No</th>
+									<th>Identity Type</th>
+									<th>Value</th>
+								</tr>
+								</thead>
+								<!--<tbody id="cindata">-->
+								<tbody>
+								   <tr ng-repeat="item in identitiesdata" ng-cloak>
+									<td>{{$index + 1}}</td>
+									<td>{{item.type.split('_').join(' ')}}</td>
+									<td>{{item.identity}}</td>
+								   </tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+

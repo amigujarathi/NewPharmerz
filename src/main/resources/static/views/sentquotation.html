@@ -1,0 +1,280 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+<div class="container-fluid sentquotation-background">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+        	<div class="row">
+                <div class="sendenquiry-header">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                         <!--<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:#727272;"></span> -->
+                         <span class="sentquotation-header-txt">Send Quotation</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <!--<span class="sentquotation-header-txt">Quotation No - 12345</span>-->
+                    </div>    
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <form class="form-horizontal sentquotation-form">
+                       <br/>
+                    	<div class="form-group">
+	                        <label class="col-md-3 control-label sentquotation-lbl">Sent to</label>
+	                        <div class="col-md-9">
+	                            <span>{{orgName}}</span>
+	                        </div>
+                        </div>
+                        <!--<div class="form-group">-->
+	                        <!--<label class="col-md-3 control-label sentquotation-lbl">Email ID</label>-->
+	                        <!--<div class="col-md-9">-->
+	                            <!--<span>{{emailid}}</span>-->
+	                        <!--</div>-->
+                       <!--</div>-->
+                       <div class="form-group">
+                             <label class="col-md-3 control-label sentquotation-lbl">Date</label>
+                            <div class="col-md-9">
+                              <span>{{showdate | date :'d MMM y'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentquotation-lbl">
+	                           Product Name
+	                         </label>
+	                        <div class="col-md-9">
+	                            <span> 
+	                                 {{productName}}
+								</span>
+	                        </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentquotation-lbl">
+	                           Composition
+	                         </label>
+	                        <div class="col-md-9">
+	                            <span> 
+	                                  {{composition}}
+								</span>
+	                        </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                 <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">Rate</label>
+                                    <div class="col-md-5">
+                                      <span>{{rate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl"> 
+                                        UOM
+                                        <br/>
+                                        <span><small>(Unit of Measurement)</small></span>
+                                    </label>
+                                    <div class="col-md-5">
+                                       <span>{{uom}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                 <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">Quantity</label>
+                                    <div class="col-md-5">
+                                      <span>{{qty}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">
+                                        Incoterms
+                                    </label>
+                                    <div class="col-md-5">
+                                        <span>{{incoterm.split('_').join(' ') | Camlecase}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">
+                                        Amount
+                                    </label>
+                                    <div class="col-md-5">
+                                        <span>{{rate * qty}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentquotation-lbl">
+	                           Taxes
+	                         </label>
+	                        <div class="col-md-9">
+	                            <span> 
+	                                  {{tax +' '+ taxRate +'%' }}
+								</span>
+	                        </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentquotation-lbl">
+	                           Packaging
+	                         </label>
+	                        <div class="col-md-9">
+	                            <span> 
+	                                  {{packaging | Camlecase}}
+								</span>
+	                        </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentquotation-lbl">
+	                           Payments Terms
+	                         </label>
+	                        <div class="col-md-3">
+	                            <span> 
+	                                  {{paymentterms.split('_').join(' ') | Camlecase}}
+								</span>
+	                        </div>
+	                        <div class="col-md-6">
+	                            <span> 
+	                                    <h6><small>Click here to see <a href="https://rbidocs.rbi.org.in/rdocs/notification/PDFs/APDIR100NT0214.pdf" target="_blank">Third Party Payments Terms for Export/Import Transactions</a></small></h6>
+								</span>
+	                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                 <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">Enter Lead Time</label>
+                                    <div class="col-md-5">
+                                      <span>{{leadtime}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">
+                                        Freight Type
+                                    </label>
+                                    <div class="col-md-5">
+                                       <span>{{frieghttype | Camlecase}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">
+                                        Offer Validity Date
+                                    </label>
+                                    <div class="col-md-6">
+	                            <span>
+	                                 {{offervalidity | date :'d MMM y'}}
+								</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentquotation-lbl">
+                                        Shipment by
+                                    </label>
+                                    <div class="col-md-5">
+                                        <span>{{shipmentby | Camlecase }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentquotation-lbl">
+	                          Your Message
+	                         </label>
+	                        <div class="col-md-5">
+                                <!--<textarea class="form-control" rows="4" ng-model="msg" readonly></textarea>-->
+                                <span>{{msg}}</span>
+	                        </div>
+                        </div>
+                        <br/>
+                        <br/>
+                    </form>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row" id="quotationchat_window">
+        <div class="col-xs-12 col-sm-6 col-md-3 chat-window" ng-init="chatwindowhisory()">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading top-bar">
+                            <div class="col-md-7 col-xs-7">
+                                <h3 class="panel-title"><!--<span class="glyphicon glyphicon-comment"></span>-->  </h3>
+                            </div>
+                            <div class="col-md-5 col-xs-5" style="text-align: right;">
+                                <!--<a href="javascript:void(0);"><i class="fa fa-paperclip" aria-hidden="true" style="color: #fff;font-size: 17px;font-weight: 500;"></i></a>-->
+                                <a href="javascript:void(0);"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"  style="color:#fff;"></span></a>
+                                <a href="javascript:void(0);" ng-click="leave();"><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1" style="color:#fff;"></span></a>
+                            </div>
+                        </div>
+                        <div class="chat-subheading-pannel">
+                            <div class="col-xs-12 col-sm-12 col-md-12 chat-sub-head">
+                                <div class="chat-sub-head-adjs">
+                                    <div>Doc Type - Quotation Sent</div>
+                                    <div>Username - {{orgName}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body msg_container_base" id="mychat">
+
+                            <!--<div class="row msg_container base_receive">-->
+                            <!--<div class="col-md-2 col-xs-2 avatar">-->
+                            <!--<img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-10 col-md-10">-->
+                            <!--<div class="messages msg_receive">-->
+                            <!--<p>{{chatMessage}}</p>-->
+                            <!--&lt;!&ndash;<time datetime="{{ currentTime }}">currentTime</time>&ndash;&gt;-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row msg_container base_sent">-->
+                            <!--<div class="col-md-10 col-xs-10 ">-->
+                            <!--<div class="messages msg_sent">-->
+                            <!--<p></p>-->
+                            <!--<time datetime="currentTime">currentTime</time>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2 col-xs-2 avatar">-->
+                            <!--<img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                        </div>
+                        <div class="panel-footer">
+                            <form name="chatform">
+                                <div class="input-group">
+                                    <input id="btn-input" type="text" class="form-control input-sm chat_input" ng-name="chatinputbox" ng-model="chatinputbox" placeholder="Write your message here..."/>
+                                    <span class="input-group-btn">
+									 <button class="btn btn-primary btn-sm" type="submit" id="btn-chat" ng-click="sendChatMsg(chatform);">Send</button>
+									</span>
+                                </div>
+                                <!--<span class="validation_error" ng-show="chatforms && chatform.chatinputbox.$error.required">{{errorMessage.msgempty}}</span>-->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>        

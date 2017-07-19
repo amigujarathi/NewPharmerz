@@ -1,0 +1,234 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+
+<div class="container-fluid receivedenquiry-background">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+           <div class="row">
+                <div class="receivedenquiry-header">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                         <!--<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:#727272;"></span> -->
+                         <span class="receivedenquiry-header-txt">Sent Enquiry Details</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <!--<span class="receivedenquiry-header-txt">Enquiry No - 12345</span>-->
+                    </div>    
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <form class="form-horizontal sendenquiry-form">
+                      <div class="form-group">
+                        <div  class="col-md-3">
+                            <span class="sendenq-lbl">Sent to</span>
+                        </div>
+                        <div class="col-md-9">
+                            <span>{{orgName}}</span>
+                        </div>
+                      </div>
+                      <!--<div class="form-group">-->
+                        <!--<div  class="col-md-3">-->
+                            <!--<span class="sendenq-lbl">Email ID</span>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-9">-->
+                            <!--<span>{{emailid}}</span>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <div class="form-group">
+                        <div  class="col-md-3">
+                            <span class="sendenq-lbl">Product Name</span>
+                        </div>
+                        <div class="col-md-9">
+                            <span class="sendenq-productname-txt">{{productName}}</span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div  class="col-md-3">
+                            <span class="sendenq-lbl">Composition</span>
+                        </div>
+                        <div class="col-md-9">
+                            <span class="sendenq-productname-txt">{{composition}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                              <div class="form-group">
+                                  <div  class="col-md-6">
+                                      <span class="sendenq-lbl">Quantity</span>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <span class="sendenq-productname-txt">{{qty}}</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                              <div class="form-group">
+                                  <div  class="col-md-6">
+                                      <span class="sendenq-lbl">UOM<br/>
+                                          <span><h6><small>(Unit of Measurement)</small></h6></span>
+                                      </span>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <span class="sendenq-productname-txt">{{uom}}</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                       <div class="form-group">
+                        <div  class="col-md-3">
+                            <span class="sendenq-lbl">Location</span>
+                        </div>
+                        <div class="col-md-9">
+                            <div>
+                                 {{location}}
+                            </div>
+                        </div>
+                      </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <div  class="col-md-6">
+                                        <span class="sendenq-lbl">Currency</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="sendenq-productname-txt">{{currency}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <div  class="col-md-6">
+                                      <span class="sendenq-lbl">Incoterm</span>
+                                      </span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="sendenq-productname-txt">{{incoterm.split('_').join(' ') | Camlecase}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                              <span class="sendenq-lbl">Shipment by</span>
+                            </div>
+                            <div class="col-md-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="shipment" value="SEA" ng-model="sendenqShipBy"> Sea
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="shipment"  value="AIR" ng-model="sendenqShipBy"> Air
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="shipment"  value="OTHER" ng-model="sendenqShipBy"> Other
+                                </label>
+                                <!--<label class="radio-inline">-->
+                                    <!--<input type="radio" name="shipment" value="LAND_BY_ROAD" ng-checked="!shipmentby" ng-disabled="land" ng-model="sendenqShipBy" disabled> By Road-->
+                                <!--</label>-->
+                                <!--<label class="radio-inline">-->
+                                    <!--<input type="radio" name="shipment" value="LAND_BY_RAIL" ng-checked="!shipmentby" ng-disabled="land" ng-model="sendenqShipBy" disabled> By Train-->
+                                <!--</label>-->
+                            </div>
+                        </div>
+                      <div class="form-group">
+                        <div  class="col-md-3">
+                            <span class="sendenq-lbl">Your Message</span>
+                        </div>
+                        <div class="col-md-5">
+                            <textarea class="form-control" rows="4" ng-model="msg" readonly>
+
+                            </textarea>
+                        </div>
+                      </div>
+                       <!--<div class="form-group">-->
+                        <!--<div class="col-xs-offset-3"> -->
+                          <!--<button type="button" class="btn btn-primary btn-width" ng-model="enabled">Accept Enquiry</button>&nbsp;-->
+                          <!--<button type="button" class="btn btn-primary btn-width">Reject Enquiry</button>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <!--<div class="form-group">-->
+                        <!--<div class="col-xs-offset-3">-->
+                          <!--<button type="button" class="btn btn-primary btn-width" ng-disabled="!enabled">Generate Quotation</button>&nbsp;-->
+                          <!--<button type="button" class="btn btn-primary btn-width" ng-disabled="!enabled">Message</button>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <br/>
+                      <br/>
+                    </form>
+                </div>
+            </div>
+            <br/>
+            <br/>
+
+        </div>
+    </div>
+    <br/>
+    <div class="row" id="enquirychat_window">
+        <div class="col-xs-12 col-sm-6 col-md-3 chat-window" ng-init="chatwindowhisory()">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading top-bar">
+                            <div class="col-md-7 col-xs-7">
+                                <h3 class="panel-title"><!--<span class="glyphicon glyphicon-comment"></span>--> </h3>
+                            </div>
+                            <div class="col-md-5 col-xs-5" style="text-align: right;">
+                                <!--<a href="javascript:void(0);" ng-click="openAttachFile();"><i class="fa fa-paperclip" aria-hidden="true" style="color: #fff;font-size: 17px;font-weight: 500;"><button type="file" ng-model="chatfile" ngf-select="uploadFiles(chatfile)"  ngf-max-height="1000" ngf-max-size="100MB" style="display: none;">Select File</button></i></a>-->
+                                <!--<a href="javascript:void(0);"><i class="fa fa-paperclip" aria-hidden="true" style="color: #fff;font-size: 17px;font-weight: 500;" ng-click="openattachfile();"><input type="file" ng-model="chatfile" id="chatfile" ng-change="getchatfile(ch);" style="display: none;"/></i></a>-->
+                                <a href="javascript:void(0);"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"  style="color:#fff;"></span></a>
+                                <a href="javascript:void(0);" ng-click="leave();"><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1" style="color:#fff;"></span></a>
+                            </div>
+                        </div>
+                        <div class="chat-subheading-pannel">
+                            <div class="col-xs-12 col-sm-12 col-md-12 chat-sub-head">
+                                <div class="chat-sub-head-adjs">
+                                    <div>Doc Type - Enquiry Sent</div>
+                                    <div>Username - {{orgName}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body msg_container_base" id="mychat">
+
+                            <!--<div class="row msg_container base_receive">-->
+                            <!--<div class="col-md-2 col-xs-2 avatar">-->
+                            <!--<img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-10 col-md-10">-->
+                            <!--<div class="messages msg_receive">-->
+                            <!--<p>{{chatMessage}}</p>-->
+                            <!--<time datetime="{{ currentTime }}">currentTime</time>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row msg_container base_sent">-->
+                            <!--<div class="col-md-10 col-xs-10 ">-->
+                            <!--<div class="messages msg_sent">-->
+                            <!--<p></p>-->
+                            <!--<time datetime="currentTime">currentTime</time>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2 col-xs-2 avatar">-->
+                            <!--<img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                        </div>
+                        <div class="panel-footer">
+                            <form name="chatform">
+                                <div class="input-group">
+                                    <input id="btn-input" type="text" class="form-control input-sm chat_input" ng-name="chatinputbox" ng-model="chatinputbox" placeholder="Write your message here..."/>
+                                    <span class="input-group-btn">
+									 <button class="btn btn-primary btn-sm" type="submit" id="btn-chat" ng-click="sendChatMsg(chatform);">Send</button>
+									</span>
+                                </div>
+                                <!--<span class="validation_error" ng-show="chatforms && chatform.chatinputbox.$error.required">{{errorMessage.msgempty}}</span>-->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

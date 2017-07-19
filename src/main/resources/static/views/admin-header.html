@@ -1,0 +1,315 @@
+<nav class="navbar navbar-inverse admin-nav-adjust">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <!--   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin-header" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button> -->
+
+            <div class="brand-logo2">
+                <a href="#/home">
+                    <img src="image/pharmerzlogo.png" alt="">
+                    <!--<span class="logo-txt-adjs"> Pharmerz</span>-->
+                </a>
+            </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="admin-header">
+
+            <ul class="nav navbar-nav navbar-right admin-rightnavbar-adjs">
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="nav-side-menu">
+    <div class="brand">
+        <div class="visible-xs visible-sm hidden-md hidden-lg">
+            <span style="padding-left: 10px;">Welcome</span>&nbsp;<span ng-cloak>{{adminName | Camlecase}}</span> &nbsp; <img class="sidemenu-icon-adjs" src="image/EditProfile.png" alt="" ng-click="showeditprofile();" style="cursor: pointer;">
+        </div>
+        <div class="row hidden-xs hidden-sm visible-md visible-lg">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="sidenav-profile-txt">
+                    <div>
+                        <span>Welcome</span>
+                    </div>
+                    <div>
+                        <span ng-cloak>{{adminName | Camlecase}}</span>
+                    </div>
+                    <br/>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary editprofile-btn" ng-click="showeditprofile();">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="#/admindashbord"><img class="sidemenu-icon-adjs" src="image/home-icon.png" alt=""> Home</a>
+            </li>
+            <li  data-toggle="collapse" data-target="#management" class="collapsed">
+                <a href="javascript:void(0);"><img src="image/management-icon.png" alt="" style="width: 20px;"> Management <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="management">
+                <li><a href="#/enquiry">Enquiry</a></li>
+                <li><a href="#/quotation">Quotation</a></li>
+                <!--<li><a href="#/purchaseorder">Purchase Order</a></li>-->
+            </ul>
+            <li  data-toggle="collapse" data-target="#masterdata" class="collapsed">
+                <a href="javascript:void(0);"><img src="image/masterdata-icon.png" alt="" style="width: 20px;"> Master Data <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="masterdata">
+                <li><a href="#/organisationprofile">Organisation Profile</a></li>
+                <li><a href="#/location">Location</a></li>
+                <li><a href="#/taxes">Taxes</a></li>
+            </ul>
+            <li data-toggle="collapse" data-target="#product" class="collapsed">
+                <a href="javascript:void(0);"><img class="sidemenu-icon-adjs" src="image/products-icon.png" alt="" style="width: 20px;"> Products <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="product">
+                <li><a href="#/addproduct">Add Product</a></li>
+                <li><a href="#/viewproduct">View Added</a></li>
+            </ul>
+            <li>
+                <a href="#/verifymobile">
+                    <img class="sidemenu-icon-adjs" src="image/verify-mobile-icon.png" alt=""> Verify Mobile
+                    <label class="checkbox-inline checkbox-adjs">
+                        <input type="checkbox" name="veriMobile" ng-model="veriMobile" disabled>
+                    </label>
+                </a>
+            </li>
+            <li>
+                <a href="#/verifyemail">
+                    <img class="sidemenu-icon-adjs" src="image/verify-mail-icon.png" alt=""> Verify Email
+                    <label class="checkbox-inline checkbox-adjs">
+                        <input type="checkbox" name="veriEmail" ng-model="veriEmail" disabled>
+                    </label>
+                </a>
+            </li>
+            <li>
+                <a href="#/logout">
+                    <img class="sidemenu-icon-adjs" src="image/logout-icon.png" alt=""> Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!--Signup Modal-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Modal -->
+            <div class="modal fade" id="EditProfileModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetEditprofile();"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-ms-12 col-md-12 col-lg-12">
+                                    <div class="signup-heading">
+                                        <span>
+                                            <u>Edit Profile Form</u>
+                                        </span>
+                                    </div>
+                                    <br/>
+                                    <div class="signup-subheading">
+                                        <span>
+                                            &#8226; User Information &#8226;
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-12 col-ms-12 col-md-12 col-lg-12">
+                                    <div class="signup-form-inneradjs">
+                                        <form class="form-horizontal" name="editprofile">
+                                            <div class="row col-adjs">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.fName" ng-class="{errorborder:editPro && editprofile.firstname.$invalid}" name="firstname" pattern="([a-zA-Z]{2,10}\s*)+"  placeholder="First Name" required>
+                                                            </div>
+                                                            <span class="validation_error" ng-show="editPro && editprofile.firstname.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="editPro && editprofile.firstname.$error.pattern">{{errorMessage.fname}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control" ng-model="$parent.mName" ng-class="{errorborder:editPro && editprofile.middlename.$invalid}" name="middlename" pattern="([a-zA-Z]{2,10}\s*)+"  placeholder="Middle Name">
+                                                            <span class="validation_error" ng-show="editPro && editprofile.middlename.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="editPro && editprofile.middlename.$error.pattern">{{errorMessage.mname}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.lName" name="lastname" ng-class="{errorborder:editPro && editprofile.lastname.$invalid}" pattern="([a-zA-Z]{2,10}\s*)+"  placeholder="Last Name" required>
+                                                            </div>
+                                                            <span class="validation_error" ng-show="editPro && editprofile.lastname.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="editPro && editprofile.lastname.$error.pattern">{{errorMessage.lname}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label required-filed">
+                                                            Gender
+                                                        </label>
+                                                        <div class="col-md-9">
+                                                            <label class="radio-inline blue-radio" >
+                                                                <input type="radio" ng-class="{errorborder:editPro && editprofile.gender.$invalid}" name="gender" value="MALE" ng-model="$parent.radioG" required> Male
+                                                            </label>
+                                                            <label class="radio-inline blue-radio">
+                                                                <input type="radio" ng-class="{errorborder:editPro && editprofile.gender.$invalid}" name="gender" value="FEMALE" ng-model="$parent.radioG" required> Female
+                                                            </label>
+                                                            <label class="radio-inline blue-radio">
+                                                                <input type="radio" ng-class="{errorborder:editPro && editprofile.gender.$invalid}" name="gender" value="OTHER" ng-model="$parent.radioG" required> Other
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <span class="validation_error" ng-show="editPro && editprofile.gender.$error.required">{{errorMessage.gendererror}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.coName" ng-class="{errorborder:editPro && editprofile.companyname.$invalid}" pattern="([A-Za-z0-9,.@&/()'\- \s]{2,45})+"  name="companyname" placeholder="Company Name" required readonly>
+                                                            </div>
+                                                            <span class="validation_error" ng-show="editPro && editprofile.companyname.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="editPro && editprofile.companyname.$error.pattern">{{errorMessage.company}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.cNumber" name="contactnumber"  ng-class="{errorborder:editPro && editprofile.contactnumber.$invalid}" pattern="^\+[1-9]{1}[0-9]{3,15}$" placeholder="Please Enter Country Code And Contact Number"  ng-blur="chkMobileNumAvail(editprofile);" required international-phone-number>
+                                                            </div>
+                                                            <!--<span class="signup-link" ng-click="chkMobileNumAvail();">Check Availability</span>-->
+                                                            <span class="validation_error" ng-show="editprofile.contactnumber.$error.required && checkmobilenumber">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="editprofile.contactnumber.$error.pattern && checkmobilenumber">{{errorMessage.mobile}}</span>
+                                                            <span class="validation_error" ng-show="showcheckingmobile">checking....</span>
+                                                            <span class="validation_error" ng-show="showmobileerror && editprofile.contactnumber.$valid">{{errorMessage.notavilmobile}}</span>
+                                                            <span class="validation_success" ng-show="showmobileSuccess && editprofile.contactnumber.$valid">{{errorMessage.avilmobile}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="email" class="form-control" ng-model="$parent.emailId" ng-class="{errorborder:editPro && editprofile.emailid.$invalid}" name="emailid" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email ID" ng-blur="chkEmailIdAvail(editprofile);" required>
+                                                            </div>
+                                                            <!--<span class="signup-link" ng-click="chkEmailIdAvail();">Check Availability</span>-->
+                                                            <span class="validation_error" ng-show="editprofile.emailid.$error.required && checkemailaddress">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="editprofile.emailid.$error.pattern && checkemailaddress">{{errorMessage.emailerror}}</span>
+                                                            <sapn class="validation_error" ng-show="showcheckingemail">checking....</sapn>
+                                                            <span class="validation_error" ng-show="showemailerror && editprofile.emailid.$valid">{{errorMessage.notavilemail}}</span>
+                                                            <span class="validation_success" ng-show="showemailSuccess && editprofile.emailid.$valid">{{errorMessage.avilemail}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                 <input type="text" class="form-control" ng-model="$parent.uName" ng-class="{errorborder:editPro && editprofile.username.$invalid}" pattern="([a-zA-Z0-9@.&+]{6,20}\s*)+" name="username" placeholder="Username" ng-blur="chkUsrnameAvail(editprofile);" required>
+                                                            </div>
+                                                            <!--<span class="signup-link signup-link-adjs"></span>-->
+                                                            <span class="validation_error" ng-show="editprofile.username.$error.required && checkusername ">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="editprofile.username.$error.pattern && checkusername ">{{errorMessage.uname}}</span>
+                                                            <sapn class="validation_error" ng-show="showcheckingusrname">checking....</sapn>
+                                                            <span class="validation_error" ng-show="showusrnameerror && editprofile.username.$valid">{{errorMessage.notavilusername}}</span>
+                                                            <span class="validation_success" ng-show="showusrnameSuccess && editprofile.username.$valid">{{errorMessage.avilusername}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <br/><br/>
+                                                    <div class="row no-col-adjs">
+                                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group">
+                                                                <div class="col-md-12">
+
+                                                                        <input type="password" class="form-control" ng-model="$parent.password" ng-class="{errorborder:editPro && editprofile.password.$invalid}" name="password" pattern=".{8,20}" placeholder="Password">
+
+                                                                    <!--<input type="{{inputType}}" class="form-control" ng-model="$parent.password" ng-class="{errorborder:editPro && editprofile.password.$invalid}" name="password" pattern=".{8,}" placeholder="Password" required>-->
+                                                                    <!--<span class="signup-link" ng-click="hideShowPassword();">-->
+                                                                    <!--<span> Show </span>-->
+                                                                    <!--</span>-->
+                                                                    <span class="validation_error" ng-show="editPro && editprofile.password.$error.required">{{errorMessage.filedrequired}}</span>
+                                                                    <span class="validation_error" ng-show="editPro && editprofile.password.$error.pattern">{{errorMessage.passworderror}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group">
+                                                                <div class="col-md-12">
+
+                                                                        <input type="password" class="form-control" ng-model="$parent.cpassword" ng-class="{errorborder:editPro && editprofile.retypepassword.$invalid}" name="retypepassword" ng-keyup="matchPassword();" placeholder="Re-type Password">
+
+                                                                    <span class="validation_error" ng-show="editPro && editprofile.retypepassword.$error.required">{{errorMessage.filedrequired}}</span>
+                                                                    <span class="validation_error" ng-show="editPro && showerror && editprofile.retypepassword.$valid">{{errorMessage.cpassword}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="checkbox checkbox-txt right-checkbox-algin">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            Email me a weekly newsletter
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="checkbox checkbox-txt">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            Email me a daily newsletter
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="signup-footer-txt">
+                                                        <span>By Clicking editPro, you agree to our <a href="#/termsofsales">Terms of sales</a> that you have read our <a href="#/privacypolicy">Privacy Policy.</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="form-group" ng-show="sendrequestupdateprofile">
+                                                <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <center>
+                                                        <button type="button" class="btn btn-primary mysignupbtn" ng-click="EditprofileForm(editprofile);">Save Profile</button>
+                                                        <button type="button" class="btn btn-primary mysignupbtn" data-dismiss="modal" ng-click="resetEditprofile();">Cancel</button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

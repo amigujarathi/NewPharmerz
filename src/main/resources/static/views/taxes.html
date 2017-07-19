@@ -1,0 +1,179 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+            <!-- Taxes -->
+            <div class="tax">
+                <div class="tax-heading">
+                    <span>Organization Tax</span>
+                </div>
+
+                <div class="row">
+                    <div ng-if="elementCount > 0" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 taxblock-adjs" ng-repeat="item in taxdata" {{item.id}} ng-cloak>
+                        <div class="tax-block">
+                            <div class="tax-block-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <span>Tax Name : {{item.tax}}</span>
+                                    </div>
+                                    <br/><br/>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <span>Percent : {{item.percent}}</span>
+                                    </div>
+                                    <br/><br/>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <span>Description : {{item.description}}</span>
+                                    </div>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="location-block-footer">
+                                        <div class="location-block-footer-txt">
+                                            <span ng-click="deleteTaxes(item._links.self.href);">Delete </span> &nbsp;&nbsp; <img src="image/headbar-divider.png" alt="" style="width: 1.5px;"> &nbsp;&nbsp; <span  data-toggle="modal" data-target="#EdittaxModal" ng-click="getEditTaxData(item.id);">Edit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div ng-if="elementCount > 0">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddtaxModal">Add New Tax</button>
+                </div>
+            </div>
+
+
+            <!-- No Tax -->
+            <div class="Notaxadded" ng-if="elementCount == 0">
+                <div>
+                    <img src="image/tax.png" alt="">
+                    <br/>
+                    <span>No Tax Added</span>
+                </div>
+                <br/><br/>
+                <center>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddtaxModal">Add tax</button>
+                </center>
+            </div>
+
+            <!--Modal -->
+            <div class="modal fade" id="AddtaxModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetTaxFormData();"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"><center>Add New Tax</center></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" name="addtaxform">
+                                <div class="borderless-textbox">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="addtaxname" ng-model="addtaxname" placeholder="Tax Name" required>
+                                            <span class="validation_error" ng-show="addtax && addtaxform.addtaxname.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="addpercent" ng-model="addpercent" placeholder="Percent" pattern="[0-9.]*" required>
+                                            <span class="validation_error" ng-show="addtax && addtaxform.addpercent.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="addtax && addtaxform.addpercent.$error.pattern">{{errorMessage.percentInvalid}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" rows="3" placeholder="Description" name="adddescription" ng-model="adddescription"></textarea>
+                                            <!--<span class="validation_error" ng-show="addtax && addtaxform.adddescription.$error.required">{{errorMessage.filedrequired}}</span>-->
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group" ng-show="sendrequest">
+                                        <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                                    </div>
+                                    <div class="form-group">
+                                        <center>
+                                            <button type="button" class="btn btn-default" ng-click="addtaxes(addtaxform);">Save</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <!--Modal -->
+            <div class="modal fade" id="EdittaxModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetEditTaxFormData();"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"><center>Edit Tax</center></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" name="edittaxform">
+                                <div class="borderless-textbox">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="edittaxname" ng-model="edittaxname" placeholder="Tax Name" required>
+                                            <span class="validation_error" ng-show="edittax && edittaxform.edittaxname.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="editpercent" ng-model="editpercent" placeholder="Percent" required>
+                                            <span class="validation_error" ng-show="edittax && edittaxform.editpercent.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" rows="3" placeholder="Description" name="editdescription" ng-model="editdescription"></textarea>
+                                            <!--<span class="validation_error" ng-show="edittax && edittaxform.editdescription.$error.required">{{errorMessage.filedrequired}}</span>-->
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group" ng-show="sendrequest">
+                                        <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                                    </div>
+                                    <div class="form-group">
+                                        <center>
+                                            <button type="button" class="btn btn-default" ng-click="edittaxes(edittaxform);">Save</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="DeletetaxModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <center><h4><span>Are you sure you want delete the tax ?</span></h4></center>
+                            <br/>
+                            <br/>
+                            <div class="form-group" ng-show="sendrequest">
+                                <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                            </div>
+                            <center>
+                                <button type="button" class="btn btn-primary" ng-click="deleteTax();">Ok</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </center>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+        </div>
+    </div>
+</div>

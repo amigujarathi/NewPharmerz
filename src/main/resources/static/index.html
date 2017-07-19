@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="MainCtrl" ng-cloak>
+    <head>
+        <meta charset="utf-8">
+        <!--<base href="/">-->
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="pharmaceutical manufacturers, suppliers, Pharma exporters directory, b2b portal, manufacturer, supplier, active pharmaceutical ingredients, fine chemicals, pharmaceutical enquiry, pharmaceutical business services, business to business portal, b2b directory, manufacturer, importers, traders, dealers, buyers, pharmaceutical, pharmaceutical trade & commerce ,herbals, plant machinery, finished formulation, brand, impurities, intermediates, nutraceuticals, b2b marketplace India, pharmaceutical product search engine"/>
+        <meta name="description" content="Grow your business with Pharmerz- Pharmerz is India's first free B2B platform for pharmaceutical industry. Sell or Buy products online from various categories  (API, Finished Formulation, Plant Machinery, etc) across the globe with simple clicks." />
+        <link rel="icon" type="image/png" href="image/favicon.png" />
+        <!-- Css -->
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/datatables.bootstrap.min.css" rel="stylesheet">
+        <link href="css/ekko-lightbox.css" rel="stylesheet">
+        <link href="css/owl.carousel.css" rel="stylesheet">
+        <link href="css/owl.theme.css" rel="stylesheet">
+        <link href="css/owl.transitions.min.css" rel="stylesheet">
+        <link href="css/angular-csp.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+		<link href="css/sidenav.css" rel="stylesheet">
+        <link href="css/chatbox.css" rel="stylesheet">
+        <link href="css/intlTelInput.css" rel="stylesheet">
+        <link href="css/wait.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <title ng-cloak>{{Page.title()}}</title>
+
+
+    </head>
+    <body>
+
+        <script src="js/pubnub.min.js"></script>
+        <div>
+            <div  ng-view autoscroll class="find_page_header">
+
+            </div>
+        </div>
+
+        <!-- Java script -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/wait.js"></script>
+        <script src="js/bootstrap.min.js"></script>         
+        <script src="js/ekko-lightbox.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/intlTelInput.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+        <script src="js/ng-file-upload.min.js"></script>
+		<script src="js/angular-datatables.min.js"></script>
+		<script src="js/jquery.dataTables.min.js"></script>
+		<script src="js/angular-datatables.bootstrap.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-cookies.min.js"></script>
+        <script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+        <script src="js/angularjs-dropdown-multiselect.js"></script>
+        <script src="js/aws-sdk.js"></script>
+        <script src="js/angular-s3.js"></script>
+        <script src="js/lodash.js"></script>
+        <script src="./app/app.js"></script>
+        <script src="js/chattbox.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/international-phone-number.js"></script>
+
+
+
+        <!--<script src="./app/config.js"></script>-->
+        <script src="./app/controllers/route.js"></script>
+        <!-- controller added files-->
+        <script src="./app/controllers/main-controller.js"></script>
+        <script src="./app/controllers/home-controller.js"></script>
+        <script src="./app/controllers/product-controller.js"></script>
+        <script src="./app/controllers/aboutus-controller.js"></script>
+        <script src="./app/controllers/contactus-controller.js"></script>
+        <script src="./app/controllers/category-controller.js"></script>
+        <script src="./app/controllers/login-controller.js"></script>
+        <script src="./app/controllers/register-controller.js"></script>
+        <script src="./app/controllers/logout-controller.js"></script>
+        <script src="./app/controllers/privacypolicy-controller.js"></script>
+        <script src="./app/controllers/termsofsales-controller.js"></script>
+        <script src="./app/controllers/reportabout-controller.js"></script>
+        <script src="./app/controllers/adminhome-controller.js"></script>
+        <script src="./app/controllers/enquries-controller.js"></script>
+        <script src="./app/controllers/quotation-controller.js"></script>
+        <script src="./app/controllers/purchaseorder-controller.js"></script>
+        <script src="./app/controllers/orgprofile-controller.js"></script>
+        <script src="./app/controllers/location-controller.js"></script>
+        <script src="./app/controllers/tax-controller.js"></script>
+        <script src="./app/controllers/addproduct-controller.js"></script>
+        <script src="./app/controllers/editproduct-controller.js"></script>
+        <script src="./app/controllers/viewproduct-controller.js"></script>
+        <script src="./app/controllers/sendenq-controller.js"></script>
+        <script src="./app/controllers/showsentenq-controller.js"></script>
+        <script src="./app/controllers/receivedenq-controller.js"></script>
+        <script src="./app/controllers/sentquo-controller.js"></script>
+        <script src="./app/controllers/receivedquo-controller.js"></script>
+        <script src="./app/controllers/sentpo-controller.js"></script>
+        <script src="./app/controllers/receivedpo-controller.js"></script>
+        <script src="./app/controllers/generatepo-controller.js"></script>
+        <script src="./app/controllers/generatequotation-controller.js"></script>
+        <script src="./app/controllers/verifymobile-controller.js"></script>
+        <script src="./app/controllers/verifyemail-controller.js"></script>
+        <!-- factory added files-->
+        <script src="./app/factory/common-factory.js"></script>
+        <!--<script src="./app/factory/common-factory_old.js"></script>-->
+        <!-- directive added files-->
+        <script src="./app/directives/common-directives.js"></script>
+
+    </body>
+</html>

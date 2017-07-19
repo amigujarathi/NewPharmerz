@@ -1,0 +1,55 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+        	<center><h4><u>Verify Mobile</u></h4></center>
+        	<br/>
+			<div>
+				<center>
+					<span class="validation_success2" ng-show="MobileVerifySuccess">{{errorMessage.verifymobilesuccess}}</span>
+				</center>
+			</div>
+			<br/>
+        	<form class="form-horizontal" name="verifymobilebox">
+        	 	  <div class="form-group">
+        	 	   <div class="col-sm-2 col-md-offset-2">
+					   <select class="form-control" name="countryCode"  ng-model="countryCode" ng-options="item.phone as item.phone for item in countrydata"  required>
+						   <option value="">Country Code</option>
+					   </select>
+					   <span class="validation_error" ng-show="verifymobile && verifymobilebox.countryCode.$error.required">{{errorMessage.filedrequired}}</span>
+        	 	   </div>
+				    <div class="col-sm-5">
+				      <input type="text" class="form-control" name="registrationMobile"  ng-model="registrationMobile" pattern="(1|2|3|4|5|6|7|8|9)\d{9}" placeholder="Registration Mobile Number" required>
+						<span class="validation_error" ng-show="verifymobile && verifymobilebox.registrationMobile.$error.required">{{errorMessage.filedrequired}}</span>
+						<span class="validation_error" ng-show="verifymobile && verifymobilebox.registrationMobile.$error.pattern">{{errorMessage.mobile}}</span>
+						<span class="validation_error" ng-show="invalidmobilemsg && verifymobilebox.registrationMobile.$valid">{{errorMessage.alreadyverifymobile}}</span>
+						<span class="validation_error" ng-show="wrongmobilemsg && verifymobilebox.registrationMobile.$valid">{{errorMessage.registerMobile}}</span>
+						<br/>
+				      <button class="btn btn-primary btn-xs pull-right" type="button"  ng-click="getOTP(verifymobilebox);">Get OTP</button>
+				    </div>
+				  </div>
+			</form>
+			<form class="form-horizontal" name="verifymobileotpbox">
+				   <div class="form-group">
+				    <div class="col-sm-2 col-md-offset-5">
+				      <input type="text" class="form-control" name="otp" ng-model="otp" placeholder="OTP" ng-disabled="!OtpField" required>
+						<span class="validation_error" ng-show="verifyotp && verifymobileotpbox.otp.$error.required">{{errorMessage.filedrequired}}</span>
+				    </div>
+				  </div>
+				  <br/>
+				 <center><small>if OTP is not Received in 4 hrs. Please <a href="javascript:void(0);">click here</a> </small></center>
+				 <br/>
+				 <div class="form-group" ng-show="sendrequestVerifyMobile">
+					<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+				 </div>
+				  <div class="form-group">
+				     <center>
+				       <button type="button" class="btn btn-primary" ng-disabled="!OtpField" ng-click="verifymobileforms(verifymobileotpbox);">Verify</button>
+				     </center>
+				  </div>
+        	 </form>	
+        </div>
+     </div>
+ </div>  

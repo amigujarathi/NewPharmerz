@@ -1,0 +1,120 @@
+<!--Header Part -->
+<div ng-include="'views/header.html'"></div>
+
+<div class="container" ng-init="checkScrollPosition();">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="home-contact2">
+                    <span>
+                        Give us an opportunity to assist you
+                    </span>
+            </div>
+            <div class="home-contact-subheading">
+                    <span>
+                        Drop Your Message
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <br/>
+        <form class="form-horizontal" id="home-contact-form" name="contactusform">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="companyname" ng-model="companyname" placeholder="Company Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="required-filed">
+                                    <input type="text" class="form-control" ng-class="{errorborder:contactfrm && contactusform.fullname.$invalid}" name="fullname" ng-model="fullname" pattern="([a-zA-Z]{2,20}\s*)+" placeholder="Person Name" required>
+                                </div>
+                                <span class="validation_error" ng-show="contactfrm && contactusform.fullname.$error.required">{{errorMessage.filedrequired}}</span>
+                                <span class="validation_error" ng-show="contactfrm && contactusform.fullname.$error.pattern">{{errorMessage.fullname}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="required-filed">
+                                    <input type="text" class="form-control" ng-class="{errorborder:contactfrm && contactusform.contactnum.$invalid}" name="contactnum" ng-model="contactnum" placeholder="Contact Number" pattern="(1|2|3|4|5|6|7|8|9)\d{9}" maxlength="10" required>
+                                </div>
+                                <span class="validation_error" ng-show="contactfrm && contactusform.contactnum.$error.required">{{errorMessage.filedrequired}}</span>
+                                <span class="validation_error" ng-show="contactfrm && contactusform.contactnum.$error.pattern">{{errorMessage.mobile}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="required-filed">
+                                    <input type="email" class="form-control" ng-class="{errorborder:contactfrm && contactusform.email.$invalid}" name="email" ng-model="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                                </div>
+                                <span class="validation_error" ng-show="contactfrm && contactusform.email.$error.required">{{errorMessage.filedrequired}}</span>
+                                <span class="validation_error" ng-show="contactfrm && contactusform.email.$error.pattern">{{errorMessage.emailerror}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea class="form-control" rows="3" name="address" ng-model="address" placeholder="Address" style="resize: none;height: 75px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea class="form-control" rows="3" name="comment" ng-model="comment" placeholder="Comment" style="resize: none;height: 75px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <button type="button" class="btn btn-primary contact-btn pull-right"  ng-click="getContactData(contactusform);">SUBMIT</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="home-contactus-address">
+                                    <span>Head Office : </span><br/>
+                                    <span>Srijan Digital Platform Pvt. Ltd</span><br/>
+                                    <span>C/O Regus Business Center Block A,Level 1, <br/>Shiv Nagar Estate, Dr.Annie Besant Road <br/> Worli,Mumbai-400018</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="mail-txt-adjs">
+                                    <img src="image/Mail-black-icon.png" alt="">&nbsp; <span class="mail-txt">sales@pharmerz.com</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="phone-txt-adjs">
+                                    <img src="image/contactnumberl-black-icon.png" alt="">&nbsp; <span class="phone-txt">+91 7722074442</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br/><br/>
+
+
+<div id="movetoTop">
+    <button id="toTop" ng-click="topmove();" class="toTop-arrow"></button>
+</div>
+
+<!-- footer Part -->
+<div ng-include="'views/footer.html'"></div>
+
+

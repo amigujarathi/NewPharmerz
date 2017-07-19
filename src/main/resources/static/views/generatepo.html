@@ -1,0 +1,318 @@
+    <!--Header Part -->
+    <div ng-include="'views/admin-header.html'"></div>
+
+    <div class="container-fluid genratepo-background">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+                <div class="row">
+                    <div class="genratepo-header">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                             <!--<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:#727272;"></span>-->
+                             <span class="genratepo-header-txt">Generate Purchase Order</span>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <form class="form-horizontal genratepo-form" name="genratepo">
+                           <br/>
+                            <div>
+                                <center>
+                                    <span class="validation_success2" ng-show="POSendSuccess">{{errorMessage.purchasesendsuccess}}</span>
+                                </center>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label genpo-lbl">To</label>
+                                <div class="col-md-9">
+                                    <span>{{orgName}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label genpo-lbl">Email Id</label>
+                                <div class="col-md-9">
+                                    <span>{{SenderOrgEmail}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label class="col-md-6 control-label genpo-lbl">Date</label>
+                                        <div class="col-md-5">
+                                            <span>{{showdate | date : 'd MMM y'}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 borderless-textbox">-->
+                                     <!--<div class="form-group">-->
+                                        <!--<label for="ponumber" class="col-sm-4 control-label genpo-lbl">Enter PO Number</label>-->
+                                        <!--<div class="col-md-5">-->
+                                            <!--<input type="text" class="form-control" id="ponumber" placeholder="Enter PO Number">-->
+                                        <!--</div>-->
+                                      <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="form-group">
+                                <label for="sku" class="col-sm-3 control-label addprd-lbl">
+                                    Product Name<br/>
+                                    <span><small>(Category Name)</small></span>
+                                </label>
+                                <div class="col-md-9">
+                                    <span>{{productName}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="composition" class="col-sm-3 control-label addprd-lbl">
+                                   Composition
+                                </label>
+                                <div class="col-md-9">
+                                    <span>{{composition}}</span>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="form-group">
+                                <label for="uom" class="col-sm-3 control-label addprd-lbl">
+                                      UOM<br/>
+                                    <span><small>(Unit of Measurement)</small></span>
+                                </label>
+                                <div class="col-md-9">
+                                    <span>{{uom}}</span>
+                                </div>
+                            </div>
+                            <div class="row borderless-textbox">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="Rate" class="col-md-6 control-label genpo-lbl">Rate</label>
+                                        <div class="col-md-5">
+                                             <input type="text" class="form-control" name="rate" ng-model="rate" placeholder="Mention Rate here" required readonly>
+                                            <span class="validation_error" ng-show="genPo && genratepo.rate.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="qty" class="col-sm-6 control-label genpo-lbl">Quantity</label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control"  name="qty" ng-model="qty" placeholder="Mention Qty here" required readonly>
+                                            <span class="validation_error" ng-show="genPo && genratepo.qty.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="row borderless-textbox">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="amt" class="col-md-6 control-label genpo-lbl">
+                                            Net Amount<br/>
+                                        <span><small>(Excluding Taxes)</small></span>
+                                        </label>
+                                        <div class="col-md-5">
+                                             <input type="text" class="form-control" name="amt" ng-model="amt" placeholder="Mention Amount here" required readonly>
+                                             <span class="validation_error" ng-show="genPo && genratepo.amt.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="qty" class="col-sm-6 control-label genpo-lbl">Taxes</label>
+                                        <div class="col-md-5">
+                                            <span>{{taxRate +'%  - '+ tax}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                             <div class="row borderless-textbox">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="ttamt" class="col-md-6 control-label genpo-lbl">
+                                            Total Amount<br/>
+                                        <span><small>(Including Taxes)</small></span>
+                                        </label>
+                                        <div class="col-md-5">
+                                             <input type="text" class="form-control"  name="ttamt" ng-model="ttamt" placeholder="Total Amount here" required readonly>
+                                             <span class="validation_error" ng-show="genPo && genratepo.ttamt.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="incoterms" class="col-sm-6 control-label genpo-lbl">Incoterms</label>
+                                        <div class="col-md-5">
+                                            <span>{{incoterm.split('_').join(' ') | Camlecase }}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="form-group">
+                                <label for="shoepayment" class="col-sm-3 control-label addprd-lbl">
+                                   Payment Terms
+                                </label>
+                                <div class="col-md-9">
+                                    <div>
+                                      <span>{{paymentterms.split('_').join(' ') | Camlecase}}</span>
+                                    </div>
+                                    <br/>
+                                    <small><span>Click here to see</span><a href="https://rbidocs.rbi.org.in/rdocs/notification/PDFs/APDIR100NT0214.pdf" target="_blank">Third Party Payments Terms for Export/Import Transations</a></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label addprd-lbl">Shipment by</label>
+                                <div class="col-md-6">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="shipment" value="SEA" ng-model="genPoShipmentBy"  required> Sea
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="shipment" value="AIR" ng-model="genPoShipmentBy"  required> Air
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="shipment" value="OTHER" ng-model="genPoShipmentBy" required> Other
+                                    </label>
+                                    <br/>
+                                    <span class="validation_error" ng-show="genPo && genratepo.shipment.$error.required">{{errorMessage.filedrequired}}</span>
+                                </div>
+                            </div>
+                            <div class="row borderless-textbox">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="deliveryschedule" class="col-md-6 control-label genpo-lbl">
+                                           Enter Delivery Schedule
+                                        </label>
+                                        <div class="col-md-5">
+                                            <div class="inner-addon right-addon">
+                                                <i class="glyphicon glyphicon-calendar adjs-glyphicon"></i>
+                                                <input type="text" class="form-control" datepicker-popup="{{'dd MMMM yyyy' | date :'shortDate'}}" name="deliveryschedule" ng-model="dt"  is-open="opened" min-date="minDate" datepicker-options="dateOptions"  ng-required="true" show-button-bar="false" close-text="Close" ng-click="open($event)" placeholder="Enter Delivery Schedule"/>
+                                            </div>
+                                             <!--<input type="text" class="form-control" name="deliveryschedule" ng-model="deliveryschedule" placeholder="Enter Delivery Schedule" required>-->
+                                             <span class="validation_error" ng-show="genPo && genratepo.deliveryschedule.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label for="frieghttype" class="col-sm-6 control-label genpo-lbl">Select Freight Type</label>
+                                        <div class="col-md-6">
+                                           <label class="radio-inline">
+                                              <input type="radio" name="frieghttype"  ng-model="frieghttype" value="PAID" required> Paid
+                                            </label>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="frieghttype"  ng-model="frieghttype" value="TO_PAY" required> To Pay
+                                            </label>
+                                            <br/>
+                                            <span class="validation_error" ng-show="genPo && genratepo.frieghttype.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="document" class="col-sm-3 control-label addprd-lbl">
+                                    List of Document Required
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="CommercialInvoice" ng-model="checkboxModel.CommercialInvoice" ng-change="chkreqdoc();"> Commercial Invoice
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox" name="PackagingList" ng-model="checkboxModel.PackagingList" ng-change="chkreqdoc();"> Packaging List
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="NonPreferentialCertificateOrigin" ng-model="checkboxModel.NonPreferentialCertificateOrigin" ng-change="chkreqdoc();"> Non-Preferential Certificate of Origin
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="BillLading" ng-model="checkboxModel.BillLading" ng-change="chkreqdoc();"> Bill of Lading
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="HealthCertificate" ng-model="checkboxModel.HealthCertificate" ng-change="chkreqdoc();"> Health Certificate
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="PreferentialCertificateOrigin" ng-model="checkboxModel.PreferentialCertificateOrigin" ng-change="chkreqdoc();"> Preferential Certificate of Origin
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="ManufacturingCertificate" ng-model="checkboxModel.ManufacturingCertificate" ng-change="chkreqdoc();"> Manufacturing Certificate
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="CertificateAnalysis" ng-model="checkboxModel.CertificateAnalysis" ng-change="chkreqdoc();"> Certificate of Analysis
+                                    </label>
+                                 </div>
+                                 <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="InsurancePolicy" ng-model="checkboxModel.InsurancePolicy" ng-change="chkreqdoc();"> Insurance Policy
+                                    </label>
+                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                     <label class="checkbox-inline">
+                                      <input type="checkbox"  name="AirwayBill" ng-model="checkboxModel.AirwayBill" ng-change="chkreqdoc();"> Airway Bill
+                                     </label>
+                                 </div>
+                                 <div class="col-md-8">
+                                     <div class="form-group">
+                                         <div class="col-md-3">
+                                             <label class="checkbox-inline">
+                                                 <input type="checkbox" name="others" ng-model="checkboxModel.others" ng-click="others =! others" ng-change="chkreqdoc();"> Others
+                                             </label>
+                                         </div>
+                                        <div class="col-md-6">
+                                            <textarea class="form-control" rows="3" name="docother" ng-model="docother" ng-disabled="!others" ng-required="others"></textarea>
+                                            <!--<textarea class="form-control" rows="3" name="docother" ng-model="docother" ng-disabled="!others" ng-required="checkboxModel.others == true"></textarea>-->
+                                            <span class="validation_error" ng-show="genPo && genratepo.docother.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                      </div>
+                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <span class="validation_error" ng-show="genPo && !checkreqcodument">{{errorMessage.filedrequired}}</span>
+                                    <!--<span class="validation_error" ng-show="genPo && genratepo.CommercialInvoice.$error.required && genratepo.PackagingList.$error.required-->
+                                    <!--&& genratepo.NonPreferentialCertificateOrigin.$error.required && genratepo.BillLading.$error.required-->
+                                    <!--&& genratepo.HealthCertificate.$error.required && genratepo.PreferentialCertificateOrigin.$error.required-->
+                                    <!--&& genratepo.ManufacturingCertificate.$error.required && genratepo.CertificateAnalysis.$error.required-->
+                                    <!--&& genratepo.InsurancePolicy.$error.required && genratepo.AirwayBill.$error.required">{{errorMessage.filedrequired}}</span>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="col-sm-3 control-label addprd-lbl">
+                                  Your Message
+                                </label>
+                                <div class="col-md-5">
+                                   <textarea class="form-control" rows="3" name="msg" ng-model="msg"></textarea>
+                                    <!--<span class="validation_error" ng-show="genPo && genratepo.msg.$error.required">{{errorMessage.filedrequired}}</span>-->
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="sendrequestpurchaseOrder">
+                                <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                            </div>
+                            <div class="form-group">
+                              <center>
+                                  <button type="button" class="btn btn-primary btn-width" ng-click="SendPurchaseOrder(genratepo);">Send Purchase Order</button>
+                                  <button type="button" class="btn btn-primary btn-width" ng-click="resetGenratepoForm();">Cancel</button>
+                              </center>
+                            </div>
+                            <br/>
+                            <br/>
+                        </form>
+
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

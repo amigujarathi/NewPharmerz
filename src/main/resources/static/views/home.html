@@ -1,0 +1,628 @@
+
+<!--Header Part -->
+<div ng-include="'views/header.html'"></div>
+
+<!--Home Page  Part-->
+
+<!--Slider part remain-->
+<div class="slider-box" ng-init="checkScrollPosition();">
+    <div class="container-fluid" id="sub-search-box">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-10 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-1">
+						<div class="slider-box-inner-txt">
+							<span>From fine chemicals to finish formulations, find sources for all your requirements</span>
+						</div>
+					</div>
+				</div>
+                <br/><br/>
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form id="search-form" class="form-horizontal" name="searchByProductNameCategory">
+                            <div class="form-group">
+                                <div class="col-sm-3 right-pad">
+                                    <select class="form-control" name="productcategory" ng-model="productcategory" ng-options="item.ids as item.category for item in categoriesData1" required>
+                                        <!--<option value=""> Select Product Category</option>-->
+                                    </select>
+                                    <span class="validation_error" ng-show="ProductNameCategorySubmit && searchByProductNameCategory.productcategory.$error.required">{{errorMessage.filedrequired}}</span>
+                                </div>
+                                <div class="col-sm-9 left-pad">
+                                    <div class="input-group input-group-md">
+                                        <input type="text" class="form-control" name="ProductName" ng-model="ProductName" placeholder="Search Product" required>
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-info homepahe-search-button" type="submit" ng-click="getProductNameCategory(searchByProductNameCategory);"><span class="glyphicon glyphicon-search"></span></button>
+                                            </span>
+                                    </div>
+                                    <span class="validation_error" ng-show="ProductNameCategorySubmit && searchByProductNameCategory.ProductName.$error.required">{{errorMessage.filedrequired}}</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="counting-box">
+            <div class="container">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="countigbox-txt">
+                                        <span class="countigbox-count-txt">{{countapis}}+</span><br/>
+                                        <span class="countigbox-name-txt">API's</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="countigbox-txt">
+                                        <span class="countigbox-count-txt">{{countPellets}}+</span><br/>
+                                        <span class="countigbox-name-txt">Pellets</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="countigbox-txt">
+                                        <span class="countigbox-count-txt">{{countFineChemicals}}+</span><br/>
+                                        <span class="countigbox-name-txt">Fine Chemicals</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="countigbox-txt">
+                                        <span class="countigbox-count-txt">{{countFinishedFormulation}}+</span><br/>
+                                        <span class="countigbox-name-txt">Finished Formulations</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="countigbox-txt">
+                                        <span class="countigbox-count-txt">{{countIntermediatesExcipients}}+</span><br/>
+                                        <span class="countigbox-name-txt">Intermediates</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="countigbox-txt">
+                                        <span class="countigbox-count-txt">{{countLabEquipment}}+</span><br/>
+                                        <span class="countigbox-name-txt">Laboratory Equipment's</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="buyer-requirement-box">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="buyer-box-header">
+                    <span class="buyer-box-header-txt">Tell us your Buying Requirement</span>
+                </div>
+            </div>
+        </div>
+
+        <form id="buyer-form" class="form-horizontal" name="buyerrequirement">
+		
+            <div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-10 col-md-offset-2 col-lg-offset-1">
+					<div class="buyer-first-row">
+						<div class="required-filed">
+							<textarea placeholder="Enter the product name that your are looking for ??" ng-model="buyerProduct" name="buyerProduct" class="form-control" rows="8" required></textarea>
+						</div>
+						<span class="validation_error" ng-show="buyersubmit && buyerrequirement.buyerProduct.$error.required">{{errorMessage.filedrequired}}</span>
+					</div>
+				</div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-10 col-md-offset-2 col-lg-offset-1">
+
+                    <div class="buyer-second-row">
+						<div class="row ">
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<div class="required-filed">
+									<input type="text" id="yourname" placeholder="Enter your name" ng-model="yourname" name="yourname"  pattern="([a-zA-Z]{2,20}\s*)+"   class="form-control" required>
+								</div>
+								<span class="validation_error" ng-show="buyersubmit && buyerrequirement.yourname.$error.required">{{errorMessage.filedrequired}}</span>
+								<span class="validation_error" ng-show="buyersubmit && buyerrequirement.yourname.$error.pattern">{{errorMessage.fullname}}</span>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<div class="required-filed">
+									 <input type="text" placeholder="Enter your email" ng-model="youremail" name="youremail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  class="form-control" required>
+								</div>
+								<span class="validation_error" ng-show="buyersubmit && buyerrequirement.youremail.$error.required">{{errorMessage.filedrequired}}</span>
+								<span class="validation_error" ng-show="buyersubmit && buyerrequirement.youremail.$error.pattern">{{errorMessage.emailerror}}</span>
+							</div>
+						</div>
+                    </div>
+
+                    <div class="row">
+						<div class="buyer-second-row">
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<div class="required-filed">
+									<input type="text" id="yourmobile" placeholder="Enter your mobile " ng-model="yourmobile" name="yourmobile" maxlength="15" pattern="^\+[1-9]{1}[0-9]{12,15}$" class="form-control" required>
+								</div>
+								<span class="validation_error" ng-show="buyersubmit && buyerrequirement.yourmobile.$error.required">{{errorMessage.filedrequired}}</span>
+								<span class="validation_error" ng-show="buyersubmit && buyerrequirement.yourmobile.$error.pattern">{{errorMessage.mobile}}</span>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<input type="text" placeholder="Enter your city" ng-model="yourcity" name="yourcity" pattern="([a-zA-Z]{2,20}\s*)+"  class="form-control" >
+								<span class="validation_error" ng-show="buyersubmit && buyerrequirement.yourcity.$error.pattern">{{errorMessage.cityname}}</span>
+							</div>
+						</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                    <div class="buyer-requirement-button">
+                         <button type="button" ng-click="buyerRequirement(buyerrequirement);" class="btn btn-info buyer-req-button">Get Instance Quote Now!</button>
+
+                        <p ng-show="showBuyerMesg==true" class="buyer-success"> Thanks for contacting us! We will get in touch with you shortly </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<div class="appview-box">
+    <div class="container-fluid">
+        <div class="appview-background">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                       <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                 <p class="appview-header"> Pharmerz makes Business simple and easy</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <p class="appview-content">
+                                    Pharmerz is India’s first non chargeable B2B Platform for Pharmaceutical industry. It connects Purchase Managers and Sales Managers of any Pharmaceutical and allied industry to find vendors and customers across India and China.
+                                </p>
+                                <p class="appview-content-list"> Features & Advantages- </p>
+                                <p class="appview-content-list"> 1. Simple, Easy and Fast tool to upload product Catalogue </p>
+                                <p class="appview-content-list"> 2. Increase your area to find more buyer and seller </p>
+                                <p class="appview-content-list"> 3. Chat Enabled Features for seller & buyer communication </p>
+                                <p class="appview-content-list"> 4. Sell & Buy directly, No intermediates </p>
+                                <p class="appview-content-list"> 5. Remotely Access </p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <p class="appview-stores"> GET THE APP NOW</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <a href="https://play.google.com/store/apps/details?id=com.pharmerz.pharmerz&hl=en" target="_blank"><img class="app-playstore" src="image/playstore.png" alt="Play Store"></a>
+                                <a href="https://itunes.apple.com/gb/app/pharmerz/id1064115252?mt=8" target="_blank"><img class="app-appstore" src="image/appstore.png" alt="App Store"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="appview-image-box">
+                            <img class="appview-image" src="image/mobileview.png" alt="Mobile Image">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="slider-image-box">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                <div class="slider-image-header">
+                    <span class="slider-image-header-txt">SHOP BY</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="slider-prd-image">
+                            <img class="shop-image" src="image/shop1.png" alt="shop-img">
+                            <p class="shop-by-first"> 1000+ Verified </p>
+                            <p class="shop-by-second"> PRODUCTS </p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="slider-prd-image">
+                            <img class="shop-image" src="image/shop2.png" alt="shop-img">
+                            <p class="shop-by-first"> 10+ Well define </p>
+                            <p class="shop-by-second"> CATEGORIES </p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="slider-prd-image">
+                            <img class="shop-image" src="image/shop3.png" alt="shop-img">
+                            <p class="shop-by-first"> 200+ Registered </p>
+                            <p class="shop-by-second"> COMPANIES </p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="view-all-product">
+                            <a ng-click="changeLocation('/product');">VIEW ALL</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                <div class="shop-image-header">
+                    <span class="shop-image-header-txt"> OUR KEY CUSTOMERS </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                <div class="row">
+
+                    <data-owl-carousel class="owl-carousel" data-options="{items:4,loop: true}">
+                        <div owl-carousel-item="" ng-repeat="item in ::keyCustomer">
+
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                <div class="shop-prd-image">
+                                    <img class="shop-slider-image" src="{{::item}}" alt="shop-img">
+                                </div>
+                            </div>
+
+                          <!--  <div class='item'><a herf="javascript:void(0);" ng-click="enquirySend(item.id);"><p>{{item.product | limitTo : 40}} {{item.product.length < 40 ? '' : '...'}}</p></a></div> -->
+                        </div>
+                    </data-owl-carousel>
+
+
+                  <!--  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="shop-prd-image">
+                            <img class="shop-slider-image" src="image/key1.png" alt="shop-img">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="shop-prd-image">
+                            <img class="shop-slider-image" src="image/key2.png" alt="shop-img">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="shop-prd-image">
+                            <img class="shop-slider-image" src="image/key3.png" alt="shop-img">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="shop-prd-image">
+                            <img class="shop-slider-image" src="image/key4.png" alt="shop-img">
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="video-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="video-box-header">
+                    <span class="video-box-header-txt">Learn more - What we do</span> 
+                </div>
+             </div>
+        </div>        
+        <div class="video-box-inner-background">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="video-container">
+                        <a href="https://www.youtube.com/embed/E-3VSZ91Ijs" data-toggle="lightbox" data-gallery="youtubevideos" id="open-youtube1" data-width="640">
+                            <img src="image/pharmerz-video-background-1.jpg" class="img-fluid">
+                        </a>
+                        <a class="video-hide" href="https://www.youtube.com/embed/0yZ2S6KTEpM" data-toggle="lightbox" data-gallery="youtubevideos" id="open-youtube2" data-width="640">
+                            <img src="image/pharmerz-video-background-2.jpg" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="what-is-Pharmerz">
+            <span class="what-is-Pharmerz-txt">What is Pharmerz</span> 
+        </div>
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="pharmerz-intro-txt">
+            <p>
+                Pharmerz is an online marketplace focused on pharmaceutical industry. A platform where all pharmaceutical industry players can connect, transact and collaborate with each other.It focuses on providing a single platform to all kind of industry players ranging from Individual Buyers and Sellers, Small and Medium Enterprises (SMEs) to large Corporate
+                It provides access to wider marketplace and diverse portfolio of products catering to all your business requirements. Pharmerz focus to offer one-stop-shop solution to manufacturers, importers, exporters, traders, suppliers, distributors, dealers, agencies and service providers, where one can meet and engage with global business community
+            </p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="who-can-join-pharmerz-txt">
+                <span>
+                    Who can join Pharmerz
+                </span>
+            </div>
+            <br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <div>
+                <div class="wcj-pharmerz-image">
+                    <img src="image/whoispharmerz/API-manufacturer.png" alt="">
+                </div>
+                <div class="wcj-pharmerz-heading">
+                    <span>Api Manufacturer</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <div>
+                <div class="wcj-pharmerz-image">
+                    <img src="image/whoispharmerz/Formulation-Manufacturer.png" alt="">
+                </div>
+                <div class="wcj-pharmerz-heading">
+                    <span>Formulation<br>Manufacturer</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <div>
+                <div class="wcj-pharmerz-image">
+                    <img src="image/whoispharmerz/Intermediets-Manufacturer.png" alt="">
+                </div>
+                <div class="wcj-pharmerz-heading">
+                    <span>Intermediates<br>Manufacturer</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <div>
+                <div class="wcj-pharmerz-image">
+                    <img src="image/whoispharmerz/Pharma-Packaging.png" alt="">
+                </div>
+                <div class="wcj-pharmerz-heading">
+                    <span>Pharma Packaging Services<br>Manufacturer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="how-Pharmerz-work">
+                <span class="how-Pharmerz-work-txt">How Pharmerz Works</span> 
+            </div>
+            <br/>
+         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="how-Pharmerz-work-subtxt">
+                <div class="how-it-work-image"> 
+                    <img src="image/How-it-works.png" alt="">   
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="home-contact">
+                <span>
+                    Contact Us
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <form class="form-horizontal" id="home-contact-form" name="contactusform">
+                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="companyname" ng-model="companyname" placeholder="Company Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="required-filed">
+                                <input type="text" class="form-control" ng-class="{errorborder:contactfrm && contactusform.fullname.$invalid}" name="fullname" ng-model="fullname" pattern="([a-zA-Z]{2,20}\s*)+" placeholder="Person Name" required>
+                            </div>
+                            <span class="validation_error" ng-show="contactfrm && contactusform.fullname.$error.required">{{errorMessage.filedrequired}}</span>
+                            <span class="validation_error" ng-show="contactfrm && contactusform.fullname.$error.pattern">{{errorMessage.fullname}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="required-filed">
+                                <input type="text" class="form-control" ng-class="{errorborder:contactfrm && contactusform.contactnum.$invalid}" name="contactnum" ng-model="contactnum" placeholder="Contact Number" pattern="(1|2|3|4|5|6|7|8|9)\d{9}" required>
+                            </div>
+                            <span class="validation_error" ng-show="contactfrm && contactusform.contactnum.$error.required">{{errorMessage.filedrequired}}</span>
+                            <span class="validation_error" ng-show="contactfrm && contactusform.contactnum.$error.pattern">{{errorMessage.mobile}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="required-filed">
+                                <input type="email" class="form-control" ng-class="{errorborder:contactfrm && contactusform.email.$invalid}" name="email" ng-model="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                            </div>
+                            <span class="validation_error" ng-show="contactfrm && contactusform.email.$error.required">{{errorMessage.filedrequired}}</span>
+                            <span class="validation_error" ng-show="contactfrm && contactusform.email.$error.pattern">{{errorMessage.emailerror}}</span>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                   <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea class="form-control" rows="3" name="address" ng-model="address" placeholder="Address" style="resize: none; height: 75px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea class="form-control" rows="3" name="comment" ng-model="comment" placeholder="Comment" style="resize: none; height: 75px;"></textarea>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button type="button" class="btn btn-primary contact-btn pull-right" ng-click="getContactData(contactusform);">SUBMIT</button>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div>
+                        <img src="image/Mail-black-icon.png" alt="">&nbsp; <span class="mail-txt">sales@pharmerz.com</span><br/><br/>
+                        <img src="image/contactnumberl-black-icon.png" alt="">&nbsp; <span class="phone-txt">+91 7722074442</span>
+                    </div>
+                  </div>
+            </form>
+       </div>
+    </div>   
+</div> -->
+
+<br/><br/>
+
+
+<!-- Ticker code-->
+
+<!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+    <!--<div class="stickyfooter2">-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="">-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="stickyfooter">
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <div id="stickyfooter">
+                        <data-owl-carousel class="owl-carousel" data-options="{}">
+                            <div owl-carousel-item="" ng-repeat="item in productsData">
+                                <div class='item'><a herf="javascript:void(0);" ng-click="enquirySend(item.id);"><p>{{item.product | limitTo : 40}} {{item.product.length < 40 ? '' : '...'}}</p></a></div>
+                            </div>
+                        </data-owl-carousel>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> -->
+
+
+
+<div id="movetoTop">
+    <button id="toTop" ng-click="topmove();" class="toTop-arrow"></button>
+</div>
+
+<!-- footer Part -->
+<div ng-include="'views/footer.html'"></div>
+
+<!-- Java script -->
+
+<script>
+    $(function(){
+        
+        /*-- video lightbox --*/
+        $('#open-youtube1').click('[data-toggle="lightbox"][data-gallery="youtubevideos"]',function (e) {
+            e.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        $('#open-youtube2').click('[data-toggle="lightbox"][data-gallery="youtubevideos"]',function (e) {
+            e.preventDefault();
+            $(this).ekkoLightbox();
+        });
+		
+	
+    
+        
+        /*-- product slider  --*/
+        /*$("#stickyfooter").owlCarousel({
+            loop:true,
+            autoPlay: 1500,
+            itemsDesktop : [1199,4],
+            itemsDesktopSmall : [980,3],
+            itemsTablet: [768,2],
+            itemsTabletSmall: [768,2],
+            itemsMobile : [479,1]
+        });*/
+
+    });
+       
+</script>
+

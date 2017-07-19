@@ -1,0 +1,267 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+
+<div class="container-fluid sendenquiry-background">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity">
+            <loading></loading>
+
+            <div ng-show="supplierinfolength > 0">
+                <div class="row" ng-init="getequirydetails();getUsrDetails();getOrgDetails();">
+                    <div class="sendenquiry-header">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                             <!--<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:#727272;"></span>-->
+                             <span class="sendenquiry-header-txt">Send Enquiry to Supplier</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <!--<span class="sendenquiry-header-txt">Enquiry No - 12345</span>-->
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <form class="form-horizontal sendenquiry-form" name="sendenuiry">
+                            <br/>
+                          <div>
+                              <center>
+                                  <span class="validation_success2" ng-show="EnquirySendSuccess">{{errorMessage.enquirysendsuccess}}</span>
+                              </center>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-3 control-label addprd-lbl">Supplier</label>
+                            <div class="col-md-5">
+                                <div ng-dropdown-multiselect="" options="supplierinfos" selected-model="supplierinfomodel" extra-settings="supplierinfosettings" events="dropdownevnt"></div>
+                                <span class="validation_error" ng-show="sentenq && checkselect">{{errorMessage.filedrequired}}</span>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-3 control-label addprd-lbl">Product Name</label>
+                            <div class="col-md-9">
+                                <span class="sendenq-productname-txt">{{productname | Camlecase}}</span>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-3 control-label addprd-lbl">Composition</label>
+                             <div class="col-md-9">
+                                <span>{{composition | Camlecase}}</span>
+                            </div>
+                          </div>
+                          <div class="borderless-textbox">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                         <label class="col-md-6 control-label addprd-lbl">Product Quantity</label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" name="sendenqEnqQty" placeholder="Product QTY" ng-model="sendenqEnqQty" required>
+                                            <span class="validation_error" ng-show="sentenq && sendenuiry.sendenqEnqQty.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label class="col-md-6 control-label addprd-lbl">UOM
+                                            <br/>
+                                            <span><small>(Unit of Measurement)</small></span>
+                                        </label>
+                                        <div class="col-md-5">
+                                            <select class="form-control" name="sendenqEnqUom" ng-model="sendenqEnqUom" ng-options="item._links.self.href as item.uom for item in uomdata" required>
+                                                <option value="">Select UOM</option>
+                                            </select>
+                                            <span class="validation_error" ng-show="sentenq && sendenuiry.sendenqEnqUom.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label addprd-lbl">Location</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="sendenqLocation" ng-model="sendenqLocation" ng-options="item._links.self.href as item.location for item in locationdata" required>
+                                        <option value="">Select Location</option>
+                                    </select>
+                                    <span class="validation_error" ng-show="sentenq && sendenuiry.sendenqLocation.$error.required">{{errorMessage.filedrequired}}</span>
+                                    <br/>
+                                    <span>Select Location from above</span>
+                                    <br/>
+                                    <span>or</span>
+                                    <br/>
+                                    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#SendEnqAddlocationModal">Add Location</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                     <div class="form-group">
+                                        <label class="col-md-6 control-label addprd-lbl">Currency</label>
+                                        <div class="col-md-6">
+                                             <select class="form-control" name="sendenqCurrancy" ng-model="sendenqCurrancy" ng-options="item._links.self.href as item.currency for item in currencydata" required>
+                                                <option value="">Select Currency</option>
+                                             </select>
+                                            <span class="validation_error" ng-show="sentenq && sendenuiry.sendenqCurrancy.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label class="col-md-6 control-label addprd-lbl">Incorterms</label>
+                                        <div class="col-md-5">
+                                             <select class="form-control" name="sendenqIncorterms" ng-model="sendenqIncorterms">
+                                                 <option value="">Select Incorterms</option>
+                                                 <option value="EXW_EX_WORKS">Exw Ex Works</option>
+                                                 <option value="FCA_FREE_CARRIER">Fca Free Carrier</option>
+                                                 <option value="FAS_FREE_ALONGSIDE_SHIP">Fas Free AlongsideShip</option>
+                                                 <option value="FOB_FREE_ON_BOARD">Fob-Free On Board</option>
+                                                 <option value="CFR_COST_AND_FREIGHT">Cfr Cost And Fright</option>
+                                                 <option value="CPT_CARRIGE_PAID_TO">Cpt Carrige PaidTo</option>
+                                                 <option value="CIF_COST_INSURANCE_PAID_TO">Cif Cost Insurance Paid To</option>
+                                                 <option value="DAT_DELIVERED_AT_TERMINAL">Dat Deliverd At Terminal</option>
+                                                 <option value="DAP_DELIVERED_AT_PLACE">Dap Deliverd At Place</option>
+                                                 <option value="DDP_DELIVERED_DUTY_PAID">Ddp Deliverd Duty Paid</option>
+                                            </select>
+                                            <!--<span class="validation_error" ng-show="sentenq && sendenuiry.sendenqIncorterms.$error.required">{{errorMessage.filedrequired}}</span>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label addprd-lbl">Shipment by</label>
+                                <div class="col-md-9">
+                                     <label class="radio-inline">
+                                      <input type="radio" name="shipment" value="SEA" ng-model="sendenqShipBy"  required> Sea
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" name="shipment"  value="AIR" ng-model="sendenqShipBy"  required> Air
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" name="shipment"  value="OTHER" ng-model="sendenqShipBy"  required> Other
+                                    </label>
+                                    <!--<label class="radio-inline">-->
+                                      <!--<input type="radio" name="shipment" value="LAND_BY_ROAD" ng-disabled="land" ng-model="sendenqShipBy" required> By Road-->
+                                    <!--</label>-->
+                                    <!--<label class="radio-inline">-->
+                                      <!--<input type="radio" name="shipment" value="LAND_BY_RAIL" ng-disabled="land" ng-model="sendenqShipBy" required> By Train-->
+                                    <!--</label>-->
+                                    <br/>
+                                    <span class="validation_error" ng-show="sentenq && sendenuiry.shipment.$error.required">{{errorMessage.filedrequired}}</span>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-3 control-label addprd-lbl">Your Message</label>
+                            <div class="col-md-5">
+                                <textarea class="form-control" rows="3" name="message" ng-model="message"></textarea>
+                                <!--<span class="validation_error" ng-show="sentenq && sendenuiry.message.$error.required">{{errorMessage.filedrequired}}</span>-->
+                            </div>
+                          </div>
+                            <div class="form-group" ng-show="sendrequestSendEnq">
+                                <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                            </div>
+                           <div class="form-group">
+                            <div class="col-xs-offset-3">
+                              <button type="button" class="btn btn-primary" ng-click="submitEnquiryForm(sendenuiry);">Send Enquiry</button>&nbsp;
+                              <button type="button" class="btn btn-primary" ng-click="cancleEnquiry();">Reset</button>
+                            </div>
+                          </div>
+                          <br/><br/><br/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--<div ng-show="supplierinfolength == 0 ">-->
+                <!--<form class="form-horizontal sendenquiry-form">-->
+                    <!--<br/><br/><br/><br/>-->
+                    <!--<center>-->
+                        <!--<h4>You can not add enquiry using this product</h4>-->
+                        <!--<br/>-->
+                        <!--<a class="btn btn-primary" href="#/product" role="button">Move to Product page</a>-->
+                    <!--</center>-->
+                    <!--<br/><br/><br/><br/>-->
+                <!--</form>-->
+            <!--</div>-->
+
+            <!--Modal -->
+            <div class="modal fade" id="SendEnqAddlocationModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetLocationFormData();"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"><center>Add New Location</center></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" name="addlocationform">
+                                <div class="borderless-textbox">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="addlocationname" ng-model="addlocationname" placeholder="Location Name" required>
+                                            <span class="validation_error" ng-show="addlocation && addlocationform.addlocationname.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="addlane1" ng-model="addlane1" placeholder="Lane1" required>
+                                            <span class="validation_error" ng-show="addlocation && addlocationform.addlane1.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="addlane2" ng-model="addlane2" placeholder="Lane2" >
+                                            <!--<span class="validation_error" ng-show="addlocation && addlocationform.addlane2.$error.required">{{errorMessage.filedrequired}}</span>-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <select class="form-control" name="addcountry" ng-model="addcountry" ng-options="item.id as item.label for item in countryinfo" required>
+                                                        <option value=""> Select Country</option>
+                                                    </select>
+                                                    <span class="validation_error" ng-show="addlocation && addlocationform.addcountry.$error.required">{{errorMessage.filedrequired}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="addregion" ng-model="addregion" placeholder="Region" required>
+                                                    <span class="validation_error" ng-show="addlocation && addlocationform.addregion.$error.required">{{errorMessage.filedrequired}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="addcity" ng-model="addcity" placeholder="City" required>
+                                                    <span class="validation_error" ng-show="addlocation && addlocationform.addcity.$error.required">{{errorMessage.filedrequired}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="addpostalcode" ng-model="addpostalcode" placeholder="Postal Code" pattern="[0-9]{4,10}" required>
+                                                    <span class="validation_error" ng-show="addlocation && addlocationform.addpostalcode.$error.required">{{errorMessage.filedrequired}}</span>
+                                                    <span class="validation_error" ng-show="addlocation && addlocationform.addpostalcode.$error.pattern">{{errorMessage.postalcode}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group" ng-show="sendrequestlocation">
+                                        <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                                    </div>
+                                    <div class="form-group">
+                                        <center>
+                                            <button type="button" class="btn btn-default" ng-click="addlocations(addlocationform);">Save</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+    </div>
+</div>

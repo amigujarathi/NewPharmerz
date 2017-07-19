@@ -1,0 +1,36 @@
+<!--Header Part -->
+<div ng-include="'views/header.html'"></div>
+
+
+<div class="container-fluid" ng-init="checkScrollPosition();">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 categories-container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-repeat="item in categories" id="item.id">
+                    <a href="javascript:void(0);" ng-click="CategoryProductSearch(item.id);">
+                        <div class="categories-image">
+                           <img src="image/categories/{{item.category}}.png" alt="">
+                           <br/>
+                            <div>
+                                <center>
+                                    <span>
+                                      {{item.category | limitTo : 10}} {{item.category.length < 10 ? '' : '...'}}
+                                    </span>
+                                </center>
+                            </div>
+                         </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="movetoTop">
+    <button id="toTop" ng-click="topmove();" class="toTop-arrow"></button>
+</div>
+
+<!-- footer Part -->
+<div ng-include="'views/footer.html'"></div>
+

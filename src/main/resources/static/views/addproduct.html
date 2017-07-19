@@ -1,0 +1,409 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="addproduct = false;hidecategory = true;singleProduct = true;getUsrDetails();getOrgDetails();">
+        <div class="" ng-show="showaddproduct">
+        	<div class="row">
+                <div class="addproduct-header">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<a class="add-product-back" ng-click=" hidecategory = true;showaddproduct = false;"> &lt;&lt; back </a>
+                         <!-- <span class="glyphicon glyphicon-arrow-left" ng-click=" hidecategory = true;showaddproduct = false;" aria-hidden="true" style="color:#727272;"></span> -->
+                         <span class="addproduct-header-txt">Add Product</span>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 BtnTab">
+					<div class="btn-group btn-group-adjs" role="group" aria-label="...">
+						<button type="button" class="btn btn-default btn-xs" ng-click="singleProduct =true; MultipleProduct = false" ng-class="{ active : singleProduct}">Add Product</button>
+						<button type="button" class="btn btn-default btn-xs" ng-click="MultipleProduct = true; singleProduct = false" ng-class="{ active: MultipleProduct}">Add Multiple Product</button>
+					</div>
+				</div>
+	            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div>
+						<center><span class="validation_success2" ng-show="AddProductSuccess">{{errorMessage.productaddsuccess}}</span></center>
+					</div>
+	                <form class="form-horizontal" name="addproductform" ng-show="singleProduct">
+	                	<div class="borderless-textbox">
+	                	 	<div class="form-group">
+		                        <label for="productname" class="col-sm-3 control-label addprd-lbl">Product Name</label>
+							    <div class="col-sm-4">
+							      <input type="text" class="form-control" id="productname" name="productname" ng-model="productname" placeholder="Product Name" required>
+									<span class="validation_error" ng-show="addproduct && addproductform.productname.$error.required">{{errorMessage.filedrequired}}</span>
+								</div>
+                            </div>
+                            <div class="form-group">
+		                        <label for="typecomposition" class="col-sm-3 control-label addprd-lbl">Composition</label>
+							    <div class="col-sm-4">
+							      <input type="text" class="form-control" id="typecomposition" name="composition" ng-model="composition" placeholder="Type Composition">
+									<!--<span class="validation_error" ng-show="addproduct && addproductform.composition.$error.required">{{errorMessage.filedrequired}}</span>-->
+							    </div>
+                            </div>
+                            <div class="form-group">
+		                        <label for="productcategory" class="col-sm-3 control-label addprd-lbl">Product Category</label>
+							    <div class="col-sm-4">
+							      	<select class="form-control" id="productcategory" name="pcategory" ng-model="pcategory" ng-options="item.id as item.category for item in categoriesdata" required>
+							      		<option value="">Select category</option>
+							      	</select>
+									<br/>
+									<span class="validation_error" ng-show="addproduct && addproductform.pcategory.$error.required">{{errorMessage.filedrequired}}</span>
+							    </div>
+                            </div>
+							<div class="form-group">
+								<label for="upc" class="col-sm-3 control-label addprd-lbl">
+									UPC<br/>
+									<span><small>(Unique Product Code)</small></span>
+								</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="upc"  name="upc" ng-model="upc" placeholder="Type UPC">
+									<!--<span class="validation_error" ng-show="addproduct && addproductform.upc.$error.required">{{errorMessage.filedrequired}}</span>-->
+								</div>
+							</div>
+                            <!--<div class="row">-->
+                            	<!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">-->
+                            		<!--<div class="form-group">-->
+                            			<!--<label for="sku" class="col-sm-6 control-label addprd-lbl">-->
+                            			   <!--SKU<br/>-->
+                            			  <!--<span><small>(Stock Keep Unit)</small></span>-->
+                            			<!--</label>-->
+									    <!--<div class="col-sm-5">-->
+									      <!--<input type="text" class="form-control" id="sku"  name="sku" ng-model="sku" placeholder="e.g. 1000*1000" required>-->
+											<!--<span class="validation_error" ng-show="addproduct && addproductform.sku.$error.required">{{errorMessage.filedrequired}}</span>-->
+									    <!--</div>-->
+                                    <!--</div>-->
+                            	<!--</div>-->
+                            	<!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">-->
+                            		<!--<div class="form-group">-->
+                        				<!--<label for="upc" class="col-sm-6 control-label addprd-lbl">-->
+                        				<!--UPC<br/>-->
+                        				<!--<span><small>(Unique Product Code)</small></span>-->
+                        				<!--</label>-->
+									    <!--<div class="col-sm-5">-->
+									      <!--<input type="text" class="form-control" id="upc"  name="upc" ng-model="upc" placeholder="Type UPC" required>-->
+											<!--<span class="validation_error" ng-show="addproduct && addproductform.upc.$error.required">{{errorMessage.filedrequired}}</span>-->
+									    <!--</div>-->
+                                    <!--</div>-->
+                            	<!--</div>-->
+                            <!--</div>-->
+	                	</div>
+						<div class="form-group"> <!-- ng-init="categories='Sales'" -->
+							<label for="category" class="col-sm-3 control-label addprd-lbl">Category</label>
+							<div class="col-sm-6" id="category">
+								<label class="radio-inline">
+									<input type="radio" name="category" ng-model="categories" value="Sales" required> Sales
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="category" ng-model="categories" value="Purchase" required> Purchase
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="category" ng-model="categories" value="Both" required> Both
+								</label>
+								<br/>
+								<span class="validation_error" ng-show="addproduct && addproductform.category.$error.required">{{errorMessage.filedrequired}}</span>
+							</div>
+						</div>
+	                	<div class="form-group">
+	                        <label for="notes" class="col-sm-3 control-label addprd-lbl">Notes</label>
+						    <div class="col-sm-4">
+						    	 <textarea class="form-control" id="notes" rows="4" name="notes" ng-model="notes"></textarea>
+								<!--<span class="validation_error" ng-show="addproduct && addproductform.notes.$error.required">{{errorMessage.filedrequired}}</span>-->
+						    </div>
+                        </div>
+                        <!--<div class="form-group">-->
+	                        <!--<label for="notes" class="col-sm-3 control-label addprd-lbl">Select Image</label>-->
+						    <!--<div class="col-sm-6">-->
+						    	<!--<input type="file" >-->
+						    <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+	                        <!--<div class="col-sm-3">-->
+	                        	<!--<img src="image/product-upload-default.png" alt=>-->
+	                        <!--</div>-->
+                        <!--</div>-->
+						<div class="form-group" ng-show="sendrequestAddProduct">
+							<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+						</div>
+                        <div class="form-group">
+                        	<center>
+                        		<button type="button" class="btn btn-primary btn-width" ng-click="addproducts(addproductform);">Submit</button>
+						    	&nbsp;&nbsp;
+						    	<button type="button" class="btn btn-primary btn-width" ng-click="resetproductsdata();">Reset</button>
+                        	</center>
+                        </div>
+	                </form>
+					<form class="form-horizontal" name="multiprod" ng-show="MultipleProduct">
+						<div class="form-group">
+							<h4>Important Notes :</h4>
+							<div>•	Product Name , Product Category ,Category Fields in <b>sample_format.xlsx</b> file are compulsory.</div>
+							<div>•	We will map the row of cells with corresponding Product Fields.</div>
+							<div>•	You can import up to 50 products through an <b>sample_format.xlsx</b> file.</div>
+							<div>•	Please download Sample Excel file :  <a href="http://pharmerz.s3.amazonaws.com/miscellaneous/sample_format.xlsx" target="_self"> click here to download sample_format.xlsx </a></div>
+						</div>
+						<br/>
+						<div class="form-group">
+							<label for="file-input" class="col-sm-5 control-label addprd-lbl">Please Upload Excel File for multiple Products</label>
+							<div class="col-sm-6">
+								<input id="file-input" type="file" ng-model-instan="" accept=".xlsx" onchange="angular.element(this).scope().ExcelUpload(event)" />
+							</div>
+						</div>
+						<div class="form-group" ng-show="sendrequestMultipleAddProduct">
+							<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+						</div>
+						<div class="form-group">
+							<center><span class="validation_error2" id="vali_error1"></span></center>
+							<center><span class="validation_error2"  id="vali_error2"></span></center>
+
+							<!--<center><span class="validation_error2" ng-if="DocNameErrorData==true">{{errorMessage.invalidDocName}}</span></center>-->
+							<!--<center><span class="validation_error2" ng-if="DocTypeErrorData==true">{{errorMessage.invalidDocType}}</span></center>-->
+							<center><span class="validation_success2" ng-show="ExcelSuccessData">{{errorMessage.exceldatasuccess}} &nbsp;&nbsp; <img src="image/tickmark.gif" alt=""> </span></center>
+							<center><span class="validation_error2" ng-show="ExcelErrorData">{{errorMessage.exceldataerror}}</span></center>
+						</div>
+					</form>
+	            </div>
+            </div>
+        </div>
+
+        <div ng-show="hidecategory">
+            <div class="row">
+            <br/>
+        		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<form class="form-horizontal" name="productcategoryform">
+						<div class="row add-product-search">
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+								<div class="borderless-textbox">
+									<div class="form-group">
+										<div class="col-md-12">
+											<select class="form-control" name="productcategory" ng-model="productcategory" ng-options="item.ids as item.category for item in categoriesdataSearch" ng-change="showcategoryproduct(1);" required>
+												<!-- <option value=""> Select Product Category</option> -->
+											</select>
+											<span class="validation_error" ng-show="prodcategory && productcategoryform.productcategory.$error.required">{{errorMessage.categorysearcherror}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+								<div class="input-group stylish-input-group">
+									<input type="text" class="form-control" name="searchproduct" ng-model="searchproduct" ng-keyup="manageSearchproduct();" placeholder="Search Products " required>
+									<span class="input-group-addon">
+									<button type="submit" ng-click="getsearchproduct(productcategoryform,3);">
+									  <span class="glyphicon glyphicon-search"></span>
+									</button>
+								  </span>
+								</div>
+								<span class="validation_error" ng-show="prodcategory && productcategoryform.searchproduct.$error.required">{{errorMessage.filedrequired}}</span>
+							</div>
+						</div>
+					</form>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<center>
+								<!--<div class="alert alert-success" role="alert" ng-show="SalesSuccess">-->
+									<!--<span class="validation_success2"><strong>{{errorMessage.salesadded}}</strong></span>-->
+								<!--</div>-->
+								<!--<div class="alert alert-success" role="alert" ng-show="PurchaseSuccess">-->
+									<!--<span class="validation_success2"><strong>{{errorMessage.purchaseadded}}</strong></span>-->
+								<!--</div>-->
+								<!--<div class="alert alert-success" role="alert" ng-show="BothSuccess">-->
+									<!--<span class="validation_success2"><strong>{{errorMessage.salespurchaseadded}}</strong></span>-->
+								<!--</div>-->
+
+								<!--<div class="alert alert-danger" role="alert" ng-show="SalesError">-->
+									<!--<span class="validation_error2"><strong>{{errorMessage.saleserror}}</strong></span>-->
+								<!--</div>-->
+								<!--<div class="alert alert-danger" role="alert" ng-show="PurchaseError">-->
+									<!--<span class="validation_error2"><strong>{{errorMessage.purchaseerror}}</strong></span>-->
+								<!--</div>-->
+								<!--<div class="alert alert-danger" role="alert" ng-show="BothError">-->
+									<!--<span class="validation_error2"><strong>{{errorMessage.salespurchaseerror}}</strong></span>-->
+								<!--</div>-->
+
+
+								<span class="validation_error2" ng-show="SalesError">{{errorMessage.saleserror}}</span>
+								<span class="validation_error2" ng-show="PurchaseError">{{errorMessage.purchaseerror}}</span>
+								<span class="validation_error2" ng-show="BothError">{{errorMessage.salespurchaseerror}}</span>
+								<sapn class="validation_error2" ng-show="ProductModeError">{{errorMessage.productmodeerror}}</sapn>
+								<span class="validation_success2" ng-show="SalesSuccess">{{errorMessage.salesadded}}</span>
+								<span class="validation_success2" ng-show="PurchaseSuccess">{{errorMessage.purchaseadded}}</span>
+								<span class="validation_success2" ng-show="BothSuccess">{{errorMessage.salespurchaseadded}}</span>
+							</center>
+						</div>
+					</div>
+        			<div class="row"> <!-- addproduct-show -->
+        				<div ng-show="prodlength > 0" class="col-xs-12 col-ms-12 col-md-12 col-lg-12" ng-repeat="item in product"  ng-cloak>
+							<div class="product-list">
+							<div class="row">
+								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+									<div class="p-product-image">
+										<img src="image/products/product-1.png" alt="">
+									</div>
+								</div>
+
+
+								<div class="col-xs-10 col-sm-9 col-md-9 col-lg-9">
+									<div class="p-product-txt p-addproduct-txt">
+										<div class="p-product-txt-content">
+
+
+
+											<div class="row">
+												<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+													<span class="add-product-key">Product Name</span>
+												</div>
+												<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+													<span class="p-product-name">{{item.product | Camlecase}}</span><br/>
+												</div>
+											</div>
+
+											<div class="row" ng-if="item.composition != null">
+												<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+													<span class="add-product-key">Composition</span>
+												</div>
+												<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 composition-content">
+													<span class="p-product-categorty">{{item.composition | Camlecase}}</span><br/>
+												</div>
+											</div>
+
+											<div class="row" ng-if="productcategory=='ALLCat'">
+												<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+													<span class="add-product-key">Category</span>
+												</div>
+												<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+													<span class="p-product-categorty">  {{item.categoryName | Camlecase}}   </span><br/>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+												</div>
+												<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10">
+													<!--<span class="p-product-categorty">{{item.composition | limitTo : 30 | Camlecase}} {{item.composition.length < 30 ? '' : '...'}}</span><br/>-->
+													<label class="radio-inline">
+														<input type="radio" name="productTodo" ng-model="item.productTodo" value="Sales"> Sales
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="productTodo" ng-model="item.productTodo" value="Purchase"> Purchase
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="productTodo" ng-model="item.productTodo" value="Both"> Both
+													</label>
+													<br/>
+													<br/>
+
+													<button type="button" class="btn btn-primary btn-sm"  ng-click="addtodo(item);">Add</button>
+												</div>
+											</div>
+											<!--ng-disabled="!item.productTodo"-->
+											<!--<div class="error-block">-->
+											   <!--<span class="validation_error" ng-show="item.SalesError">{{errorMessage.saleserror}}</span>-->
+											   <!--<span class="validation_error" ng-show="item.PurchaseError">{{errorMessage.purchaseerror}}</span>-->
+											   <!--<span class="validation_error" ng-show="item.BothError">{{errorMessage.salespurchaseerror}}</span>-->
+											<!--</div>-->
+										</div>
+									</div>
+								</div>
+                             </div>
+							</div>
+        				</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="SearchByCategory">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="prodlength == 0">
+							      <center><h4><span>No Products Found ...</span></h4></center>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="SearchByCategoryProductName">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="getsearchprodlength == 0">
+									<center><h4><span>No Products Found ...</span></h4></center>
+								</div>
+							</div>
+						</div>
+					</div>
+        		</div>
+            </div>
+			<div class="row" ng-show="SearchByCategory">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<center>
+						<nav ng-show="prodlength > 20" aria-label="Page navigation" ng-cloak>
+							<ul class="pagination">
+								<li ng-class="{disabled : page == 0}">
+									<a href="javascript:void(0);" aria-label="first">
+										<span aria-hidden="true" ng-click="firstpage();">First</span>
+									</a>
+								</li>
+								<li ng-class="{disabled : page == 0}">
+									<a href="javascript:void(0);" aria-label="Previous">
+										<span aria-hidden="true" ng-click="previouspage();">Previous</span>
+									</a>
+								</li>
+								<li ng-class="{disabled : page == last - 1 }">
+									<a href="javascript:void(0);" aria-label="Next">
+										<span aria-hidden="true" ng-click="nextpage();">Next</span>
+									</a>
+								</li>
+								<li ng-class="{disabled : page == last - 1 }">
+									<a href="javascript:void(0);" aria-label="last">
+										<span aria-hidden="true" ng-click="lastpage();">Last</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</center>
+				</div>
+			</div>
+			<div class="row" ng-show="SearchByCategoryProductName">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<center>
+						<nav ng-show="getsearchprodlength > 20" aria-label="Page navigation" ng-cloak>
+							<ul class="pagination">
+								<li ng-class="{disabled : getsearchpage == 0}">
+									<a href="javascript:void(0);" aria-label="first">
+										<span aria-hidden="true" ng-click="firstpages();">First</span>
+									</a>
+								</li>
+								<li ng-class="{disabled : getsearchpage == 0}">
+									<a href="javascript:void(0);" aria-label="Previous">
+										<span aria-hidden="true" ng-click="previouspages();">Previous</span>
+									</a>
+								</li>
+								<li ng-class="{disabled : getsearchpage == getsearchlast - 1 }">
+									<a href="javascript:void(0);" aria-label="Next">
+										<span aria-hidden="true" ng-click="nextpages();">Next</span>
+									</a>
+								</li>
+								<li ng-class="{disabled : getsearchpage == getsearchlast - 1 }">
+									<a href="javascript:void(0);" aria-label="last">
+										<span aria-hidden="true" ng-click="lastpages();">Last</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</center>
+				</div>
+			</div>
+            <div class="row">
+            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            		<br/>			
+            		<center>
+            			<!--<button type="button" class="btn btn-primary" ng-click="showaddproduct = true; hidecategory = false">Add New Product</button>&nbsp;&nbsp;
+						<button type="button" class="btn btn-info btn-circle btn-lg" ng-click="showaddproduct = true; hidecategory = false" title="Add New Product"><i class="glyphicon glyphicon-plus circle-plus-icon"></i></button>&nbsp;&nbsp;-->
+            			<!--<button type="button" class="btn btn-primary">Submit</button>-->
+            		</center>
+            	</div>
+            </div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<nav class="navbar navbar-fixed-bottom">
+						<button type="button" class="btn btn-info btn-circle btn-lg" ng-click="showaddproduct = true; hidecategory = false" title="Add New Product"><i class="glyphicon glyphicon-plus circle-plus-icon"></i></button>&nbsp;&nbsp;
+					</nav>
+				</div>
+			</div>
+        </div>    	
+
+        </div>
+    </div>
+</div>

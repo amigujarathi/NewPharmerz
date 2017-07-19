@@ -1,0 +1,312 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+			<!--Added Location  -->
+			<div class="location">
+				<div class="location-heading">
+					<span >My Location</span>
+				</div>
+				 <div class="row">
+				 	<div ng-if="elementCount > 0" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 locationblock-adjs" ng-repeat="item in Locationdata" {{item.id}} ng-cloak>
+				 	  <div class="location-block">
+				 		<div class="location-block-body">
+				 		  <div class="row">
+							    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								  <span>Location : {{item.location}}</span>
+								</div>
+							    <br/><br/>
+				 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				 					<span>Lane 1 : {{item.addressLine1}}</span>
+				 				</div>
+				 				<br/><br/>
+				 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				 					<span>Lane 2 : {{item.addressLine2}}</span>
+				 				</div>
+				 			</div>
+				 			<br/>
+				 			<div class="row">
+				 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				 					<span>Postal Code : {{item.postalCode}}  </span>
+				 				</div>
+				 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				 					<span>City : {{item.city}}</span>
+				 				</div>
+				 			</div>
+				 			<br/>
+				 			<div class="row">
+				 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				 					<span>Region : {{item.region}} </span>
+				 				</div>
+				 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				 					<span>Country : {{item.country.country}}</span>
+				 				</div>
+				 			</div><br/>
+
+
+							<div class="row" ng-show="item.status==1">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<span style="opacity: 0.9;color: red;"> Registered Address </span>
+								</div>
+							</div>
+
+							<div class="row" ng-show="item.status!=1">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<span style="padding: 10px;">  </span>
+								</div>
+							</div>
+
+
+			 			</div>
+						  <div class="row">
+							  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								  <div class="location-block-footer">
+									  <div class="location-block-footer-txt">
+										  <span ng-click="deleteLocations(item._links.self.href);">Delete </span> &nbsp;&nbsp; <img src="image/headbar-divider.png" alt="" style="width: 1.5px;"> &nbsp;&nbsp; <span  data-toggle="modal" data-target="#EditlocationModal" ng-click="getEditLocationData(item.id);">Edit</span>
+									  </div>
+								  </div>
+							  </div>
+						  </div>
+			 		  </div>
+				 	</div>
+				 </div>
+				 <br/>
+				<div ng-if="elementCount > 0">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddlocationModal">Add Location</button>
+				</div>
+			</div>
+
+			<!-- No Location  -->
+			<div class="Nolocationadded" ng-if="elementCount == 0">
+				<div>
+					<img src="image/location.png" alt="">
+					<br/>
+					<span>No Location Added</span>
+				</div>
+				<br/><br/>
+				<center>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddlocationModal">Add Location</button>
+				</center>
+			</div>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="AddlocationModal" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetLocationFormData();"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title"><center>Add New Location</center></h4>
+			      </div>
+			      <div class="modal-body">
+		        	<form class="form-horizontal" name="addlocationform">
+		        	    <div class="borderless-textbox">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" name="addlocationname" ng-model="addlocationname" placeholder="Location Name" required>
+									<span class="validation_error" ng-show="addlocation && addlocationform.addlocationname.$error.required">{{errorMessage.filedrequired}}</span>
+								</div>
+							</div>
+		        	    	<div class="form-group">
+							    <div class="col-sm-12">
+							      <input type="text" class="form-control" name="addlane1" ng-model="addlane1" placeholder="Lane1" required>
+								  <span class="validation_error" ng-show="addlocation && addlocationform.addlane1.$error.required">{{errorMessage.filedrequired}}</span>
+							    </div>
+						    </div>
+						    <div class="form-group">
+							    <div class="col-sm-12">
+							      <input type="text" class="form-control" name="addlane2" ng-model="addlane2" placeholder="Lane2">
+									<!--<span class="validation_error" ng-show="addlocation && addlocationform.addlane2.$error.required">{{errorMessage.filedrequired}}</span>-->
+								</div>
+						    </div>
+						    <div class="row">
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+											<select class="form-control" name="addcountry" ng-model="addcountry" ng-options="item.id as item.label for item in countryinfo" required>
+												<option value=""> Select Country</option>
+											</select>
+											<span class="validation_error" ng-show="addlocation && addlocationform.addcountry.$error.required">{{errorMessage.filedrequired}}</span>
+										</div>
+								    </div>
+						    	</div>
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+									      <input type="text" class="form-control" name="addregion" ng-model="addregion" placeholder="Region" required>
+											<span class="validation_error" ng-show="addlocation && addlocationform.addregion.$error.required">{{errorMessage.filedrequired}}</span>
+									    </div>
+						    		</div>
+						    	</div>
+						    </div>
+						    <div class="row">
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+									      <input type="text" class="form-control" name="addcity" ng-model="addcity" placeholder="City" required>
+											<span class="validation_error" ng-show="addlocation && addlocationform.addcity.$error.required">{{errorMessage.filedrequired}}</span>
+										</div>
+								    </div>
+						    	</div>
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+									      <input type="text" class="form-control" name="addpostalcode" ng-model="addpostalcode" placeholder="Postal Code" pattern="[0-9]{4,10}" required>
+											<span class="validation_error" ng-show="addlocation && addlocationform.addpostalcode.$error.required">{{errorMessage.filedrequired}}</span>
+											<span class="validation_error" ng-show="addlocation && addlocationform.addpostalcode.$error.pattern">{{errorMessage.postalcode}}</span>
+									    </div>
+						    		</div>
+						    	</div>
+						    </div>
+
+							<div class="row" ng-hide="hidelocationcheckbox">
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="checkbox location-checkbox">
+											<label><input type="checkbox"  ng-model="checkboxdata.locationStatus"> Mark this location as registered address </label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+						    <br/>
+							<div class="form-group" ng-show="sendrequest">
+								<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+							</div>
+						     <div class="form-group">
+						   		<center>
+						     		 <button type="button" class="btn btn-default" ng-click="addlocations(addlocationform);">Save</button>
+						   		</center>
+						     </div>
+		        	    </div>
+		        	</form> 
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+		    <!-- Modal -->
+			<div class="modal fade" id="EditlocationModal" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetEditLocationFormData();"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title"><center>Edit Location</center></h4>
+			      </div>
+			      <div class="modal-body">
+		        	<form class="form-horizontal" name="editlocationform">
+		        	    <div class="borderless-textbox">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" name="editlocationname" ng-model="editlocationname" placeholder="Location Name" required>
+									<span class="validation_error" ng-show="editlocation && editlocationform.editlocationname.$error.required">{{errorMessage.filedrequired}}</span>
+								</div>
+							</div>
+		        	    	<div class="form-group">
+							    <div class="col-sm-12">
+							      <input type="text" class="form-control" name="editlane1" ng-model="editlane1" placeholder="Lane1" required>
+									<span class="validation_error" ng-show="editlocation && editlocationform.editlane1.$error.required">{{errorMessage.filedrequired}}</span>
+							    </div>
+						    </div>
+						    <div class="form-group">
+							    <div class="col-sm-12">
+							      <input type="text" class="form-control" name="editlane2" ng-model="editlane2" placeholder="Lane2">
+									<!--<span class="validation_error" ng-show="editlocation && editlocationform.editlane2.$error.required">{{errorMessage.filedrequired}}</span>-->
+							    </div>
+						    </div>
+						    <div class="row">
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+											<select class="form-control" name="editcountry" ng-model="editcountry" ng-options="item.id as item.label for item in countryinfo" required>
+												<option value=""> Select Country</option>
+											</select>
+											<span class="validation_error" ng-show="editlocation && editlocationform.editcountry.$error.required">{{errorMessage.filedrequired}}</span>
+									    </div>
+								    </div>
+						    	</div>
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+									      <input type="text" class="form-control" name="editregion" ng-model="editregion" placeholder="Region" required>
+											<span class="validation_error" ng-show="editlocation && editlocationform.editregion.$error.required">{{errorMessage.filedrequired}}</span>
+									    </div>
+						    		</div>
+						    	</div>
+						    </div>
+						    <div class="row">
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+									      <input type="text" class="form-control" name="editcity" ng-model="editcity" placeholder="City" required>
+											<span class="validation_error" ng-show="editlocation && editlocationform.editcity.$error.required">{{errorMessage.filedrequired}}</span>
+									    </div>
+								    </div>
+						    	</div>
+						    	<div class="col-md-6">
+						    		<div class="form-group">
+									    <div class="col-sm-12">
+									      <input type="text" class="form-control" name="editpostalcode" ng-model="editpostalcode" placeholder="Postal Code" pattern="[0-9]{4,10}" required>
+											<span class="validation_error" ng-show="editlocation && editlocationform.editpostalcode.$error.required">{{errorMessage.filedrequired}}</span>
+											<span class="validation_error" ng-show="editlocation && editlocationform.editpostalcode.$error.pattern">{{errorMessage.postalcode}}</span>
+										</div>
+						    		</div>
+						    	</div>
+						    </div>
+
+							<div class="row" ng-if="locationcheckboxhide==true">
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="checkbox location-checkbox">
+											<label><input type="checkbox"  ng-model="checkboxdata.locationStatus"> Mark this location as registered address </label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						    <br/>
+							<div class="form-group" ng-show="sendrequest">
+								<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+							</div>
+						     <div class="form-group">
+						   		<center>
+						     		 <button type="button" class="btn btn-default" ng-click="editlocations(editlocationform);">Save</button>
+						   		</center>
+						     </div>
+		        	    </div>
+		        	</form> 
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<!-- Modal -->
+			<div class="modal fade" id="DeletelocationModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center><h4><span>Are you sure you want delete the location ?</span></h4></center>
+							<br/>
+							<br/>
+							<div class="form-group" ng-show="sendrequest">
+								<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+							</div>
+							<center>
+								<button type="button" class="btn btn-primary" ng-click="deleteLocation();">Ok</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</center>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
+	</div>
+</div>
+
+</div>

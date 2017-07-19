@@ -1,0 +1,225 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+<div class="container-fluid adminhome-background">
+	<div class="row">
+		<loading></loading>
+		<div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="sentEnq=true;sentQuo=true;sentPo=true;getUsrDetails();getOrgDetails();">
+
+			 <div class="row">
+			 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 BtnTab ">
+				<h4>Recent Activity</h4>
+				<span class="adminhome-subheading">Enquiries</span> &nbsp;&nbsp;
+				<div class="btn-group enq-group-btn" role="group" aria-label="...">
+					<!--<button type="button" class="btn btn-default btn-xs" ng-click="allEnq = true; sentEnq = false ; receivedEnq = false" ng-class="{ active: allEnq}">ALL</button>-->
+					<!--<button type="button" class="btn btn-default btn-xs" ng-click="sentEnq =true; receivedEnq = false; allEnq = false" ng-class="{ active : sentEnq}">SENT</button>-->
+					<!--<button type="button" class="btn btn-default btn-xs" ng-click="receivedEnq = true; sentEnq =false; allEnq = false" ng-class="{ active : receivedEnq}">RECEVIED</button>-->
+
+					<button type="button" class="btn btn-default btn-xs" ng-click="sentEnq =true; receivedEnq = false" ng-class="{ active : sentEnq}">SENT</button>
+					<button type="button" class="btn btn-default btn-xs" ng-click="receivedEnq = true; sentEnq =false" ng-class="{ active : receivedEnq}">RECEIVED</button>
+				</div>
+			 </div>
+			 </div>
+			 <br/>
+
+			 <div class="row">
+				<!--Sent Enq-->
+				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-show="sentEnq">
+					<div class="list-box">
+					   <div class="list-box-inner">
+						<div ng-if="SentEnqElement > 0" class="row listbox-inner-padding" ng-repeat="item in EnqBlockSent" ng-cloak>
+						   <a href="#/enquiry">
+							   <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+								 <span>{{item.receiverOrganization.organization }} </span><br/>
+								 <span>{{item.product.product | limitTo : 50}} {{item.product.product.length < 50 ? '' : '...'}}</span>
+							   </div>
+							   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+								 <div class="text-right">
+									<span>{{item.status}}</span>
+								 </div>
+							   </div>
+						   </a>
+						</div>
+						   <!--<div class="form-group" ng-show="sentEnqLoader">-->
+							   <!--<center><img src="../image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>-->
+						   <!--</div>-->
+						   <div ng-if="SentEnqElement == 0" ng-cloak><center><h4>No Enquires</h4></center></div>
+					  </div>
+					</div>
+				</div>
+
+				<!--Received Enq-->
+				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-show="receivedEnq">
+					<div class="list-box">
+					   <div class="list-box-inner">
+						<div ng-if="ReceivedEnqElement > 0" class="row listbox-inner-padding" ng-repeat="item in EnqBlockReceived" ng-cloak>
+							<a href="#/enquiry">
+							   <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+								 <span>{{item.senderOrganization.organization}}</span><br/>
+								 <span>{{item.product.product | limitTo : 50}} {{item.product.product.length < 50 ? '' : '...'}}</span>
+							   </div>
+							   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+								 <div class="text-right">
+									<span>{{item.status}}</span>
+								 </div>
+							   </div>
+							</a>
+						</div>
+						   <!--<div class="form-group" ng-show="receivedEnqLoader">-->
+							   <!--<center><img src="../image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>-->
+						   <!--</div>-->
+						   <div ng-if="ReceivedEnqElement == 0" ng-cloak><center><h4>No Enquires</h4></center></div>
+
+					</div>
+				  </div>
+				</div>
+
+			 </div><!--End Enq-->
+			 <br/>
+
+			 <div class="row">
+				 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 BtnTab ">
+					<span class="adminhome-subheading">Quotations</span> &nbsp;&nbsp;
+					<div class="btn-group" role="group" aria-label="...">
+					  <!--<button type="button" class="btn btn-default btn-xs" ng-click="allQuo = true; sentQuo = false ; receivedQuo = false" ng-class="{ active: allQuo}">ALL</button>-->
+					  <!--<button type="button" class="btn btn-default btn-xs" ng-click="sentQuo =true; receivedQuo = false; allQuo = false" ng-class="{ active : sentQuo}">SENT</button>-->
+					  <!--<button type="button" class="btn btn-default btn-xs" ng-click="receivedQuo = true; sentQuo =false; allQuo = false" ng-class="{ active : receivedQuo}">RECEVIED</button>-->
+
+
+						<button type="button" class="btn btn-default btn-xs" ng-click="sentQuo =true; receivedQuo = false" ng-class="{ active : sentQuo}">SENT</button>
+						<button type="button" class="btn btn-default btn-xs" ng-click="receivedQuo = true; sentQuo =false" ng-class="{ active : receivedQuo}">RECEIVED</button>
+					</div>
+					
+				   <div class="row">
+					   <br/>
+						<!--Sent Quotation-->
+						<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-show="sentQuo">
+							<div class="list-box">
+							   <div class="list-box-inner">
+								<div  ng-if="SentQuoElement > 0" class="row listbox-inner-padding" ng-repeat="item in QuoBlockSentData" ng-cloak>
+									<a href="#/quotation">
+										<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+										 <span>{{item.receiverOrganization.organization }}</span><br/>
+										 <span>{{item.product.product | limitTo : 30}} {{item.product.product.length < 30 ? '' : '...'}}</span>
+									   </div>
+									   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+										 <div class="text-right">
+											<span>{{item.status.split('_').join(' ')}}</span>
+										 </div>
+									   </div>
+								    </a>
+								</div>
+								   <!--<div class="form-group" ng-show="sentQuoLoader">-->
+									   <!--<center><img src="../image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>-->
+								   <!--</div>-->
+								   <div ng-if="SentQuoElement == 0" ng-cloak><center><h4>No Quotation</h4></center></div>
+
+							  </div>
+							</div>
+						</div>
+
+						<!--Received Quotation-->
+						<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-show="receivedQuo">
+							<div class="list-box">
+							   <div class="list-box-inner">
+								<div ng-if="ReceivedQuoElement > 0" class="row listbox-inner-padding" ng-repeat="item in QuoBlockReceivedData" ng-cloak>
+									<a href="#/quotation">
+									   <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+										 <span>{{item.senderOrganization.organization}}</span><br/>
+										 <span>{{item.product.product | limitTo : 30}} {{item.product.product.length < 30 ? '' : '...'}}</span>
+									   </div>
+									   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+										 <div class="text-right">
+											<span>{{item.status.split('_').join(' ')}}</span>
+										 </div>
+									   </div>
+								     </a>
+								</div>
+							    <!--<div class="form-group" ng-show="receivedQuoLoader">-->
+								   <!--<center><img src="../image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>-->
+							    <!--</div>-->
+							   <div ng-if="ReceivedQuoElement == 0" ng-cloak><center><h4>No Quotation</h4></center></div>
+
+							</div>
+						  </div>
+						</div>
+
+				   </div>
+				</div><!--End Quo-->
+
+				 <!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 BtnTab ">-->
+					<!--<span class="adminhome-subheading">Purchase Orders</span> &nbsp;&nbsp;-->
+					<!--<div class="btn-group" role="group" aria-label="...">-->
+					  <!--&lt;!&ndash;<button type="button" class="btn btn-default btn-xs" ng-click="allPo = true; sentPo = false ; receivedPo = false" ng-class="{ active: allPo}">ALL</button>&ndash;&gt;-->
+					  <!--&lt;!&ndash;<button type="button" class="btn btn-default btn-xs" ng-click="sentPo =true; receivedPo = false; allPo = false" ng-class="{ active : sentPo}">SENT</button>&ndash;&gt;-->
+					  <!--&lt;!&ndash;<button type="button" class="btn btn-default btn-xs" ng-click="receivedPo = true; sentPo =false; allPo = false" ng-class="{ active : receivedPo}">RECEVIED</button>&ndash;&gt;-->
+
+						<!--<button type="button" class="btn btn-default btn-xs" ng-click="sentPo =true; receivedPo = false" ng-class="{ active : sentPo}">SENT</button>-->
+						<!--<button type="button" class="btn btn-default btn-xs" ng-click="receivedPo = true; sentPo =false" ng-class="{ active : receivedPo}">RECEIVED</button>-->
+					<!--</div>-->
+
+					<!--<div class="row">-->
+						 <!--<br/>-->
+						<!--&lt;!&ndash;Sent po&ndash;&gt;-->
+						<!--<div class="col-xs-12 col-sm-12 col-md-11 col-lg-11" ng-show="sentPo">-->
+							<!--<div class="list-box">-->
+							   <!--<div class="list-box-inner">-->
+								<!--<div ng-if="SentPoElement > 0" class="row listbox-inner-padding" ng-repeat="item in PoBlockSentData" ng-cloak>-->
+									<!--<a href="#/purchaseorder">-->
+										<!--<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">-->
+										   <!--<span>{{item.receiverOrganization.organization }}</span><br/>-->
+										   <!--<span>{{item.product.product | limitTo : 30}} {{item.product.product.length < 30 ? '' : '...'}}</span>-->
+									   <!--</div>-->
+									   <!--<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">-->
+										 <!--<div class="text-right">-->
+											<!--<span>{{item.status}}</span>-->
+										 <!--</div>-->
+									   <!--</div>-->
+									<!--</a>-->
+								<!--</div>-->
+								   <!--&lt;!&ndash;<div class="form-group" ng-show="sentPoLoader">&ndash;&gt;-->
+									   <!--&lt;!&ndash;<center><img src="../image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>&ndash;&gt;-->
+								   <!--&lt;!&ndash;</div>&ndash;&gt;-->
+								   <!--<div ng-if="SentPoElement == 0" ng-cloak><center><h4>No Purchase Order</h4></center></div>-->
+
+							  <!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+
+						<!--&lt;!&ndash;Received po&ndash;&gt;-->
+						<!--<div class="col-xs-12 col-sm-12 col-md-11 col-lg-11" ng-show="receivedPo">-->
+							<!--<div class="list-box">-->
+							   <!--<div class="list-box-inner">-->
+								<!--<div ng-if="ReceivedPoElement > 0" class="row listbox-inner-padding" ng-repeat="item in PoBlockReceivedData" ng-cloak>-->
+									<!--<a href="#/purchaseorder">-->
+									  <!--<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">-->
+										   <!--<span>{{item.senderOrganization.organization}}</span><br/>-->
+										   <!--<span>{{item.product.product | limitTo : 30}} {{item.product.product.length < 30 ? '' : '...'}}</span>-->
+									   <!--</div>-->
+									   <!--<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">-->
+										 <!--<div class="text-right">-->
+											<!--<span>{{item.status}}</span>-->
+										 <!--</div>-->
+									   <!--</div>-->
+									<!--</a>-->
+								<!--</div>-->
+								   <!--&lt;!&ndash;<div class="form-group" ng-show="receivedPoLoader">&ndash;&gt;-->
+									   <!--&lt;!&ndash;<center><img src="../image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>&ndash;&gt;-->
+								   <!--&lt;!&ndash;</div>&ndash;&gt;-->
+								   <!--<div ng-if="ReceivedPoElement == 0" ng-cloak><center><h4>No Purchase Order</h4></center></div>-->
+							<!--</div>-->
+						  <!--</div>-->
+						<!--</div>-->
+
+					 <!--</div>-->
+			     <!--</div>-->
+				 <!--End Po-->
+			 </div>
+
+		</div>
+
+	</div>
+	<br/>
+</div>
+
+

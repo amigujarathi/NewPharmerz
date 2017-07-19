@@ -1,0 +1,208 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+		<loading></loading>
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="salesTab=true;getUsrDetails();getOrgDetails();getSuppliersProductDetails(1);getPurchasersProductDetails(1);">
+        	<div class="row BtnTab">
+                <div class="addproduct-header">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                         <span class="addproduct-header-txt">Added Product List</span>
+                    </div>
+                </div>
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default btn-xs" ng-click="salesTab =true; purchaseTab = false" ng-class="{ active : salesTab}">SALES</button>
+					<button type="button" class="btn btn-default btn-xs" ng-click="purchaseTab = true; salesTab =false" ng-class="{ active : purchaseTab}">PURCHASE</button>
+				</div>
+            </div>
+            <br/>
+            <div class="row">
+	            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<center><span class="validation_error2" ng-show="SalesError">{{errorMessage.saleserror}}</span></center>
+							<center><span class="validation_error2" ng-show="PurchaseError">{{errorMessage.purchaseerror}}</span></center>
+							<center><span class="validation_error2" ng-show="initiatedEnquiryError">{{errorMessage.initiatedEnquiry}}</span></center>
+							<center><span class="validation_success2" ng-show="SalesSuccess">{{errorMessage.salesadded}}</span></center>
+							<center><span class="validation_success2" ng-show="PurchaseSuccess">{{errorMessage.purchaseadded}}</span></center>
+						</div>
+					</div>
+	                <div class="row viewproduct-show">
+						<div ng-show="salesTab">
+	                	  <div ng-if="suppliersProdlength > 0" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 p-product-item-box" ng-repeat="item in Suppler_Product" ng-cloak>
+	                        <div class="row">
+	                            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+	                                <div class="p-product-image">
+	                                    <img src="image/products/product-1.png" alt="">
+	                                </div>
+	                            </div>
+	                            <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+	                                <div class="p-product-txt">
+	                                    <div class="p-product-txt-content">
+											<span class="p-product-name">{{item.product.product | limitTo : 30 | Camlecase}} {{item.product.product.length < 30 ? '' : '...'}}</span><br/>
+											<div ng-if="item.composition != null">
+												<span class="p-product-categorty">{{item.composition | limitTo : 30 | Camlecase}} {{item.composition.length < 30 ? '' : '...'}}</span><br/>
+											</div>
+											<div ng-if="item.composition == null">
+												<span class="p-product-categorty">     </span><br/>
+											</div>
+											<!--<span class="p-product-categorty">{{item.composition | limitTo : 30 | Camlecase}} {{item.composition.length < 30 ? '' : '...'}}</span><br/>-->
+	                                    </div>
+	                                    <button type="button" class="btn btn-primary p-product-sendEnq-btn btn-xs" ng-click="removeproductsales(item._links.self.href);">Remove</button>
+										<button type="button" class="btn btn-primary p-product-sendEnq-btn btn-xs" ng-click="addtopurchase(item.organization.id,item.product.id);">Add to Purchase</button>
+	                                </div>
+	                            </div>
+	                        </div>
+                         </div>
+						 <div ng-if="suppliersProdlength == 0">
+							<center><h4><span>No Product..</span></h4></center>
+						 </div>
+						</div>
+
+
+						<div ng-show="purchaseTab">
+						  <div ng-if="purchasersProdlength > 0" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 p-product-item-box" ng-repeat="item in Purchasers_Product" ng-cloak>
+							<div class="row">
+								<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+									<div class="p-product-image">
+										<img src="image/products/product-1.png" alt="">
+									</div>
+								</div>
+								<div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+									<div class="p-product-txt">
+										<div class="p-product-txt-content">
+											<span class="p-product-name">{{item.product.product | limitTo : 30 | Camlecase}} {{item.product.product.length < 30 ? '' : '...'}}</span><br/>
+											<div ng-if="item.composition != null">
+												<span class="p-product-categorty">{{item.composition | limitTo : 30 | Camlecase}} {{item.composition.length < 30 ? '' : '...'}}</span><br/>
+											</div>
+											<div ng-if="item.composition == null">
+												<span class="p-product-categorty">     </span><br/>
+											</div>
+											<!--<span class="p-product-categorty">{{item.composition | limitTo : 30 | Camlecase}} {{item.composition.length < 30 ? '' : '...'}}</span><br/>-->
+										</div>
+										<button type="button" class="btn btn-primary p-product-sendEnq-btn btn-xs" ng-click="removeproductpurchase(item._links.self.href);">Remove</button>
+										<button type="button" class="btn btn-primary p-product-sendEnq-btn btn-xs" ng-click="addtosales(item.organization.id,item.product.id);">Add to Sales</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div ng-if="purchasersProdlength == 0">
+							<center><h4><span>No Product..</span></h4></center>
+						</div>
+						</div>
+
+	                </div>
+
+
+
+					<div class="row" ng-show="salesTab">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<center>
+								<nav ng-show="suppliersProdlength > 20" aria-label="Page navigation" ng-cloak>
+									<ul class="pagination">
+										<li ng-class="{disabled : suppliersPage == 0}">
+											<a href="javascript:void(0);" aria-label="first">
+												<span aria-hidden="true" ng-click="firstpage();">First</span>
+											</a>
+										</li>
+										<li ng-class="{disabled : suppliersPage == 0}">
+											<a href="javascript:void(0);" aria-label="Previous">
+												<span aria-hidden="true" ng-click="previouspage();">Previous</span>
+											</a>
+										</li>
+										<li ng-class="{disabled : suppliersPage == suppliersPageLast - 1 }">
+											<a href="javascript:void(0);" aria-label="Next">
+												<span aria-hidden="true" ng-click="nextpage();">Next</span>
+											</a>
+										</li>
+										<li ng-class="{disabled : suppliersPage == suppliersPageLast - 1 }">
+											<a href="javascript:void(0);" aria-label="last">
+												<span aria-hidden="true" ng-click="lastpage();">Last</span>
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</center>
+						</div>
+					</div>
+					<div class="row" ng-show="purchaseTab">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<center>
+								<nav ng-show="purchasersProdlength > 20" aria-label="Page navigation" ng-cloak>
+									<ul class="pagination">
+										<li ng-class="{disabled : purchasersPage == 0}">
+											<a href="javascript:void(0);" aria-label="first">
+												<span aria-hidden="true" ng-click="firstpages();">First</span>
+											</a>
+										</li>
+										<li ng-class="{disabled : purchasersPage == 0}">
+											<a href="javascript:void(0);" aria-label="Previous">
+												<span aria-hidden="true" ng-click="previouspages();">Previous</span>
+											</a>
+										</li>
+										<li ng-class="{disabled : purchasersPage == purchasersPageLast - 1 }">
+											<a href="javascript:void(0);" aria-label="Next">
+												<span aria-hidden="true" ng-click="nextpages();">Next</span>
+											</a>
+										</li>
+										<li ng-class="{disabled : purchasersPage == purchasersPageLast - 1 }">
+											<a href="javascript:void(0);" aria-label="last">
+												<span aria-hidden="true" ng-click="lastpages();">Last</span>
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</center>
+						</div>
+					</div>
+	            </div>
+            </div>
+			<!-- Modal -->
+			<div class="modal fade" id="removeSalesProductModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center><h4><span>Are you sure you want remove the Product from sales ?</span></h4></center>
+							<br/>
+							<br/>
+							<div class="form-group" ng-show="sendrequest">
+								<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+							</div>
+							<center>
+								<button type="button" class="btn btn-primary" ng-click="RemoveSalesProduct();">Ok</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</center>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
+			<!-- Modal -->
+			<div class="modal fade" id="removePurchaseProductModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center><h4><span>Are you sure you want remove the Product from purchase ?</span></h4></center>
+							<br/>
+							<br/>
+							<div class="form-group" ng-show="sendrequest">
+								<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+							</div>
+							<center>
+								<button type="button" class="btn btn-primary" ng-click="RemovePurchaseProduct();">Ok</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</center>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+
+        </div>
+    </div>
+</div>
+
+

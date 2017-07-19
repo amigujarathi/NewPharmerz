@@ -1,0 +1,604 @@
+
+<!--header bar start-->
+<!-- <div class="headerbar-background" ng-cloak>
+			<div class="container"> 
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-ms-6 col-lg-6">
+
+						<div class="playstore-box-header">
+							<img src="image/contact-number.png" alt=""> <span>+91 77220 74442</span>
+						</div>
+						
+					</div>
+					<div class="col-xs-6 col-sm-6 col-ms-6 col-lg-6">
+
+
+						<div class="login-signup-box-header" ng-show="showlogin">
+							 <a  data-toggle="modal" data-target="#LoginModal" style="cursor: pointer; pointer-events: all;"><span class="login-adjs">My Account</span></a>
+						</div>
+				
+						<div class="login-signup-box-header" ng-show="showlogout">
+							<a href="#/admindashbord"><span ng-cloak>{{ username }}</span></a> <img src="image/headbar-divider.png" alt="" style="width: 1.5px; height: 15px;"> <a href="#/logout"><span>Logout</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+<!--header bar end--> 
+
+
+<!--nav bar start-->
+<div id="main-nav">
+<nav class="navbar navbar-default" ng-cloak>
+    <div class="container-fuild">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+           <!-- <button type="button" class="navbar-toggle" >
+                <a href="#/categories">
+                    <span class="sr-only">Categories</span>
+					<img src="image/menubar-toggle.png" alt="">
+                </a>
+            </button> -->
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="glyphicon glyphicon-menu-hamburger blue-glyphicon" aria-hidden="true"></span>
+            </button>
+
+            <!--<button type="button" class="navbar-toggle" data-toggle="modal" data-target="#searchbox-toggle" aria-expanded="false">-->
+                <!--<span class="sr-only">Toggle Search Modal</span>-->
+                <!--<span class="glyphicon glyphicon-search blue-glyphicon" aria-hidden="true"></span>-->
+            <!--</button>-->
+
+            <div class="brand-logo">  
+                <a href="#/home">
+                    <img src="image/pharmerzlogo.png" alt=""> 
+                    <!--<span class="hidden-xs hidden-sm custom-hidden-md" style="position: relative;top: 2px;">Pharmerz</span>-->
+                </a>
+
+                <!--<span class="header-mobile"><img class="header-mobile-image" src="image/call.png" alt="icon"> +917722074442</span>-->
+            </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- <ul class="nav navbar-nav navbar-txt">
+                <li><a ng-class="getClass('/home')" href="#/home">HOME</a></li>
+                <li><a ng-class="getClass('/product')" href="#/product">PRODUCT</a></li>
+                <li><a ng-class="getClass('/aboutus')" href="#/aboutus">ABOUT US</a></li>
+                <li><a ng-class="getClass('/contactus')" href="#/contactus">CONTACT US</a></li>
+                <li class="hidden-xs hidden-sm hidden-md hidden-lg"><a href="#/categories">CATEGORIES</a></li>
+            </ul> -->
+            <ul class="nav navbar-nav navbar-right navbar-txt">
+                <!--<li><a ng-class="getClass('/home')" href="#/home">HOME</a></li> -->
+                <li><a ng-class="getClass('/product')" ng-click="changeLocation('/product');" style="cursor:pointer;">PRODUCT</a></li>
+                <li><a ng-class="getClass('/aboutus')" href="#/aboutus">ABOUT US</a></li>
+                <li><a ng-class="getClass('/contactus')"  href="#/contactus">CONTACT US</a></li>
+                <li><a ng-class="getClass('/login')"  href="#/login">LOGIN</a></li>
+                <li><a ng-class="getClass('/home')"  href="#/register">FREE REGISTRATION</a></li>
+               <!-- <li class="hidden-xs hidden-sm hidden-md hidden-lg"><a href="#/categories"></a></li>
+                <li class="dropdown hidden-xs hidden-sm custom-hidden-md">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <img src="image/menubar-toggle.png" alt=""> </a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="item in categories" id="item.id" ng-click="CategoryProductSearch(item.id);" ng-cloak>
+                            <a href="javascript:void(0);">{{item.category}}</a>
+                        </li>
+                    </ul>
+                </li> -->
+            </ul>
+            <!--<form class="navbar-form navbar-right hidden-xs hidden-sm custom-hidden-md">-->
+                <!--<div class="form-group borderless-searchbox">-->
+                    <!--<div class="input-group searchbox">-->
+                        <!--<input type="text" class="form-control " placeholder="Composition/Supplier">-->
+                        <!--<span class="input-group-addon">-->
+                            <!--<button type="submit">-->
+                                <!--<span class="glyphicon glyphicon-search"></span>-->
+                            <!--</button>  -->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+</div>
+<!--nav bar end--> 
+
+
+<!--Login Modal-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="modals-container">
+            <!-- Modal -->
+            <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetLoginForm(params);"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-ms-12 col-md-12 col-lg-12">
+                                    <div class="login-heading">
+                                        <span>
+                                            <u>Login</u>
+                                        </span>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                   <form class="form-horizontal" name="login">
+                                        <div class="login-form-inneradjs">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <input type="text" ng-class="{errorborder:submitted && login.loginUsername.$invalid}" class="form-control" name="loginUsername" placeholder="Username" ng-model="params.loginUsername" required>
+                                                    <!-- validation error -->
+                                                    <span class="validation_error" ng-show="submitted && login.loginUsername.$error.required">{{errorMessage.filedrequired}}</span>
+                                                    <!--<span class="validation_error" ng-show="submitted && login.loginUsername.$error.pattern">{{errorMessage.usernameerror}}</span>-->
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div>
+                                                        <input type="{{showpassword ? 'text' : 'password'}}"  ng-class="{errorborder:submitted && login.password1.$invalid}" ng-model="params.password" class="form-control" name="password1" placeholder="Password" pattern=".{8,}" required>
+                                                        <span ng-click="showpassword =! showpassword" ng-class="{'glyphicon-eye-open' : showpassword ,'glyphicon-eye-close': !showpassword}" class="glyphicon form-control-feedback " style="cursor: pointer; pointer-events: all;"></span>
+                                                    </div>
+                                                    <!-- validation error -->
+                                                    <span class="validation_error" ng-show="submitted && login.password1.$error.required">{{errorMessage.filedrequired}}</span>
+                                                    <span class="validation_error" ng-show="submitted && login.password1.$error.pattern">{{errorMessage.passworderror}}</span>
+
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="form-group" ng-show="invalidusrpass">
+                                                <center><span class="validation_error">{{errorMessage.invalidUsernamePassword}}</span></center>
+                                            </div>
+
+                                            <div class="form-group" ng-show="sendrequest">
+                                                <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                                            </div>
+                                            <div class="form-group">
+                                                <center><button type="submit" ng-click="loginForm(login,params)" class="btn btn-primary myloginbtn">Login</button></center>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="login-link">
+                                                <a href="javascript:void(0);" data-dismiss="modal" ng-click="signupregister();addPlusSign();">Signup or Register</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="login-link">
+                                                <a href="javascript:void(0);" data-dismiss="modal" ng-click="forgotpassword()">Forgot Password</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Signup Modal-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Modal -->
+            <div class="modal fade" id="SignupModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetSignup();"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-ms-12 col-md-12 col-lg-12">
+                                    <div class="signup-heading">
+                                        <span>
+                                            <u>Registration Form</u>
+                                        </span>
+                                    </div>
+                                    <br/>
+                                    <div class="signup-subheading">
+                                        <span>
+                                            &#8226; User Information &#8226;
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-12 col-ms-12 col-md-12 col-lg-12">
+                                    <div class="signup-form-inneradjs">
+                                        <form class="form-horizontal" name="signup">
+                                            <div class="row col-adjs">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.fName" ng-class="{errorborder:register && signup.firstname.$invalid}" name="firstname" pattern="([a-zA-Z]{2,10}\s*)+"  placeholder="First Name" required>
+                                                            </div>
+                                                            <span class="validation_error" ng-show="register && signup.firstname.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="register && signup.firstname.$error.pattern">{{errorMessage.fname}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control" ng-model="$parent.mName" ng-class="{errorborder:register && signup.middlename.$invalid}" name="middlename" pattern="([a-zA-Z]{2,10}\s*)+"  placeholder="Middle Name">
+                                                            <!--<span class="validation_error" ng-show="register && signup.middlename.$error.required">{{errorMessage.filedrequired}}</span>-->
+                                                            <span class="validation_error" ng-show="register && signup.middlename.$error.pattern">{{errorMessage.mname}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.lName" name="lastname" ng-class="{errorborder:register && signup.lastname.$invalid}" pattern="([a-zA-Z]{2,10}\s*)+"  placeholder="Last Name" required>
+                                                            </div>
+                                                            <span class="validation_error" ng-show="register && signup.lastname.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="register && signup.lastname.$error.pattern">{{errorMessage.lname}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label required-filed">
+                                                            Gender
+                                                        </label>
+                                                        <div class="col-md-9">
+                                                            <label class="radio-inline blue-radio" >
+                                                                <input type="radio" ng-class="{errorborder:register && signup.gender.$invalid}" name="gender" value="MALE" ng-model="$parent.radioG" required> Male
+                                                            </label>
+                                                            <label class="radio-inline blue-radio">
+                                                                <input type="radio" ng-class="{errorborder:register && signup.gender.$invalid}" name="gender" value="FEMALE" ng-model="$parent.radioG" required> Female
+                                                            </label>
+                                                            <label class="radio-inline blue-radio">
+                                                                <input type="radio" ng-class="{errorborder:register && signup.gender.$invalid}" name="gender" value="OTHER" ng-model="$parent.radioG" required> Other
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <span class="validation_error" ng-show="register && signup.gender.$error.required">{{errorMessage.gendererror}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.coName" ng-class="{errorborder:register && signup.companyname.$invalid}" pattern="([A-Za-z0-9,.@&/()'\- \s]{2,45})+"  name="companyname" placeholder="Company Name" required>
+                                                            </div>
+                                                            <span class="validation_error" ng-show="register && signup.companyname.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="register && signup.companyname.$error.pattern">{{errorMessage.company}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control"  ng-model="$parent.cNumber" name="contactnumber"  ng-class="{errorborder:register && signup.contactnumber.$invalid}" pattern="^\+[1-9]{1}[0-9]{3,15}$" placeholder="Please Enter Country Code And Contact Number"  ng-blur="chkMobileNumAvail(signup);" required international-phone-number>
+                                                            </div>
+                                                            <!--<span class="signup-link" ng-click="chkMobileNumAvail();">Check Availability</span>-->
+                                                            <span class="validation_error" ng-show="signup.contactnumber.$error.required && checkmobilenumber">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="signup.contactnumber.$error.pattern && checkmobilenumber">{{errorMessage.mobile}}</span>
+                                                            <span class="validation_error" ng-show="showcheckingmobile">checking....</span>
+                                                            <span class="validation_error" ng-show="showmobileerror && signup.contactnumber.$valid">{{errorMessage.notavilmobile}}</span>
+                                                            <span class="validation_success" ng-show="showmobileSuccess && signup.contactnumber.$valid">{{errorMessage.avilmobile}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="email" class="form-control" ng-model="$parent.emailId" ng-class="{errorborder:register && signup.emailid.$invalid}" name="emailid" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email ID" ng-blur="chkEmailIdAvail(signup);" required>
+                                                            </div>
+                                                            <!--<span class="signup-link" ng-click="chkEmailIdAvail();">Check Availability</span>-->
+                                                            <span class="validation_error" ng-show="signup.emailid.$error.required && checkemailaddress">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="signup.emailid.$error.pattern && checkemailaddress">{{errorMessage.emailerror}}</span>
+                                                            <span class="validation_error" ng-show="showcheckingemail">checking....</span>
+                                                            <span class="validation_error" ng-show="showemailerror && signup.emailid.$valid">{{errorMessage.notavilemail}}</span>
+                                                            <span class="validation_success" ng-show="showemailSuccess && signup.emailid.$valid">{{errorMessage.avilemail}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="required-filed">
+                                                                <input type="text" class="form-control" ng-model="$parent.uName" ng-class="{errorborder:register && signup.username.$invalid}" pattern="([a-zA-Z0-9@.&+]{6,20}\s*)+" name="username" placeholder="Username" ng-blur="chkUsrnameAvail(signup);" required>
+                                                            </div>
+                                                            <!--<span class="signup-link signup-link-adjs"></span>-->
+                                                            <span class="validation_error" ng-show="signup.username.$error.required && checkusername ">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="signup.username.$error.pattern && checkusername ">{{errorMessage.uname}}</span>
+                                                            <span class="validation_error" ng-show="showcheckingusrname">checking....</span>
+                                                            <span class="validation_error" ng-show="showusrnameerror && signup.username.$valid">{{errorMessage.notavilusername}}</span>
+                                                            <span class="validation_success" ng-show="showusrnameSuccess && signup.username.$valid">{{errorMessage.avilusername}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <br/><br/>
+                                                    <div class="row no-col-adjs">
+                                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group">
+                                                                <div class="col-md-12">
+                                                                    <div class="required-filed">
+                                                                        <input type="{{inputType}}" class="form-control" ng-model="$parent.password" ng-class="{errorborder:register && signup.password.$invalid}" name="password" pattern=".{8,20}" placeholder="Password" required>
+                                                                    </div>
+                                                                    <span class="signup-link" ng-click="hideShowPassword();">
+                                                                        <span> Show </span>
+                                                                    </span>
+                                                                    <span class="validation_error" ng-show="register && signup.password.$error.required">{{errorMessage.filedrequired}}</span>
+                                                                    <span class="validation_error" ng-show="register && signup.password.$error.pattern">{{errorMessage.passworderror}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group">
+                                                                <div class="col-md-12">
+                                                                    <div class="required-filed">
+                                                                        <input type="password" class="form-control" ng-model="$parent.cpassword" ng-class="{errorborder:register && signup.retypepassword.$invalid}" name="retypepassword" ng-keyup="matchPassword();" placeholder="Re-type Password" required>
+                                                                    </div>
+                                                                    <span class="validation_error" ng-show="register && signup.retypepassword.$error.required">{{errorMessage.filedrequired}}</span>
+                                                                    <span class="validation_error" ng-show="register && showerror && signup.retypepassword.$valid ">{{errorMessage.cpassword}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="checkbox checkbox-txt right-checkbox-algin">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            Email me a weekly newsletter
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="checkbox checkbox-txt">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            Email me a daily newsletter
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="signup-footer-txt">
+                                                        <span>By Clicking Register, you agree to our <a href="#/termsofsales">Terms of sales</a> that you have read our <a href="#/privacypolicy">Privacy Policy.</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="form-group" ng-show="sendrequest">
+                                                <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <center>
+                                                        <button type="submit" class="btn btn-primary mysignupbtn" ng-click="signupForm(signup);">Register</button>
+                                                        <button type="button" class="btn btn-primary mysignupbtn" data-dismiss="modal" ng-click="resetSignup();">Cancel</button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Search Modal-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="search-container">
+            <div class="modal fade" id="searchbox-toggle" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="searchboxToggle">
+                                <form class="" role="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <span class="input-group-btn">
+                                            <button type="reset" class="btn btn-default" data-dismiss="modal" aria-label="Close">
+                                                <span class="glyphicon glyphicon-remove myclose-btn">
+                                                    <span class="sr-only">Close</span>
+                                                </span>
+                                            </button>
+                                            <button type="submit" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-search mysearch-btn">
+                                                    <span class="sr-only">Search</span>
+                                                </span>
+                                            </button>
+                                        </span>     
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ForgotPassword Modal-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-init="email = true">
+            <div class="modal fade" id="ForgotPassModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetForgotPass();"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <center><h4><u>Forgot Password</u></h4></center>
+                            <br/>
+                            <div class="forgotpassword-inner-adjs">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios"  value="email" ng-click="email = true;mobile = false" checked>
+                                                Email
+                                            </label>
+                                        </div>
+                                        <div class="row" ng-show="email">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <form class="form-horizontal" name="forgotPasswordEmail">
+                                                    <div class="form-group">
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" name="regEmail" ng-model="$parent.registeredEmail" placeholder="Registered Email ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ng-blur="chkEmailIdAvailForgot(forgotPasswordEmail);" required>
+                                                            <span class="validation_error" ng-show="forgotPasswordEmail.regEmail.$error.required && checkemailaddressforgot">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="forgotPasswordEmail.regEmail.$error.pattern && checkemailaddressforgot">{{errorMessage.emailerror}}</span>
+                                                            <sapn class="validation_error" ng-show="showcheckingemailforgot">checking....</sapn>
+
+                                                            <br/>
+                                                            <button class="btn btn-primary btn-xs pull-right" type="button" ng-disabled="!emailotpdisabled" ng-click="getEmailRegOtp(forgotPasswordEmail);">Get OTP</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <form class="form-horizontal" name="forgotPasswordEmailOtp">
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <input type="text" class="form-control" name="emailOtp" ng-disabled="!emailotpdisabled" ng-model="$parent.emailOtp" placeholder="OTP" required>
+                                                            <span class="validation_error" ng-show="forgotPassEmailOtp && forgotPasswordEmailOtp.emailOtp.$error.required">{{errorMessage.filedrequired}}</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <center>
+                                                                <button class="btn btn-primary btn-xs" type="button" ng-disabled="!emailotpdisabled" ng-click="submitEmailOtp(forgotPasswordEmailOtp);">Submit</button>
+                                                                <!--<button class="btn btn-primary btn-xs" type="button" ng-click="ResendEmailOtp();">Resend OTP</button>-->
+                                                            </center>
+                                                            <br/>
+                                                            <center><small>if OTP is not Received Please <a href="javascript:void(0);">click here</a> </small></center>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <form class="form-horizontal" name="forgotPassEmailChangePass">
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="{{inputType}}" class="form-control" name="EmailResetPass" ng-model="$parent.EmailResetPass" placeholder="Reset Password" ng-disabled="!emailpassdisabled" pattern=".{8,}" required>
+                                                            <span class="validation_error" ng-show="forgotPassMailChangePass && forgotPassEmailChangePass.EmailResetPass.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="forgotPassMailChangePass && forgotPassEmailChangePass.EmailResetPass.$error.pattern">{{errorMessage.passworderror}}</span>
+                                                            <span class="signup-link" ng-click="hideShowPassword();">
+                                                                <span> Show </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="password" class="form-control" name="EmailConfirmPass" ng-model="$parent.EmailConfirmPass" placeholder="Confirm Password" ng-disabled="!emailpassdisabled" ng-keyup="forgoetmatchEmailPassword();" required>
+                                                            <span class="validation_error" ng-show="forgotPassMailChangePass && forgotPassEmailChangePass.EmailConfirmPass.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="forgotPassMailChangePass && showforgoterror && forgotPassEmailChangePass.EmailConfirmPass.$valid ">{{errorMessage.cpassword}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <center>
+                                                                <button class="btn btn-primary btn-sm" type="button" ng-disabled="!emailpassdisabled" ng-click="SaveEmailSetPass(forgotPassEmailChangePass);">Save</button>
+                                                                <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal" ng-click="resetForgotPass();">Cancel</button>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" value="mobile" ng-click="mobile = true;email = false">
+                                                Mobile
+                                            </label>
+                                        </div>
+                                        <div class="row" ng-show="mobile">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <form class="form-horizontal" name="forgotPasswordMobile">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control" name="countryCode"  ng-model="$parent.countryCode" ng-options="item.phone as item.phone for item in countrydata"  required>
+                                                                <option value="">Country Code</option>
+                                                            </select>
+                                                            <span class="validation_error" ng-show="forgotPassMobile && forgotPasswordMobile.countryCode.$error.required">{{errorMessage.filedrequired}}</span>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control" name="regMobile" ng-model="$parent.registeredMobile" placeholder="Registration Mobile Number" pattern="(1|2|3|4|5|6|7|8|9)\d{9}"  ng-blur="chkMobileNumAvailForgot(forgotPasswordMobile);" required>
+                                                            <span class="validation_error" ng-show="forgotPasswordMobile.regMobile.$error.required && checkmobilenumberforgot">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="forgotPasswordMobile.regMobile.$error.pattern && checkmobilenumberforgot">{{errorMessage.mobile}}</span>
+                                                            <sapn class="validation_error" ng-show="showcheckingmobileforgot">checking....</sapn>
+                                                            <br/>
+                                                            <button class="btn btn-primary btn-xs pull-right" type="button" ng-disabled="!mobileotpdisabled" ng-click="getMobileRegOtp(forgotPasswordMobile);">Get OTP</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <form class="form-horizontal" name="forgotPasswordMobileOtp">
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+                                                            <input type="text" class="form-control" name="mobileOtp" ng-disabled="!mobileotpdisabled" ng-model="$parent.mobileOtp" placeholder="OTP" required>
+                                                            <span class="validation_error" ng-show="forgotPassMobileOtp && forgotPasswordMobileOtp.mobileOtp.$error.required">{{errorMessage.filedrequired}}</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <center>
+                                                                <button class="btn btn-primary btn-xs" type="button" ng-disabled="!mobileotpdisabled" ng-click="submitMobileOtp(forgotPasswordMobileOtp);">Submit</button>
+                                                                <!--<button class="btn btn-primary btn-xs" type="button" ng-click="ResendMobileOtp();">Resend OTP</button>-->
+                                                            </center>
+                                                            <br/>
+                                                            <center><small>if OTP is not Received Please <a href="javascript:void(0);">click here</a> </small></center>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <form class="form-horizontal" name="forgotPassMobileChangePass">
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="{{inputType}}" class="form-control" name="MobileResetPass" ng-disabled="!mobilepassdisabled" ng-model="$parent.MobileResetPass" placeholder="Reset Password" pattern=".{8,}" required>
+                                                            <span class="validation_error" ng-show="forgotPassMobChangePass && forgotPassMobileChangePass.MobileResetPass.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="forgotPassMobChangePass && forgotPassMobileChangePass.MobileResetPass.$error.pattern">{{errorMessage.passworderror}}</span>
+                                                            <span class="signup-link" ng-click="hideShowPassword();">
+                                                                <span> Show </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="password" class="form-control" name="MobileConfirmPass" ng-disabled="!mobilepassdisabled" ng-model="$parent.MobileConfirmPass" placeholder="Confirm Password" ng-keyup="forgoetmatchMobilePassword();" required>
+                                                            <span class="validation_error" ng-show="forgotPassMobChangePass && forgotPassEmailChangePass.MobileConfirmPass.$error.required">{{errorMessage.filedrequired}}</span>
+                                                            <span class="validation_error" ng-show="forgotPassMobChangePass && showforgotmobileerror && forgotPassEmailChangePass.MobileConfirmPass.$valid ">{{errorMessage.cpassword}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <center>
+                                                                <button class="btn btn-primary btn-sm" type="button" ng-disabled="!mobilepassdisabled" ng-click="SaveMobileSetPass(forgotPassMobileChangePass);">Save</button>
+                                                                <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal" ng-click="resetForgotPass();">Cancel</button>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="form-group" ng-show="sendrequestChangePassword">
+                                <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                            </div>
+                            <div>
+                                <center>
+                                    <span class="validation_success2" ng-show="PasswordChangedSuccess">{{errorMessage.passwordchangedsuccess}}</span>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

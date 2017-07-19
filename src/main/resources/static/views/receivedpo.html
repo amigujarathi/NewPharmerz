@@ -1,0 +1,338 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+<div class="container-fluid sentpo-background">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+        	<div class="row">
+                <div class="sendenquiry-header">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                         <!--<span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="color:#727272;"></span> -->
+                         <span class="sentpo-header-txt">Received Purchase Order</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <!--<span class="sentpo-header-txt">PO No - 12345</span>-->
+                    </div>    
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <form class="form-horizontal sentpo-form">
+                      <br/>
+                      <div class="form-group">
+                        <label class="col-md-3 control-label sentpo-lbl">From</label>
+                        <div class="col-md-9">
+                            <!--<span>{{orgName}}</span>-->
+                            <div class="dropdown senderinfo">
+                               <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                {{orgName}}
+                                <span class="caret"></span>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="from" class="col-xs-4">From</label>
+                                            <div class="col-xs-8">
+                                                <label>{{orgName}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="username" class="col-xs-4">User Name</label>
+                                            <div class="col-xs-8">
+                                                <label>{{SenderOrgUsrName}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="emailid" class="col-xs-4">Email Id</label>
+                                            <div class="col-xs-8">
+                                                <label>{{SenderOrgEmail}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mobileno" class="col-xs-4">Mobile No.</label>
+                                            <div class="col-xs-8">
+                                                <label>{{SenderOrgMobile}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                      </div>
+                      <!--<div class="form-group">-->
+                        <!--<label class="col-md-3 control-label sentpo-lbl">Email ID</label>-->
+                        <!--<div class="col-md-9">-->
+                            <!--<span>{{emailid}}</span>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                       <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                 <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl">Date</label>
+                                    <div class="col-md-5">
+                                      <span>{{showdate | date :'d MMM y'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">-->
+                                <!--<div class="form-group">-->
+                                     <!--<label class="col-md-6 control-label sentpo-lbl">Enter PO Number</label>-->
+                                    <!--<div class="col-md-5">-->
+                                       <!--<span> Show Po. No</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                       <div class="form-group">
+                         <label class="col-md-3 control-label sentpo-lbl">
+                           Product Name<br/>
+                             <span><small>(Category Name)</small></span>
+                         </label>
+                        <div class="col-md-9">
+                            <span> 
+                                 {{productName}}
+							</span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                            <label class="col-md-3 control-label sentpo-lbl">
+                                Composition
+                            </label>
+                            <div class="col-md-9">
+                                <span>
+                                     {{composition}}
+                                </span>
+                            </div>
+                      </div>
+                      <hr/>
+                      <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                 <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl">Rate</label>
+                                    <div class="col-md-5">
+                                      <span>{{rate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl"> 
+                                        UOM
+                                        <br/>
+                                        <span><small>(Unit of Measurement)</small></span>
+                                    </label>
+                                    <div class="col-md-5">
+                                       <span>{{uom}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentpo-lbl">
+	                           Quantity
+	                         </label>
+	                        <div class="col-md-9">
+	                            <span> 
+	                                  {{qty}}
+								</span>
+	                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                 <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl">Net Amount<br/>
+                                    <span><small>(Excluding Taxes)</small></span>
+                                    </label>
+                                    <div class="col-md-5">
+                                      <span> {{rate * qty}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl"> 
+                                        Incoterms
+                                    </label>
+                                    <div class="col-md-5">
+                                           <span>{{incoterm.split('_').join(' ') | Camlecase}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl">
+                                        Total Amount<br/>
+                                        <span><small>(Including Taxes)</small></span>
+                                    </label>
+                                    <div class="col-md-5">
+	                            <span>
+	                                  {{ ( rate * qty * (taxrate/100)) + (rate * qty)  }}
+								</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl">
+                                        Tax
+                                    </label>
+                                    <div class="col-md-5">
+                                        <span>{{tax +' '+ taxrate +'%' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentpo-lbl">
+	                          Payment Terms
+	                         </label>
+	                        <div class="col-md-3">
+	                            <span> 
+	                                 {{paymentterms.split('_').join(' ') | Camlecase}}
+								</span>
+	                        </div>
+	                        <div class="col-md-6">
+	                            <span> 
+	                                 <h6><small>Click here to see <a href="https://rbidocs.rbi.org.in/rdocs/notification/PDFs/APDIR100NT0214.pdf" target="_blank">Third Party Payments Terms for Export/Import Transactions</a></small></h6>
+								</span>
+	                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label sentquotation-lbl">
+                                Shipment by
+                            </label>
+                            <div class="col-md-9">
+                                <span>{{shipmentby | Camlecase }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                 <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl">
+                                       Enter Delivery Schedule 
+                                    </label>
+                                    <div class="col-md-5">
+                                      <span>{{deliverySchedule | date :'d MMM y'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label sentpo-lbl"> 
+                                        Select Freight Type
+                                    </label>
+                                    <div class="col-md-5">
+                                       <span>{{frieghttype.split('_').join(' ') | Camlecase}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentpo-lbl">
+	                          Show List of Documents Required
+	                         </label>
+	                        <div class="col-md-9">
+	                            <span> 
+	                                  
+								</span>
+	                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="commercialInvoice == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp; <span>Commercial Invoice </span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="packagingList == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp; <span>Packaging List </span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="nonPrefCertOrigin == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp; <span>Non-Preferential Certificate of Origin</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="billOfLading == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp; <span>Billing of Landing</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="healthCertificate == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp; <span>Health Certificate</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="prefCertOrigin == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp;  <span>Preferential Certificate of Origin </span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="manufacturingCert == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp;  <span>Manufacturing Certificate</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="certAnalysis == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp;  <span>Certificate of Analysis</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="insurancePolicy == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp;  <span>Insurance Policy</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="airwayBill == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp;  <span>Airway Bill</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="others == true">
+                                <div>
+                                    <span>&#x25CF;</span>&nbsp;  <span>{{docOthers}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+	                         <label class="col-md-3 control-label sentpo-lbl">
+	                          Your Message
+	                         </label>
+	                        <div class="col-md-9">
+	                            <span> 
+	                               {{msg}}
+								</span>
+	                        </div>
+                        </div>
+                        <div class="form-group" ng-show="sendrequestUpdatePOStatus">
+                            <center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+                        </div>
+                        <div class="form-group">
+                            <center>
+                                <button type="button" class="btn btn-primary btn-width-adjs" ng-click="btndisabled=true;changePOStatus();" ng-disabled="btndisabled">Accept Purchase Order</button>
+                            </center>
+                        </div>
+                        <br/>
+                    </form>
+                    <br/>
+                </div>
+            </div>   
+
+        </div>
+    </div>
+</div>

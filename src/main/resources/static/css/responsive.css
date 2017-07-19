@@ -1,0 +1,2212 @@
+/* Extra css menu collapse */
+
+@media (max-width: 1024px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-nav>li:first-child {
+        margin-left: 0px;
+    }
+    .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+        max-height: 500px; 
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+    .navbar-collapse .nav > .divider-vertical {
+        display: none;
+    }
+
+    .navbar-nav li a{
+        line-height: 30px;
+        font-size: 20px;
+    }
+
+    .navbar-txt {
+        padding-left:0px; 
+    }
+
+    .custom-hidden-md{
+        display: none!important;
+    }
+
+}
+/*************END*************/
+
+
+@media only screen and (min-width : 1681px) and (max-width : 1920px){
+    /*-------------
+      Product page
+     --------------*/
+
+    #product-container .col-lg-1 {
+        width: 5.33333333% !important;
+    }
+    /*--End--*/
+
+    .admin-nav-adjust{
+         position: fixed;
+         top:0;
+         right: 0;
+         left: 0;
+         z-index: 1030;
+    }
+	
+	/* Homepage Css */
+	
+	#sub-search-box{
+		 height: 700px;
+	}
+	
+	#search-form  .form-control{
+		height: 45px;
+	}
+	
+	.homepahe-search-button{
+		width: 90px;
+		padding-top: 11px;
+		padding-bottom: 12px;
+	}
+	
+	.slider-box-inner-txt{
+		font-size: 48px;
+	}
+	
+	.countigbox-count-txt{
+		font-size: 40px;
+	}
+	
+	.countigbox-name-txt{
+		    font-size: 25px;
+	}
+	
+	.counting-box{
+		padding-top: 5%;
+	}
+	
+	.buyer-box-header-txt{
+		font-size: 40px;
+	}
+	
+	.buyer-box-header{
+		padding-top: 6%;
+		padding-bottom: 6%;
+	}
+	
+	.buyer-requirement-button{
+		padding-top: 12%;
+		padding-bottom: 14%;
+	}
+	
+	.buyer-req-button{
+		font-size: 25px;
+	}
+	
+	#buyer-form input{
+		 height: 45px;
+	}
+	
+	.buyer-req-button:hover{
+		font-size: 25px;
+	}
+	
+	.appview-header{
+		font-size: 40px;
+	}
+	
+	.appview-content{
+		font-size: 23px;
+	}
+	.appview-content-list{
+		font-size: 23px;
+	}
+	.appview-stores{
+		font-size: 20px;
+	}
+	.appview-image-box img{
+		width: 100%;
+	}
+	/* Homepage Css End */
+		/* Login Css */
+	
+	.login-header{
+		 font-size: 42px;
+	}
+	.login-trouble {
+		font-size: 15px;
+		padding-top: 10%;
+	}
+	.password-details {
+		padding-bottom: 12%;
+	}
+	
+	.login-footer{
+		padding-top: 13px;
+		padding-bottom: 13px;
+	}
+	.wrapper{
+		padding-bottom: 7%;
+	}
+	.input-box-icon{
+		top: 40%;
+	}
+	/* Login Css End*/
+	
+	/* Registration  Css */
+	
+	.register-header{
+		font-size: 45px;
+	}
+	.register-box-top{
+		top: -650px;
+	}
+	.register-icon-text p{
+		font-size: 30px;
+	}
+	
+	.register-button {
+		padding-top: 40px;
+	}
+	
+	.inputbox {
+		padding-bottom: 6%;
+	}
+	/* Registration  Css End */
+	
+	
+	
+
+
+}
+/*************END*************/
+@media only screen and (min-width : 1441px) and (max-width : 1680px){
+    /*-------------
+  Product page
+ --------------*/
+
+    #product-container .col-lg-1 {
+        width: 5.33333333% !important;
+    }
+    /*--End--*/
+
+    .admin-nav-adjust{
+         position: fixed;
+         top:0;
+         right: 0;
+         left: 0;
+         z-index: 1030;
+    }
+	
+	/* Homepage Css */
+	
+	#sub-search-box{
+		 height: 700px;
+	}
+	
+	#search-form  .form-control{
+		height: 45px;
+	}
+	
+	.homepahe-search-button{
+		width: 90px;
+		padding-top: 11px;
+		padding-bottom: 12px;
+	}
+	
+	.slider-box-inner-txt{
+		font-size: 48px;
+	}
+	
+	.countigbox-count-txt{
+		font-size: 40px;
+	}
+	
+	.countigbox-name-txt{
+		    font-size: 25px;
+	}
+	
+	.counting-box{
+		padding-top: 5%;
+	}
+	
+	.buyer-box-header-txt{
+		font-size: 40px;
+	}
+	
+	#buyer-form input{
+		 height: 45px;
+	}
+	
+	.buyer-box-header{
+		padding-top: 6%;
+		padding-bottom: 6%;
+	}
+	
+	.buyer-requirement-button{
+		padding-top: 12%;
+		padding-bottom: 14%;
+	}
+	
+	.buyer-req-button{
+		font-size: 25px;
+	}
+	
+	.buyer-req-button:hover{
+		font-size: 25px;
+	}
+	
+	.appview-header{
+		font-size: 40px;
+	}
+	
+	.appview-content{
+		font-size: 23px;
+	}
+	.appview-content-list{
+		font-size: 23px;
+	}
+	.appview-stores{
+		font-size: 20px;
+	}
+	.appview-image-box img{
+		width: 100%;
+	}
+	
+	/* Homepage Css End */
+	
+	
+	/* Login Css */
+	
+	.login-header{
+		 font-size: 42px;
+	}
+	.login-trouble {
+		font-size: 15px;
+		padding-top: 10%;
+	}
+	.password-details {
+		padding-bottom: 12%;
+	}
+	
+	.login-footer{
+		padding-top: 13px;
+		padding-bottom: 13px;
+	}
+	.wrapper{
+		padding-bottom: 7%;
+	}
+	.input-box-icon{
+		top: 40%;
+	}
+	/* Login Css End*/
+	
+	/* Registration  Css */
+	
+	.register-header{
+		font-size: 42px;
+	}
+	.register-box-top{
+		top: -550px;
+	}
+	.register-icon-text p{
+		font-size: 30px;
+	}
+	
+	.register-button {
+		padding-top: 35px;
+	}
+	
+	.inputbox {
+		padding-bottom: 5%;
+	}
+	/* Registration  Css End */
+
+}
+/*************END*************/
+@media only screen and (min-width : 1366px) and (max-width : 1440px){
+    /*-------------
+      Product page
+     --------------*/
+
+    #product-container .col-lg-1 {
+        width: 5.33333333% !important;
+    }
+    /*--End--*/
+
+    .admin-nav-adjust{
+         position: fixed;
+         top:0;
+         right: 0;
+         left: 0;
+         z-index: 1030;
+    }
+	
+	
+	/* Homepage Css */
+	
+	
+	#sub-search-box{
+		 height: 680px;
+	}
+	
+	#buyer-form input{
+		 height: 45px;
+	}
+	
+	#search-form  .form-control{
+		height: 45px;
+	}
+	
+	.homepahe-search-button{
+		width: 90px;
+		padding-top: 11px;
+		padding-bottom: 12px;
+	}
+	
+	/* Registration Css */
+	.register-box-top {
+		top: -470px;
+	}
+	
+	.register-button {
+		padding-top: 25px;
+	}
+	
+	
+	
+
+}
+/*************END*************/
+@media only screen and (min-width : 1281px) and (max-width : 1365px){
+    /*-------------
+  Product page
+ --------------*/
+
+    #product-container .col-lg-1 {
+        width: 5.33333333% !important;
+    }
+    /*--End--*/
+
+    .admin-nav-adjust{
+         position: fixed;
+         top:0;
+         right: 0;
+         left: 0;
+         z-index: 1030;
+    }
+	
+	#buyer-form input{
+		 height: 45px;
+	}
+	
+	.register-icon-text p{
+		padding-left: 30%;
+	}
+}
+/*************END*************/
+@media only screen and (min-width : 1025px) and (max-width : 1280px){
+    /*-------------
+      Product page
+     --------------*/
+
+    #product-container .col-lg-1 {
+        width: 5.33333333% !important;
+    }
+    /*--End--*/
+
+    .admin-nav-adjust{
+         position: fixed;
+         top:0;
+         right: 0;
+         left: 0;
+         z-index: 1030;
+    }
+	
+	.appview-header{
+		 font-size: 26px;
+	}
+	
+	.appview-content{
+		font-size: 18px;
+	}
+	
+	#buyer-form input{
+		 height: 45px;
+	}
+	
+	.appview-content-list{
+		font-size: 18px;
+	}
+	
+	.shop-by-first{
+		 top: -88px !important;
+	}
+	
+	.shop-by-second{
+		 top: -88px !important;
+	}
+
+    /* Registration Page */
+
+    .register-box-top {
+        top: -390px;
+    }
+	
+	.register-icon-text p{
+		padding-left: 15%;
+	}
+
+}
+/*************END*************/
+
+@media only screen and (min-width : 991px) and (max-width : 1024px){
+    /*---------------
+          footer page
+     ---------------*/
+    .footer-background{
+        height: auto;
+        background-size: cover;
+    } 
+    /*-- End --*/
+    /*------------------
+        Head
+    ----------------------*/
+
+    .brand-logo {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+    /*-- End --*/
+    /*-------------
+  Product page
+ --------------*/
+
+    #product-container .col-lg-1 {
+        width: 5.33333333% !important;
+    }
+    /*--End--*/
+    /*---------------
+     Categories page
+    ---------------*/
+    .categories-container{
+        height: 1000px;
+        overflow-y: scroll;
+    }
+    /*--End--*/
+
+	.appview-header{
+		 font-size: 26px;
+	}
+	
+	.appview-content{
+		font-size: 18px;
+	}
+	
+	.appview-content-list{
+		font-size: 18px;
+	}
+
+    /*Registration Page*/
+
+
+    .register-box-top {
+        top: -370px;
+    }
+	
+	.register-icon-text p{
+		padding-left: 12%;
+	}
+
+
+
+}
+/*************END*************/
+
+@media only screen and (min-width: 768px) and (max-width: 990px) {
+    /*---------------
+    footer page
+---------------*/
+    .footer-background{
+        height: auto;
+        background-size: cover;
+    } 
+    .social-icons {
+        text-align: left;
+       /* padding-top: 30px;*/
+    }
+
+    /*-- End --*/
+    /*------------------
+           Head
+       ----------------------*/
+    .login-signup-box-header{
+        float: right;
+    }
+    .login-form-inneradjs{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .profile-image-box {
+        padding-bottom: 15px;
+    }
+    .lastname-adjs {
+        padding-top: 0px; 
+    }
+    .right-checkbox-algin{
+        float: left;   
+    }
+    .brand-logo {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+    /*-- End --*/
+    /*----------------------
+      Home
+    ------------------------*/
+    .video-container {
+        margin-bottom: 15px;
+    }
+    .ekko-lightbox.modal {
+        padding: 0!important;
+        top: 0%; 
+    }
+    /*-- End --*/
+    /*-------------
+     Product page
+     --------------*/
+    #product-container .col-xs-12,col-sm-12 {
+        width:100%!important;
+    } 
+    #filter-box .dropdown-menu:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #ddd;
+        top: -13px;
+        left: 7px;
+    }
+    /*--End--*/
+    /*---------------
+   Categories page
+  ---------------*/
+    .categories-container{
+        height:700px;
+        overflow-y: scroll;
+    }
+    /*--End--*/
+	   /*----*/
+    .brand-logo2 {
+    padding-left: 10px;
+}
+
+
+    .shop-by-first {
+        top: -190px !important;
+    }
+
+    .shop-by-second {
+        top: -190px !important;
+    }
+
+    .media-images img {
+        width: 45%;
+    }
+
+    .slider-box-inner-txt {
+        font-size: 33px;
+    }
+
+    /*#sub-search-box{*/
+        /*height: 600px;*/
+    /*}*/
+
+
+    /*.left-pad {*/
+        /*padding-left: 15px;*/
+        /*padding-top: 40px;*/
+    /*}*/
+
+
+    /*.right-pad {*/
+        /*padding-right: 15px;*/
+    /*}*/
+
+    .counting-box{
+        padding-top: 50px;
+    }
+
+    #yourmobile{
+        margin-bottom:40px;
+    }
+
+    #yourname{
+        margin-bottom:40px;
+    }
+
+    .appview-image-box{
+        padding-top: 50px;
+    }
+
+    .app-appstore {
+        width: 25%;
+    }
+
+    .app-playstore {
+        width: 30%;
+    }
+
+    .appview-image-box img {
+        width: 70%;
+    }
+
+    .store-images img {
+        width: 30%;
+    }
+
+    /*Login Page*/
+
+    .login-header{
+        font-size: 32px;
+    }
+
+    /*Registration Form*/
+
+    .register-box-top{
+        top: -350px;
+    }
+
+    .register-box{
+        padding: 35px;
+    }
+
+    .register-header{
+        font-size: 34px;
+    }
+
+    .register-icon-text p{
+        font-size: 24px;
+		padding-left: 6%;
+    }
+
+}
+/*************END*************/
+
+@media only screen and (min-width: 768px) and (max-width: 800px){
+
+
+    /*Registration Form*/
+
+    .register-box-top{
+        top: -300px;
+    }
+
+    .register-box{
+        padding: 25px;
+    }
+
+    .register-header{
+        font-size: 32px;
+    }
+	
+
+    .register-icon-text p{
+        font-size: 20px;
+		padding-left: 6%;
+    }
+	
+	
+
+
+
+}
+/*************END*************/
+
+
+@media only screen and (min-width: 550px) and (max-width: 767px) {
+
+    /*---------------
+        footer page
+   ---------------*/
+    .footer-background{
+        height: auto;
+        background-size: cover;
+    } 
+    .social-icons {
+        text-align: left;
+        /*padding-top: 30px;*/
+    }
+    .footer-links{
+        padding-top:5px;
+    }
+	
+	.playstore-box-footer{
+		font-size: 14px;
+	}
+	
+	.social-icons-txt{
+		font-size:10px;
+	}
+
+    /*-- End --*/
+    /*------------------
+        Head
+    ----------------------*/
+    .playstore-box-header {
+        font-size: 15px;
+    }
+    .login-signup-box-header{
+        float: right;
+    }
+    .login-form-inneradjs{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .login-link{
+        padding-bottom:10px;
+    }
+    .profile-image-box {
+        padding-bottom: 15px;
+    }
+    .lastname-adjs {
+        padding-top: 0px; 
+    }
+    .right-checkbox-algin{
+        float: left;   
+    }
+    .brand-logo {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+    /*--End--*/
+    /*------------
+      Home page 
+    ------------*/
+    .countigbox-count-txt{
+        font-size:22px;
+    }
+
+    .countigbox-name-txt{
+        font-size:17px;
+    }
+
+    .video-container {
+        margin-bottom: 15px;
+    }
+    .ekko-lightbox-nav-overlay {
+        top: 140px;
+    }
+    .nav-pills-stacked-example li{
+        float: none !important;
+    }
+
+    /*--End--*/
+
+    /*-------------
+    Product page
+    --------------*/
+    #product-container .col-xs-12,col-sm-12 {
+        width:100%!important;
+    }
+    #filter-box .dropdown-menu:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #ddd;
+        top: -13px;
+        left: 7px;
+    }
+    /*--End--*/
+    /*---------------
+   Categories page
+  ---------------*/
+    .categories-container{
+        height:650px;
+        overflow-y: scroll;
+    }
+    /*--End--*/
+	.slider-box-inner-txt{
+		font-size:50px;
+	}
+
+    .home-productcat-selectbox-adjs{
+        padding-bottom: 10px;
+    }
+       /*----*/
+    .brand-logo2 {
+         padding-left: 10px;
+    }
+
+
+    /*Sagar Thombare*/
+
+    .shop-by-first {
+        top: -190px !important;
+    }
+
+    .shop-by-second {
+        top: -190px !important;
+    }
+
+    .media-images img {
+        width: 50%;
+    }
+
+
+    #sub-search-box{
+        height: 600px;
+    }
+
+    .left-pad {
+        padding-left: 15px;
+        padding-top: 40px;
+    }
+
+
+    .right-pad {
+        padding-right: 15px;
+    }
+
+    .counting-box{
+        padding-top: 50px;
+    }
+
+    #yourmobile{
+        margin-bottom:25px;
+    }
+
+    #yourname{
+        margin-bottom:25px;
+    }
+
+    .appview-image-box{
+        padding-top: 50px;
+    }
+
+    .app-appstore {
+        width: 30%;
+    }
+
+    .app-playstore {
+        width: 35%;
+    }
+
+    .store-images img {
+        width: 40%;
+    }
+	
+	.slider-box-inner-txt {
+        font-size: 28px;
+    }
+	
+	.buyer-box-header-txt {
+		font-size: 30px;
+	}
+	
+	.appview-header{
+		font-size: 30px;
+	}
+
+    /*Login page*/
+    .login-header{
+        font-size: 28px;
+        padding-bottom: 30px;
+    }
+
+    .login-content{
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    /*Registration Form*/
+
+    .register-cancel-button button{
+        float: left;
+    }
+
+    .register-header{
+        font-size: 32px;
+    }
+
+    .register-box-top{
+        top: -450px;
+    }
+
+    .register-box{
+        padding: 35px;
+    }
+
+}
+/*************END*************/
+
+@media only screen and (min-width: 480px) and (max-width: 549px) {
+    /*---------------
+    footer page
+---------------*/
+    .footer-background{
+        height: auto;
+        background-size: cover;
+    } 
+    .social-icons {
+        text-align: left;
+        /*padding-top: 30px;*/
+    }
+    .footer-links{
+        padding-top:5px;
+    }
+    .copyright {
+        font-size: 10px;
+    }
+	.footer-links a{
+    font-size: 14px;
+	}
+	
+	.playstore-box-footer{
+		font-size: 14px;
+	}
+	
+	.social-icons-txt{
+		font-size:10px;
+	}
+    /*-- End --*/
+    /*------------------
+            Head
+        ----------------------*/
+    .playstore-box-header {
+        font-size: 15px;
+    }
+    .login-signup-box-header{
+        float: right;
+    }
+    .login-form-inneradjs{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .login-link{
+        padding-bottom:10px;
+    }
+    .profile-image-box {
+        padding-bottom: 15px;
+    }
+    .lastname-adjs {
+        padding-top: 0px; 
+    }
+    .right-checkbox-algin{
+        float: left;   
+    }
+
+    .brand-logo {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+
+    /*--End--*/
+    /*------------
+      Home page 
+    ------------*/
+    .countigbox-count-txt{
+        font-size:22px;
+    }
+
+    .countigbox-name-txt{
+        font-size:14px;
+    }
+
+    .video-container {
+        margin-bottom: 15px;
+    }
+    .ekko-lightbox-nav-overlay {
+        top: 90px;
+    }
+    .nav-pills-stacked-example li{
+        float: none !important;
+    }
+
+    .pharmerz-intro-txt {
+        font-size: 16px;
+        padding: 5%;
+    }
+
+    /*--End--*/
+    /*-------------
+     Product page
+     --------------*/
+    #product-container .col-xs-12,col-sm-12 {
+        width:100%!important;
+    }
+    #filter-box .dropdown-menu:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #ddd;
+        top: -13px;
+        left: 7px;
+    }
+    /*--End--*/
+    /*---------------
+  Categories page
+ ---------------*/
+    .categories-container{
+        height:550px;
+        overflow-y: scroll;
+    }
+    /*--End--*/
+	
+	.slider-box-inner-txt{
+		font-size:45px;
+	}
+
+     .home-productcat-selectbox-adjs{
+        padding-bottom: 10px;
+    }
+
+    .how-it-work-image {
+      padding: 10px;
+    }
+      /*----*/
+    .brand-logo2 {
+    padding-left: 10px;
+    }
+
+    .brand-logo2 img {
+        width: 100px;
+    }
+
+    .brand-logo img {
+    width: 100px;
+   }
+
+
+    /*Sagar Thombare*/
+
+    .shop-by-first {
+        top: -135px !important;
+    }
+
+    .shop-by-second {
+        top: -135px !important;
+    }
+
+    .media-images img {
+        width: 65%;
+    }
+
+
+
+    #sub-search-box{
+        height: 600px;
+    }
+
+    .left-pad {
+        padding-left: 15px;
+        padding-top: 20px;
+    }
+
+
+    .right-pad {
+        padding-right: 15px;
+    }
+
+    .counting-box{
+        padding-top: 50px;
+    }
+
+    #yourmobile{
+        margin-bottom:18px;
+    }
+
+    #yourname{
+        margin-bottom:18px;
+    }
+
+    .appview-image-box{
+        padding-top: 50px;
+    }
+
+    .app-appstore {
+        width: 30%;
+    }
+
+    .app-playstore {
+        width: 35%;
+    }
+
+    .store-images img {
+        width: 40%;
+    }
+	
+	.slider-box-inner-txt {
+        font-size: 28px;
+    }
+	
+	.buyer-box-header-txt {
+		font-size: 30px;
+	}
+	
+	.appview-header{
+		font-size: 30px;
+	}
+	
+	
+
+    /*Login Page*/
+    .login-header{
+        font-size: 25px;
+        padding-bottom: 20px;
+    }
+
+    .login-cancel-button button{
+        float: left;
+    }
+
+    .login-content{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    /*Registration Form*/
+
+    .register-cancel-button button{
+        float: left;
+    }
+
+    .register-header{
+        font-size: 30px;
+    }
+
+    .register-box-top{
+        top: -425px;
+    }
+
+    .register-box{
+        padding: 35px;
+    }
+
+
+}
+/*************END*************/
+
+@media only screen and (min-width: 361px) and (max-width: 479px) {
+
+    /*---------------
+    footer page
+---------------*/
+    .footer-background{
+        height: auto;
+        background-size: cover;
+    } 
+    .social-icons {
+        text-align: left;
+        /*padding-top: 30px;*/
+    }
+    .footer-links{
+        padding-top:5px;
+    }
+    .copyright {
+        font-size: 10px;
+    }
+	.footer-links a{
+    font-size: 14px;
+	}
+	
+	.playstore-box-footer{
+		font-size: 14px;
+	}
+	
+	.social-icons-txt{
+		font-size:10px;
+	}
+	
+    /*-- End --*/
+
+    /*------------------
+        Head
+    ----------------------*/
+    .playstore-box-header {
+        font-size: 11px;
+        /*padding-top: 6px;*/
+    }
+    .login-signup-box-header{
+        float: right;
+        font-size: 11px;
+    }
+    .headbar-divider{
+        height: 20px;
+    }
+    .playstore-box-header img {
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width: 13px;
+        height: 15px;
+    }
+    .login-form-inneradjs{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .login-link{
+        padding-bottom:10px;
+    }
+    .profile-image-box {
+        padding-bottom: 15px;
+    }
+    .lastname-adjs {
+        padding-top: 0px; 
+    }
+    .right-checkbox-algin{
+        float: left;   
+    }
+    .mysignupbtn{
+        margin-bottom: 5px;
+    }
+
+    .brand-logo {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+    .product-image img{
+        width:100%;
+    }
+    .product-name {
+        font-size: 16px;
+    }
+    .product-categorty{
+        font-size: 14px;
+    }
+    .product-supplier{
+        font-size: 14px;
+    }
+    .product-sendEnq-btn {
+        font-size: 11px;
+    }
+    .pharmerz-intro-txt {
+        font-size: 16px;
+        padding: 5%;
+    }
+
+    .home-blue-bold-txt {
+        font-size: 18px;
+    }
+    .home-blue-normal-txt {
+        font-size: 16px;
+    }
+    .video-box-header-txt {
+        font-size: 20px;
+    }
+    .what-is-Pharmerz-txt {
+        font-size: 23px;
+    }
+    .who-can-join-pharmerz-txt {
+        font-size: 23px;
+    }
+    /*--END--*/
+    /*------------
+      Home page 
+    ------------*/
+    .countigbox-count-txt{
+        font-size:22px;
+    }
+
+    .countigbox-name-txt{
+        font-size:14px;
+    }
+
+    .wcj-pharmerz-heading {
+        font-size: 16px;
+    }
+    .how-Pharmerz-work-txt{
+        font-size: 23px;
+    }
+
+    .how-Pharmerz-work-subtxt {
+        font-size: 16px;
+    }
+
+    /*--not use--*/
+    /*--not use--*/
+    /*.wcj-pharmerz-content {
+        font-size: 14px;
+    }*/
+
+    /*.wcj-pharmerz-image img{
+        width:100%;
+    }*/
+    /*--not use--*/
+
+    .video-container {
+        margin-bottom: 15px;
+    }
+    .ekko-lightbox-nav-overlay {
+        top: 90px;
+    }
+    .nav-pills-stacked-example li{
+        float: none !important;
+    }
+    /*--End--*/
+    /*-------------
+     Product page
+     --------------*/
+    #product-container .col-xs-12,col-sm-12 {
+        width:100%!important;
+    }
+    .dropdown-size {
+        width: 280px;
+    }
+    #filter-box .dropdown-menu:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #ddd;
+        top: -13px;
+        left: 7px;
+    }
+
+    .p-product-name {
+        font-size: 16px;
+    }
+    .p-product-categorty {
+        font-size: 13px;
+    }
+    .p-product-supplier {
+        font-size: 13px;
+    }
+    .p-product-sendEnq-btn {
+        font-size: 11px;
+    }
+
+    /*--End--*/
+    .slider-box-txt {
+        padding: 0%;
+        padding-top:10px;
+    }
+    .slider-box-inner-txt{
+        font-size:30px;
+    }
+
+     .home-productcat-selectbox-adjs{
+        padding-bottom: 10px;
+    }
+
+    .how-it-work-image {
+      padding: 10px;
+    }
+   /*----*/
+    .brand-logo2 {
+    padding-left: 10px;
+    }
+    .brand-logo2 img {
+        width: 100px;
+    }
+    .brand-logo img {
+    width: 100px;
+   }
+
+
+
+    /*Sagar Thombare*/
+
+
+    .media-images img {
+        width: 65%;
+    }
+
+
+    #sub-search-box{
+     height: 655px;
+    }
+
+    .left-pad {
+        padding-left: 15px;
+        padding-top: 20px;
+    }
+
+
+    .right-pad {
+        padding-right: 15px;
+    }
+
+    .counting-box{
+        padding-top: 50px;
+    }
+
+    #yourmobile{
+        margin-bottom:18px;
+    }
+
+    #yourname{
+        margin-bottom:18px;
+    }
+
+    .appview-image-box{
+        padding-top: 50px;
+    }
+
+    .app-appstore {
+        width: 30%;
+    }
+
+    .app-playstore {
+        width: 35%;
+    }
+
+    .store-images img {
+        width: 40%;
+    }
+	
+	.appview-header{
+		font-size: 30px;
+	}
+	
+	.slider-box-inner-txt {
+        font-size: 25px;
+    }
+	
+	.appview-content{
+		font-size: 18px;
+	}
+	
+	.buyer-box-header-txt {
+		font-size: 30px;
+	}
+	
+	.appview-content-list{
+		font-size: 18px;
+	}
+	
+	.shop-by-first{
+		top: -95px !important;
+	}
+	
+	.shop-by-second{
+		top: -95px !important;
+	}
+
+    /*Login page*/
+
+    .login-header{
+        font-size: 25px;
+        padding-bottom: 20px;
+    }
+
+    .login-cancel-button button{
+        float: left;
+    }
+
+
+    /*Registration Form*/
+
+    .register-cancel-button button{
+        float: left;
+    }
+
+    .register-header{
+        font-size: 25px;
+    }
+
+    .register-box-top{
+        top: -425px;
+    }
+
+    .register-box{
+        padding: 30px;
+    }
+
+}
+/*************END*************/
+
+@media only screen and (min-width: 330px) and (max-width: 360px) {
+    /*---------------
+    footer page
+---------------*/
+    .footer-background{
+        height: auto;
+        background-size: cover;
+    } 
+    .social-icons {
+        text-align: left;
+       /* padding-top: 30px;*/
+    }
+    .footer-links{
+        padding-top:5px;
+    }
+    .copyright {
+        font-size: 10px;
+    }
+	
+	.footer-links a{
+    font-size: 14px;
+	}
+	
+	.playstore-box-footer{
+		font-size: 14px;
+	}
+	
+	.social-icons-txt{
+		font-size:10px;
+	}
+    /*-- End --*/
+    /*------------------
+            Head
+        ----------------------*/
+    .playstore-box-header {
+        font-size: 11px;
+        /*padding-top: 7px;*/
+    }
+    .login-signup-box-header{
+        float: right;
+        font-size: 11px;
+    }
+    .headbar-divider{
+        height: 20px;
+    }
+    .playstore-box-header img {
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width: 12px;
+        height: 15px;
+    }
+    .login-form-inneradjs{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .login-link{
+        padding-bottom:10px;
+    }
+    .profile-image-box {
+        padding-bottom: 15px;
+    }
+    .lastname-adjs {
+        padding-top: 0px; 
+    }
+    .right-checkbox-algin{
+        float: left;   
+    }
+    .mysignupbtn{
+        margin-bottom: 5px;
+    }
+    .brand-logo {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+    .product-image img{
+        width:100%;
+    }
+    .product-name {
+        font-size: 16px;
+    }
+    .product-categorty{
+        font-size: 14px;
+    }
+    .product-supplier{
+        font-size: 14px;
+    }
+    .product-sendEnq-btn {
+        font-size: 11px;
+    }
+    .pharmerz-intro-txt {
+        font-size: 16px;
+            padding: 5%;
+    }
+
+    .home-blue-bold-txt {
+        font-size: 18px;
+    }
+    .home-blue-normal-txt {
+        font-size: 16px;
+    }
+    .video-box-header-txt {
+        font-size: 20px;
+    }
+    .what-is-Pharmerz-txt {
+        font-size: 23px;
+    }
+    .who-can-join-pharmerz-txt {
+        font-size: 23px;
+    }
+
+    .wcj-pharmerz-heading {
+        font-size: 16px;
+    }
+
+    .how-Pharmerz-work-txt{
+        font-size: 23px;
+    }
+
+    .how-Pharmerz-work-subtxt {
+        font-size: 16px;
+    }
+    /*--not use--*/
+    /*.wcj-pharmerz-content {
+        font-size: 14px;
+    }*/
+
+    /*.wcj-pharmerz-image img{
+        width:100%;
+    }*/
+    /*--not use--*/
+    /*-- END --*/
+    /*------------
+     Home page 
+   ------------*/
+    .countigbox-count-txt{
+        font-size:20px;
+    }
+
+    .countigbox-name-txt{
+        font-size:16px;
+    }
+
+    .video-container {
+        margin-bottom: 15px;
+    }
+    .ekko-lightbox-nav-overlay {
+        top: 75px;
+    }
+    .nav-pills-stacked-example li{
+        float: none !important;
+    }
+    /*--End--*/
+    /*-------------
+     Product page
+     --------------*/
+    #product-container .col-xs-12,col-sm-12 {
+        width:100%!important;
+    }
+    .dropdown-size {
+        width: 280px;
+    }
+    #filter-box .dropdown-menu:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #ddd;
+        top: -13px;
+        left: 7px;
+    }
+    .p-product-name {
+        font-size: 16px;
+    }
+    .p-product-categorty {
+        font-size: 13px;
+    }
+    .p-product-supplier {
+        font-size: 13px;
+    }
+    .p-product-sendEnq-btn {
+        font-size: 11px;
+    }
+
+    /*--End--*/
+
+    .slider-box-txt {
+        padding: 0%;
+        padding-top:10px;
+    }
+
+
+     .home-productcat-selectbox-adjs{
+        padding-bottom: 10px;
+    }
+
+    .how-it-work-image {
+      padding: 10px;
+    }
+
+   /*----*/
+    .brand-logo2 {
+    padding-left: 10px;
+    }
+    .brand-logo2 img {
+        width: 100px;
+    }
+
+    .brand-logo img {
+    width: 100px;
+   }
+
+
+    /*Sagar Thombare*/
+
+    #sub-search-box{
+        height: 665px;
+    }
+
+	
+    .left-pad {
+        padding-left: 15px;
+        padding-top: 15px;
+    }
+
+
+    .right-pad {
+        padding-right: 15px;
+    }
+
+    .counting-box{
+        padding-top: 50px;
+    }
+
+    #yourmobile{
+        margin-bottom:18px;
+    }
+
+    #yourname{
+        margin-bottom:18px;
+    }
+
+    .appview-image-box{
+        padding-top: 50px;
+    }
+
+    .app-appstore {
+        width: 30%;
+    }
+
+    .app-playstore {
+        width: 35%;
+    }
+
+    .store-images img {
+        width: 40%;
+    }
+	
+	.appview-header{
+		font-size: 30px;
+	}
+	
+	
+	.slider-box-inner-txt {
+        font-size: 25px;
+    }
+	
+	.appview-content{
+		font-size: 18px;
+	}
+	
+	.buyer-box-header-txt {
+		font-size: 30px;
+	}
+	
+	.appview-content-list{
+		font-size: 18px;
+	}
+	
+	.shop-by-first{
+		top: -95px !important;
+	}
+	
+	.shop-by-second{
+		top: -95px !important;
+	}
+
+   /*Login page*/
+    .login-header{
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
+
+    .login-cancel-button button{
+        float: left;
+    }
+
+    /*Registration Form*/
+
+    .register-cancel-button button{
+        float: left;
+    }
+
+    .register-header{
+        font-size: 23px;
+    }
+
+    .register-box-top{
+        top: -425px;
+    }
+
+    .register-box{
+        padding: 20px;
+    }
+
+
+}
+/*************END*************/
+
+@media only screen and (min-width: 300px) and (max-width: 329px) {
+
+    /*---------------
+    footer page
+---------------*/
+    .footer-background{
+        height: auto;
+        background-size: cover;
+    }
+    .social-icons {
+        text-align: left;
+       /* padding-top: 30px;*/
+    }   
+    .footer-links{
+        padding-top:5px;
+    }
+    .copyright {
+        font-size: 10px;
+    }
+	
+	.footer-links a{
+		font-size: 14px;
+	}
+	
+	.playstore-box-footer{
+		font-size: 14px;
+	}
+	
+	.social-icons-txt{
+		font-size:10px;
+	}
+    /*-- End --*/
+    /*------------------
+        Head 
+    ----------------------*/
+    .playstore-box-header {
+        font-size: 9px;
+        /* padding-top: 9px; */
+    }
+    .login-signup-box-header{
+        float: right;
+        font-size: 9px;
+    }
+    .headbar-divider{
+        height: 13px;
+    }
+    .playstore-box-header img {
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width: 11px;
+        height: 13px;
+    }
+    .login-form-inneradjs{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .login-link{
+        padding-bottom:10px;
+    }
+    .profile-image-box {
+        padding-bottom: 15px;
+    }
+    .lastname-adjs {
+        padding-top: 0px; 
+    }
+    .right-checkbox-algin{
+        float: left;   
+    }
+    .mysignupbtn{
+        margin-bottom: 5px;
+    }
+    .brand-logo {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+    .product-image img{
+        width:100%;
+    }
+    .product-name {
+        font-size: 16px;
+    }
+    .product-categorty{
+        font-size: 14px;
+    }
+    .product-supplier{
+        font-size: 14px;
+    }
+    .product-sendEnq-btn {
+        font-size: 11px;
+    }
+    .pharmerz-intro-txt {
+        font-size: 16px;
+        padding: 5%;
+    }
+
+    .home-blue-bold-txt {
+        font-size: 18px;
+    }
+    .home-blue-normal-txt {
+        font-size: 16px;
+    }
+    .video-box-header-txt {
+        font-size: 20px;
+    }
+    .what-is-Pharmerz-txt {
+        font-size: 23px;
+    }
+    .who-can-join-pharmerz-txt {
+        font-size: 23px;
+    }
+
+    .wcj-pharmerz-heading {
+        font-size: 16px;
+    }
+
+    .how-Pharmerz-work-txt{
+        font-size: 23px;
+    }
+
+    .how-Pharmerz-work-subtxt {
+        font-size: 16px;
+    }
+
+    /*--not use--*/
+    /*.wcj-pharmerz-content {
+        font-size: 14px;
+    }*/
+
+    /*.wcj-pharmerz-image img{
+        width:100%;
+    }*/
+    /*--not use--*/
+    /*-- END --*/
+    /*------------
+     Home page 
+   ------------*/
+    .countigbox-count-txt{
+        font-size:20px;
+    }
+
+    .countigbox-name-txt{
+        font-size:12px;
+    }
+
+    .video-container {
+        margin-bottom: 15px;
+    }
+
+    .ekko-lightbox-nav-overlay {
+        top: 75px;
+    }
+    .nav-pills-stacked-example li{
+        float: none !important;
+    }
+    /*--End--*/
+
+    /*-------------
+     Product page
+     --------------*/
+    #product-container .col-xs-12,col-sm-12 {
+        width:100%!important;
+    }
+    .dropdown-size {
+        width: 280px;
+    }
+    #filter-box .dropdown-menu:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #ddd;
+        top: -13px;
+        left: 7px;
+    }
+
+    .p-product-name {
+        font-size: 16px;
+    }
+    .p-product-categorty {
+        font-size: 13px;
+    }
+    .p-product-supplier {
+        font-size: 13px;
+    }
+    .p-product-sendEnq-btn {
+        font-size: 11px;
+    }
+
+    /*--End--*/
+    .slider-box-txt {
+        padding: 0%;
+        padding-top:10px;
+    }
+	
+	.slider-box-inner-txt{
+		font-size:25px;
+	}
+	
+	
+
+
+    .home-productcat-selectbox-adjs{
+        padding-bottom: 10px;
+    }
+
+	.how-it-work-image {
+      padding: 10px;
+    }
+    /*----*/
+    .brand-logo2 {
+    padding-left: 10px;
+   }
+    .brand-logo2 img {
+        width: 100px;
+    }
+   .brand-logo img {
+    width: 100px;
+   }
+
+   /*Sagar Thombare*/
+
+    #sub-search-box{
+        height: 675px;
+    }
+
+    .left-pad {
+        padding-left: 15px;
+        padding-top: 15px;
+    }
+
+
+    .right-pad {
+        padding-right: 15px;
+    }
+
+    .counting-box{
+        padding-top: 50px;
+    }
+
+    #yourmobile{
+        margin-bottom:18px;
+    }
+
+    #yourname{
+        margin-bottom:18px;
+    }
+
+    .appview-image-box{
+        padding-top: 50px;
+    }
+
+    .app-appstore {
+        width: 30%;
+    }
+
+    .app-playstore {
+        width: 35%;
+    }
+
+    .store-images img {
+        width: 40%;
+    }
+	
+	
+	.appview-header{
+		font-size: 30px;
+	}
+	
+	.buyer-box-header-txt{
+		font-size: 30px;
+	}
+	
+	.appview-content{
+		font-size: 18px;
+	}
+	
+	.appview-content-list{
+		font-size: 18px;
+	}
+	
+	.shop-by-first{
+		top: -95px !important;
+	}
+	
+	.shop-by-second{
+		top: -95px !important;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+    /*Login page*/
+
+    .login-header{
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
+
+    .login-cancel-button button{
+        float: left;
+    }
+
+
+    /*Registration Page*/
+
+    .register-cancel-button button{
+        float: left;
+    }
+
+    .register-header{
+        font-size: 21px;
+    }
+
+    .register-box-top{
+        top: -425px;
+    }
+
+    .register-box{
+        padding: 20px;
+    }
+	
+	
+
+
+
+}
+/*************END*************/

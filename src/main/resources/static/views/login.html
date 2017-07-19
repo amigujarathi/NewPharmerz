@@ -1,0 +1,70 @@
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <div class="login-header">
+                    <p>Login Your Pharmerz Account</p>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="login-cancel-button">
+                    <button type="button" class="btn btn-warning btn-circle" ng-click="cancelButton();"><i class="glyphicon glyphicon-remove"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="login-content">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
+                    <div class="login-box" id="login-box">
+                        <form name="formLogin" class="form-signin">
+
+
+                            <label class="login-label">Username</label>
+                            <input ng-keyup="checkPasswordIcon(formLogin);" type="text" class="form-control" ng-model="username" name="username" autocomplete="OFF" placeholder="Enter username" required />
+                            <span class="validation_error" ng-show="submitted && formLogin.username.$error.required">{{errorMessage.filedrequired}}</span>
+                            <div class="username-detail"></div>
+
+
+                            <label class="login-label">Password</label>
+                            <input ng-keyup="checkPasswordIcon(formLogin);"  type="{{showpassword ? 'text' : 'password'}}"  class="form-control" ng-model="password" autocomplete="OFF" name="password" pattern=".{8,}" placeholder="Enter Password" required />
+                            <span ng-click="showpassword =! showpassword" ng-class="{'glyphicon-eye-open' : showpassword ,'glyphicon-eye-close': !showpassword}" class="glyphicon form-control-feedback input-box-icon" id="input-box-icon" style="cursor: pointer; pointer-events: all;"></span>
+
+                            <!-- validation error -->
+                            <span class="validation_error" ng-show="submitted && formLogin.password.$error.required">{{errorMessage.filedrequired}}</span>
+                            <span class="validation_error" ng-show="submitted && formLogin.password.$error.pattern">{{errorMessage.passworderror}}</span>
+                            <div class="password-details"></div>
+
+
+                            <div class="form-group login-error-message" ng-show="invalidusrpass">
+                                <center><span class="validation_error">{{errorMessage.invalidUsernamePassword}}</span></center>
+                            </div>
+
+
+                            <div class="login-button">
+                                <button class="btn btn-lg btn-primary btn-block" type="button" ng-click="loginForm(formLogin);">Login</button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="login-trouble">
+                                        <a href="">Login Trouble</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
+                    <div class="login-footer">
+                        <p>Don't have account <a href="#/register">Create</a> now</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

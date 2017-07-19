@@ -1,0 +1,52 @@
+<!--Header Part -->
+<div ng-include="'views/admin-header.html'"></div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-9 col-md-offset-3 alldocactivity" ng-init="getUsrDetails();getOrgDetails();">
+			<center><h4><u>Verify Email</u></h4></center>
+			<br/>
+			<div>
+				<center>
+					<span class="validation_success2" ng-show="EmailAddressVerifySuccess">{{errorMessage.verifyemailsuccess}}</span>
+				</center>
+			</div>
+			<br/>
+			<div>
+				<form class="form-horizontal" name="verifyemailbox">
+					<div class="form-group">
+						<div class="col-sm-6 col-md-offset-3">
+							<input type="email" class="form-control" id="registrationEmail" name="registrationEmail"  ng-model="registrationEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Registration Email" required>
+							<span class="validation_error" ng-show="verifyemail && verifyemailbox.registrationEmail.$error.required">{{errorMessage.filedrequired}}</span>
+							<span class="validation_error" ng-show="verifyemail && verifyemailbox.registrationEmail.$error.pattern">{{errorMessage.emailerror}}</span>
+							<span class="validation_error" ng-show="invalidemailmsg && verifyemailbox.registrationEmail.$valid">{{errorMessage.alreadyverifyemail}}</span>
+							<span class="validation_error" ng-show="wrongemailmsg && verifyemailbox.registrationEmail.$valid">{{errorMessage.registerEmail}}</span>
+							<br/>
+							<button class="btn btn-primary btn-xs pull-right" type="button"  ng-click="getOTP(verifyemailbox);">Get OTP</button>
+						</div>
+					</div>
+				</form>
+				<form class="form-horizontal" name="verifyemailotpbox">
+					<div class="form-group">
+						<div class="col-sm-2 col-md-offset-5">
+							<input type="text" class="form-control" id="otp" name="otp" ng-model="otp" placeholder="OTP" ng-disabled="!OtpField" required>
+							<span class="validation_error" ng-show="verifyotp && verifyemailotpbox.otp.$error.required">{{errorMessage.filedrequired}}</span>
+							<!--<span class="validation_error" ng-show="otpnotvalid && verifyemailform.otp.$valid">{{errorMessage.otperror}}</span>-->
+						</div>
+					</div>
+					<br/>
+					<center><small>if OTP is not Received in 4 hrs. Please <a href="javascript:void(0);">click here</a> </small></center>
+					<br/>
+					<div class="form-group" ng-show="sendrequestVerifyEmail">
+						<center><!--<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>--><img src="image/loading.gif" height="32" width="32"/>&nbsp;&nbsp;<span class="">{{errorMessage.waitmin}}</span></center>
+					</div>
+					<div class="form-group">
+						<center>
+							<button type="button" class="btn btn-primary" ng-disabled="!OtpField" ng-click="verifyemailsbox(verifyemailotpbox);">Verify</button>
+						</center>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

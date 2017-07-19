@@ -1,0 +1,263 @@
+<div class="register-wrapper-first">
+    <div class="container-fluid" ng-init="addPlusSign();">
+
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <div class="register-header">
+                    <p>Create Your Free Pharmerz Account</p>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="register-cancel-button">
+                    <button type="button" class="btn btn-warning btn-circle" ng-click="cancelButton();"><i class="glyphicon glyphicon-remove"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="register-content">
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                    <div class="register-icon-box">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-12 col-md-12 col-lg-12 col-xs-offset-4 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 ">
+                            <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
+                                <div class="register-icon-content">
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="register-icon-text">
+                                                <p style="margin-bottom:0px;">List your business for "FREE" with india's</p>
+                                                <p >Complete B2B Pharma Marketplace</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="register-icon">
+                                                <img src="image/register-icon.png" alt="register-icon">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="register-wrapper-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="register-box-content">
+
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 register-box-top">
+                            <div class="register-box">
+                                <form name="signup" class="form-register">
+
+                                    <!-- First & List Name -->
+                                    <label class="login-label">Name</label>
+                                    <div class="row inputbox">
+                                        <div class="col-xs-6">
+                                            <div class="required-filed">
+                                                <input type="text" class="form-control" ng-model="firstname" name="firstname" pattern="([a-zA-Z]{2,10}\s*)+" placeholder="First" required />
+                                            </div>
+                                            <span class="validation_error" ng-show="register && signup.firstname.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="register && signup.firstname.$error.pattern">{{errorMessage.fname}}</span>
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <div class="required-filed">
+                                                <input type="text" class="form-control" ng-model="lastname" name="lastname" pattern="([a-zA-Z]{2,10}\s*)+" placeholder="Last" required />
+                                            </div>
+                                            <span class="validation_error" ng-show="register && signup.lastname.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="register && signup.lastname.$error.pattern">{{errorMessage.lname}}</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Gender -->
+                                    <div class="row inputbox">
+                                        <div class="col-xs-12">
+                                            <label class="login-label">Gender</label>
+                                            <div class="required-reg-filed">
+                                                <select class="form-control" ng-model="gender" name="gender" required >
+                                                    <option value="">I am...</option>
+                                                    <option value="MALE">Male</option>
+                                                    <option value="FEMALE">Female</option>
+                                                    <option value="OTHER">Other</option>
+                                                </select>
+                                            </div>
+                                            <span class="validation_error" ng-show="register && signup.gender.$error.required">{{errorMessage.filedrequired}}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Company Name -->
+                                    <div class="row inputbox">
+                                        <div class="col-xs-12">
+                                            <label class="login-label">Company Name</label>
+                                            <div class="required-reg-filed">
+                                                <input type="text" class="form-control" ng-model="companyname" name="companyname" pattern="([A-Za-z0-9,.@&/()'\- \s]{2,45})+"  placeholder="Company name" required />
+                                            </div>
+                                            <span class="validation_error" ng-show="register && signup.companyname.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="register && signup.companyname.$error.pattern">{{errorMessage.company}}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Contact Number -->
+                                    <div class="row inputbox">
+                                        <div class="col-xs-12">
+                                            <label class="login-label">Contact Number</label>
+                                            <div class="required-reg-filed">
+                                                <input type="text" class="form-control" ng-model="contactnumber" value="+91" name="contactnumber" placeholder="Contact Number" ng-blur="chkMobileNumAvail(signup);" ng-change="checkPlusSign(signup);" ng-keyup="checkPlusSign(signup);"  pattern="^\+[1-9]{1}[0-9]{9,15}$" required international-phone-number />
+                                            </div>
+                                            <span class="validation_error" ng-show="checkmobilenumber && signup.contactnumber.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="checkmobilenumber && signup.contactnumber.$error.pattern">{{errorMessage.mobile}}</span>
+                                            <span class="validation_error" ng-show="showcheckingmobile">checking....</span>
+                                            <span class="validation_error" ng-show="showmobileerror && signup.contactnumber.$valid">{{errorMessage.notavilmobile}}</span>
+                                            <span class="validation_success" ng-show="showmobileSuccess && signup.contactnumber.$valid">{{errorMessage.avilmobile}}</span>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Email ID -->
+                                    <div class="row inputbox">
+                                        <div class="col-xs-12">
+                                            <label class="login-label">Email ID</label>
+                                            <div class="required-reg-filed">
+                                                <input type="email" class="form-control" ng-model="emailid" name="emailid" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ng-blur="chkEmailIdAvail(signup);"  placeholder="Email" required />
+                                            </div>
+                                            <span class="validation_error" ng-show="checkemailaddress && signup.emailid.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="checkemailaddress && signup.emailid.$error.pattern">{{errorMessage.emailerror}}</span>
+                                            <span class="validation_error" ng-show="showcheckingemail">checking....</span>
+                                            <span class="validation_error" ng-show="showemailerror && signup.emailid.$valid">{{errorMessage.notavilemail}}</span>
+                                            <span class="validation_success" ng-show="showemailSuccess && signup.emailid.$valid">{{errorMessage.avilemail}}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Choose your username -->
+                                    <div class="row inputbox">
+                                        <div class="col-xs-12">
+                                            <label class="login-label">Choose your username</label>
+                                            <div class="required-reg-filed">
+                                                <input type="text" class="form-control" ng-model="username" name="username" pattern="([a-zA-Z0-9@.&+]{6,20}\s*)+" ng-blur="chkUsrnameAvail(signup);"  placeholder="Username" required />
+                                            </div>
+                                            <span class="validation_error" ng-show="checkusername && signup.username.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="checkusername && signup.username.$error.pattern">{{errorMessage.uname}}</span>
+                                            <span class="validation_error" ng-show="showcheckingusrname">checking....</span>
+                                            <span class="validation_error" ng-show="showusrnameerror && signup.username.$valid">{{errorMessage.notavilusername}}</span>
+                                            <span class="validation_success" ng-show="showusrnameSuccess && signup.username.$valid">{{errorMessage.avilusername}}</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Create a Password -->
+                                    <div class="row inputbox">
+                                        <div class="col-xs-12">
+                                            <label class="login-label">Create a Password</label>
+                                            <div class="required-reg-filed">
+                                                <input type="password" class="form-control" ng-model="password" name="password" pattern=".{8,}"  placeholder="Password" required />
+                                            </div>
+                                            <span class="validation_error" ng-show="register && signup.password.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="register && signup.password.$error.pattern">{{errorMessage.passworderror}}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Confirm your password -->
+                                    <div class="row">
+                                        <div class="col-xs-12 inputbox">
+                                            <label class="login-label">Confirm your password</label>
+                                            <div class="required-reg-filed">
+                                                <input type="password" class="form-control" ng-model="cpassword" name="cpassword" ng-keyup="matchPassword();"  placeholder="Confirm Password" required />
+                                            </div>
+                                            <span class="validation_error" ng-show="register && signup.cpassword.$error.required">{{errorMessage.filedrequired}}</span>
+                                            <span class="validation_error" ng-show="register && showerror && signup.cpassword.$valid ">{{errorMessage.cpassword}}</span>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="register-newsletter">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" value="">
+                                                    <label class="register-checkbox-label">Email me a weekly newsletter</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="register-newsletter">
+                                                <div class="checkbox">
+                                                    <input type="checkbox" value="">
+                                                    <label class="register-checkbox-label">Email me a daily newsletter</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 term-privacy-grid">
+                                            <div class="term-privacy">
+                                                <p>By Clicking Register, you agree to our <a href="">Term of sales</a> that you have read our <a href="">Privacy Policy</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                   
+
+                                    <div class="row">
+                                        <div class="col-xs-6 col-xs-offset-3">
+                                            <div class="register-button" id="register-button">
+                                                <button class="btn btn-lg btn-primary btn-block" ng-click="registerUser(signup);" type="button">Register</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+
+                                <div class="register-success" ng-show="registeredSuccess">
+                                    <p><span class="glyphicon glyphicon-ok-circle"></span>You have successfully registered </p>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="register-footer">
+                                        <p>Already have account <a href="#/login">Login</a> now</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
